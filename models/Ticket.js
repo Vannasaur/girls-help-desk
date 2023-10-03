@@ -1,12 +1,11 @@
-const { Model, Log, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // define the class for our model
 class Ticket extends Model { }
 // init the model
 Ticket.init(
-    {   
+    {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -60,24 +59,26 @@ Ticket.init(
     },
     {
         hooks: {
-                afterCreate: async (ticket, options) => {
-                    await sequelize.models.log.create({ 
-                        ticketId: ticket.id,
-                        type: "Created",
-                        userId: ticket.clientId,
-                        message: "Ticket number "+ ticket.id + " created."
-                    }
+            afterCreate: async (ticket, options) => {
+                await sequelize.models.log.create({
+                    ticketId: ticket.id,
+                    type: "Created",
+                    userId: ticket.clientId,
+                    message: "Ticket number " + ticket.id + " created."
+                }
+                )
+            },
+            afterUpdate: async (ticket, options) => {
+                if (ticket.status === 'Resolved' && ticket.isArchived !== true) {
+                    await sequelize.models.ticket.update(
+                        { isArchived: true },
+                        { where: { id: ticket.id } }
                     )
-                },
-                afterUpdate: async (ticket, options) => {
-                    if (ticket.status === 'Resolved' && ticket.isArchived !== true) {
-                        await sequelize.models.ticket.update(
-                            { isArchived: true },
-                            { where: { id: ticket.id }}
-                        );
-                    }
-                },
+                }
+            },
         },
+    },
+    {
         sequelize,
         freezeTableName: true,
         underscored: true,
