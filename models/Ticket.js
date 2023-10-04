@@ -2,7 +2,22 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // define the class for our model
-class Ticket extends Model { }
+class Ticket extends Model {
+
+    async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
+        const differences = await findDiff(this, oldData); //find difference between current ticket value and previous ticket values
+        if (differences.length === 0) {
+            return;
+        }
+        await log.create({
+            type: "Modified",
+            message: `${differences.length} changes were made on ${new Date()} by user ${userId}. ${diffs.join(", ")}`, //combine previous updates + new updates separated by commas
+            userId,
+            ticketId: this.id,
+        });
+        await log.save();
+    }
+}
 // init the model
 Ticket.init(
     {
@@ -77,8 +92,6 @@ Ticket.init(
                 }
             },
         },
-    },
-    {
         sequelize,
         freezeTableName: true,
         underscored: true,
