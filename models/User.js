@@ -4,29 +4,29 @@ const bcrypt = require('bcrypt');
 
 // define the class for our model
 class User extends Model {
-    // instance methods go here
-    async checkPassword(loginPw) {
-      return await bcrypt.compare(loginPw, this.password);
-    }
+  // instance methods go here
+  async checkPassword(loginPw) {
+    return await bcrypt.compare(loginPw, this.password);
   }
+}
 
 // create fields/columns for User model
 User.init(
   {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true
-        }
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,58 +36,58 @@ User.init(
       }
     },
     firstName: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
-   lastName: {
-    type: DataTypes.STRING,
-    allowNull: false
-   },
-   role: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-        isIn: [['tech', 'client']] 
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    defaultValue: 'client'
-   }
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIn: [['tech', 'client']]
+      },
+      defaultValue: 'client'
+    }
 
   },
 
-//meta table defintions
+  //meta table defintions
   // hooks
   {
-  hooks: { // in bulkCreate => individualHooks: true
-    beforeCreate: async (newUserData) => {
-      newUserData.password = await bcrypt.hash(newUserData.password, 10);
-      newUserData.email = newUserData.email.toLowerCase();
+    hooks: { // in bulkCreate => individualHooks: true
+      beforeCreate: async (newUserData) => {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        newUserData.email = newUserData.email.toLowerCase();
 
-      if (!newUserData.name) {
-        newUserData.name = newUserData.email;
+        if (!newUserData.name) {
+          newUserData.name = newUserData.email;
+        }
+
+        return newUserData;
+      },
+      beforeUpdate: async (updateUserData) => {
+        if (updateUserData.password) {
+          updateUserData.password = await bcrypt.hash(updateUserData.password, 10);
+        }
+
+        if (updateUserData.email) {
+          updateUserData.email = updateUserData.email.toLowerCase();
+        }
+
+        return updateUserData;
       }
-
-      return newUserData;
     },
-    beforeUpdate: async (updateUserData) => {
-      if (updateUserData.password) {
-        updateUserData.password = await bcrypt.hash(updateUserData.password, 10);
-      }
-
-      if (updateUserData.email) {
-        updateUserData.email = updateUserData.email.toLowerCase();
-      }
-
-      return updateUserData;
-    }
-  },
 
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'user'
-  
-}
+
+  }
 );
 module.exports = User;
 
