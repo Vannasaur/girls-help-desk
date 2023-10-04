@@ -27,7 +27,7 @@ Log.init(
                 key: "id"
               }
         },
-        messsage: {
+        message: {
             type: DataTypes.STRING,
             allownull: false,
             required: true

@@ -8,8 +8,7 @@ module.exports = {
             userId: req.session.user,
             ticketId: req.params.ticketId,
             message: req.body.message,
-            type: "Created",
-            isHidden: 
+            type: "Created"
           });
             res.status(200).json(newLog);
         } catch (err) {
