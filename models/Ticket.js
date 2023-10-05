@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../utils/connection');
+const { User } = require('./index');
 
 // define the class for our model
 class Ticket extends Model {
@@ -32,14 +33,14 @@ Ticket.init(
             allowNull: false,
             required: true,
             references: {
-                model: 'user',
+                model: User,
                 key: 'id',
             }
         },
         techId: {
             type: DataTypes.STRING,
             references: {
-                model: 'user',
+                model: User,
                 key: 'id',
             }
         },
