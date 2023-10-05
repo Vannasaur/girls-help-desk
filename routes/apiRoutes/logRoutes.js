@@ -10,6 +10,7 @@ router.route('/:ticketId?drawer=BOOLEAN')
     .post(createLog);
 
 router.route('/:ticketId/:logId?drawer=BOOLEAN')
+
     .put(editLog)
     .delete(deleteLog);
 
