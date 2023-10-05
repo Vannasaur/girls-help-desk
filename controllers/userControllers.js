@@ -24,9 +24,10 @@ module.exports = {
             req.session.save(() => {
                 req.session.user_id = userData.id;
                 req.session.loggedIn = true;
-
-                res.redirect('/');
             });
+
+            res.redirect('/');
+            
         } catch (err) {
             res.status(400).json(err);
         }
