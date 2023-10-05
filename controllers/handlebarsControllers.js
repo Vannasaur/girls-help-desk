@@ -1,6 +1,3 @@
-
-const withAuth = require('../utils/helpers');
-
 const {Ticket, User} = require('../models');
 
 module.exports = {
@@ -63,15 +60,18 @@ module.exports = {
 
 //  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
 
-renderLogin: withAuth, async function (req, res) {
+renderLogin: async function (req, res) {
     if (req.session.loggedIn) {
         return res.redirect('/')
     }
-    res.render('login');
+    res.render('login', {
+        title: "Log In",
+        layout: "login",
+    });
 },
 
 
-renderTicket: withAuth, async function (req, res) {
+renderTicket: async function (req, res) {
 
     try {
         const ticketData = await Ticket.findByPk(req.params.id, {

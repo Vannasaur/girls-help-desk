@@ -20,7 +20,7 @@ User.hasMany(Ticket, {
 });
 
 // Ticket belongsTo User with foreignKey of clientId
-Ticket.belongsTo(User,{
+Ticket.belongsTo(User, {
     foreignKey: "clientId",
     as: "client",
     allowNull: false,
@@ -28,7 +28,7 @@ Ticket.belongsTo(User,{
 });
 
 // Ticket belongsTo User with foreignKey of techId
-Ticket.belongsTo(User,{
+Ticket.belongsTo(User, {
     foreignKey: "techId",
     as: "tech",
     allowNull: false,
@@ -36,7 +36,7 @@ Ticket.belongsTo(User,{
 });
 
 // User hasMany Log with foreignKey of userId
-User.hasMany(Log,{
+User.hasMany(Log, {
     foreignKey: "userId",
     allowNull: false,
     onDelete: "CASCADE"
@@ -44,7 +44,7 @@ User.hasMany(Log,{
 
 
 // Log belongsTo User with foreignKey of userId
-Log.belongsTo(User,{
+Log.belongsTo(User, {
     foreignKey: "userId",
     allowNull: false,
     onDelete: "SET NULL"
@@ -52,7 +52,7 @@ Log.belongsTo(User,{
 
 
 // Ticket hasMany Log with foreignKey of ticketId
-Ticket.hasMany(Log,{
+Ticket.hasMany(Log, {
     foreignKey: "ticketId",
     allowNull: false,
     onDelete: "CASCADE"
@@ -60,14 +60,14 @@ Ticket.hasMany(Log,{
 
 
 // Log belongsTo Ticket with foreignKey of ticketId
-Log.belongsTo(Ticket,{
+Log.belongsTo(Ticket, {
     foreignKey: "ticketId",
     allowNull: false,
     onDelete: "SET NULL"
 });
 
 module.exports = {
-  Log,
-  Ticket,
-  User,
+    Log,
+    Ticket,
+    User,
 };

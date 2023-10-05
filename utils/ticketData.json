@@ -1,7 +1,7 @@
 [
     {
         "clientId": "1",
-        "techId": "",
+        "techId": null,
         "subject": "Page Loading",
         "description": "Page won't load",
         "status": "Resolved",
@@ -10,7 +10,7 @@
     },
     {
         "clientId": "2",
-        "techId": "",
+        "techId": null,
         "subject": "Tablet won't turn on",
         "description": "My tablet won't turn on",
         "status": "Pending",
@@ -19,7 +19,7 @@
     },
     {
         "clientId": "3",
-        "techId": "",
+        "techId": null,
         "subject": "Computer Issues",
         "description": "My computer isn't working",
         "status": "Resolved",
@@ -28,7 +28,7 @@
     },
     {
         "clientId": "4",
-        "techId": "",
+        "techId": null,
         "subject": "Email is lagging",
         "description": "My email is lagging",
         "status": "Open",
@@ -37,11 +37,11 @@
     },
     {
         "clientId": "5",
-        "techId": "",
+        "techId": null,
         "subject": "Potential Virus",
         "description": "I think my computer has a virus",
         "status": "Claimed",
         "urgency": "Low",
         "isArchived": "false"
-    },
+    }
 ]
