@@ -1,4 +1,4 @@
-const sequelize = require('../utils/connection');
+const sequelize = require('./connection');
 
 // seed sample User data
 const { User, Ticket } = require('../models');
@@ -14,8 +14,6 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true,
     });
-
-    await sequelize.sync({ force: true });
 
     await Ticket.bulkCreate(ticketData, {
         individualHooks: true,

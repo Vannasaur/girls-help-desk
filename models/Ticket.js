@@ -40,7 +40,7 @@ Ticket.init(
             }
         },
         techId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             references: {
                 model: User,
                 key: 'id',
@@ -97,7 +97,7 @@ Ticket.init(
         },
         sequelize,
         freezeTableName: true,
-        underscored: true,
+        underscored: false,
         modelName: 'ticket',
     }
 );
