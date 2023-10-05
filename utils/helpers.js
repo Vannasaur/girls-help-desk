@@ -34,12 +34,11 @@ module.exports = {
     findDiff: (oldValue, newValue, keyName, activeUser) => {
         if (oldValue === newValue) {
             return true;
+    //Object.keys() returns an array whose elements are strings corresponding to the enumerable string-keyed property names found directly upon the object
         } else if (Object.keys(oldValue) !== Object.keys(newValue)) {
             return false;
         }
         console.log(`${keyName} was changed from ${oldValue} to ${newValue} by ${activeUser}.`)
-
-
     },
 
 };
