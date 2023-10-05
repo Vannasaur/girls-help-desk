@@ -1,1 +1,38 @@
-{{{body}}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/public/assets/js/home.js">
+  <link rel="stylesheet" type="text/css" href="/public/assets/js/ticket.js">
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to the Help Desk</h1>
+  </header>
+  <nav>
+    <a href="/views/home.handlebars">Home</a>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/public/assets/js/login.js">Login</a>
+    {{/if}}
+  </nav>
+  <main>
+    <aside>
+      <h2>Tickets</h2>
+    </aside>
+    <div class="ticket">
+      {{{body}}}
+    </div>
+  </main>
+  {{#if loggedIn}}
+  <script src="/views/layouts/main.handlebars"></script>
+  {{/if}}
+</body>
+
+</html>
