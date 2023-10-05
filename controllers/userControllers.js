@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-const user = require('model')
-=======
 const { User } = require('../models');
 
 module.exports = {
@@ -48,4 +45,3 @@ module.exports = {
         }
     }
 };
->>>>>>> d396742f37537f1c65ce23970dcb1223a5b8c212
