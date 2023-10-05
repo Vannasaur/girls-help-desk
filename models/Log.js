@@ -49,7 +49,7 @@ Log.init(
         {
         sequelize,
         freezeTableName: true,
-        underscored: true,
+        underscored: false,
         modelName: 'log'
     }
 );
