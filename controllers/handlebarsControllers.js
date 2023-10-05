@@ -1,11 +1,11 @@
-const app = require('express').Router();
 
 const withAuth = require('../utils/helpers');
 
 const {Ticket, User} = require('../models');
 
+module.exports = {
 
-app.get('/:status?', async (req, res) => {
+   renderDashboard: async function (req, res) {
     const status = req.params.status || '';
     try {
         const ticketData = await Ticket.findAll({
@@ -14,11 +14,16 @@ app.get('/:status?', async (req, res) => {
                 [Op.not]: {
                     isArchived: true,
                 },
+
+//  If the ticket has been archived, redirect the user back to home view
+
             },
             include:
                 [{ model: User, as: "client" },
                 { model: User, as: "tech" }]
         });
+
+//  If the user is signed in as a client, they will not be allowed to view unassociated tickets; if the ticket's clientId property doesn't match their id, they will be automatically redirected back to the home view.
 
         if (!ticketData) {
             return res.status(404).json({
@@ -54,18 +59,19 @@ app.get('/:status?', async (req, res) => {
         res.status(500).json(err);
         console.log(err);
     }
-});
+},
 
-app.use('/login', async (req, res) => {
+//  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
+
+renderLogin: withAuth, async function (req, res) {
     if (req.session.loggedIn) {
         return res.redirect('/')
     }
     res.render('login');
-})
+},
 
 
-app.get('/ticket/:id', withAuth, async (req, res) => {
-
+renderTicket: withAuth, async function (req, res) {
 
     try {
         const ticketData = await Ticket.findByPk(req.params.id, {
@@ -81,6 +87,9 @@ app.get('/ticket/:id', withAuth, async (req, res) => {
 
         const ticket = ticketData.get({ plain: true })
 
+//  We will need to serialize the data before the view renders.
+
+        //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
 
         if (ticket.client.id === req.session.user_id) {
             res.render('ticket', {
@@ -91,6 +100,8 @@ app.get('/ticket/:id', withAuth, async (req, res) => {
                 userType: "client"
             })
         }
+
+        //  All tickets should include client and tech firstName lastName id and role from associated Users and all Log data for this ticket.
 
         if (ticket.tech.id === req.session.user_id) {
 
@@ -103,32 +114,19 @@ app.get('/ticket/:id', withAuth, async (req, res) => {
             })
         }
 
-    } catch (err) {
-        res.status(500).json(err);
-        console.log(err);
-    }
-    // be sure to include its associated tag data
-});
-
-module.exports = app;
-
-// The Individual Ticket view will be displayed when the URL path is '/ticket/:id'.
-
-//  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
-
-//  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
-
-//  If the user is signed in as a client, they will not be allowed to view unassociated tickets; if the ticket's clientId property doesn't match their id, they will be automatically redirected back to the home view.
-
-//  All tickets should include client and tech firstName lastName id and role from associated Users and all Log data for this ticket.
-
-//  If the ticket has been archived, redirect the user back to home view
-
-//  We will need to serialize the data before the view renders.
-
 // This view should receive the required values based on context, but also
 
 // loggedIn: BOOLEAN
 // title: STRING
 // layout: STRING
 // userType: STRING
+
+    } catch (err) {
+        res.status(500).json(err);
+        console.log(err);
+    }
+    // be sure to include its associated tag data
+},
+
+}
+
