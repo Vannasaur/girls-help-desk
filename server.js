@@ -10,7 +10,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store); //co
 //what is the server directly connected to: controllers folder, config folder, helpers folder
 const routes = require('./routes');
 const helpers = require('./utils/helpers'); //helper functions that don't belong in anywhere specific, can be used by multiple files
-const sequelize = require('./config/connection'); //use the msql peer dependency to create the ORM for our application, the data layer (model)
+const sequelize = require('./utils/connection'); //use the msql peer dependency to create the ORM for our application, the data layer (model)
 
 // Apply middleware
 //Our middleware functions are going to work in between our client requests and our route handlers that handle them on the server level
