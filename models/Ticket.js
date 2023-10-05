@@ -77,8 +77,6 @@ Ticket.init(
                 }
             },
         },
-    },
-    {
         sequelize,
         freezeTableName: true,
         underscored: true,

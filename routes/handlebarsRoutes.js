@@ -3,10 +3,7 @@ const app = require('express').Router();
 
 const withAuth = require('../utils/helpers');
 
-const Ticket = require('../models/Ticket');
-
-const User = require('../models/User');
-const { where } = require('sequelize');
+const {Ticket, User} = require('../models');
 
 
 app.get('/:status?', async (req, res) => {
@@ -68,9 +65,9 @@ app.use('/login', async (req, res) => {
 })
 
 
-app.get('/ticket/:id', withAuth, async (req, res) => {
+app.get('/ticket/:id', async (req, res) => {
 
-
+//, withAuth add
     try {
         const ticketData = await Ticket.findByPk(req.params.id, {
             include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
