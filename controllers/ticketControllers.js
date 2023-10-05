@@ -1,4 +1,4 @@
-const { Ticket } = require('../../models');
+const { Ticket } = require('../models');
 
 module.exports = {
     // Create new ticket

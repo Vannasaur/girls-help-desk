@@ -4,7 +4,7 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Initialize Product model (table) by extending off Sequelize's Model class
-class Log extends Model {}
+class Log extends Model { }
 
 // Set up fields and rules for Product Model
 Log.init(
@@ -16,7 +16,7 @@ Log.init(
             references: {
                 model: "user",
                 key: "id"
-              }
+            }
         },
         ticketId: {
             type: DataTypes.INTEGER,
@@ -25,9 +25,9 @@ Log.init(
             references: {
                 model: "ticket",
                 key: "id"
-              }
+            }
         },
-        messsage: {
+        message: {
             type: DataTypes.STRING,
             allownull: false,
             required: true
@@ -45,7 +45,6 @@ Log.init(
             defaultValue: false
         },
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'log'

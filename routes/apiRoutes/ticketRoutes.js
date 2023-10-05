@@ -4,12 +4,12 @@ const {
     createTicket,
     editTicket,
     archiveTicket
-} = require('../../controllers/ticketControllers')
+} = require('../../controllers/ticketControllers');
 
 // The routes will match '/api/ticket' to handle POST requests.
 //  POST will call the createTicket controller.
 router.route('/') 
-.post(createTicket);
+    .post(createTicket);
 
 // The routes will also match '/api/ticket/:id' to handle PUT, and DELETE requests.
 //  PUT will call the editTicket controller.
