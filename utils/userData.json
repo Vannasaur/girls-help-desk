@@ -1,0 +1,42 @@
+[
+    {
+        "firstName": "Malia",
+        "lastName": "Cho",
+        "email": "malia@email.com",
+        "password": "password12345",
+        "role": "client",
+        "id": "1"
+    },
+    {
+        "firstName": "Allie",
+        "lastName": "Deaver",
+        "email": "allie@email.com",
+        "password": "password12345",
+        "role": "client",
+        "id": "2"
+    },
+    {
+        "firstName": "Vanna",
+        "lastName": "Luciano",
+        "email": "vanna@email.com",
+        "password": "password12345",
+        "role": "tech",
+        "id": "3"
+    },
+    {
+        "firstName": "Chan",
+        "lastName": "Nguyen",
+        "email": "chan@email.com",
+        "password": "password12345",
+        "role": "tech",
+        "id": "4"
+    },
+    {
+        "firstName": "Linda",
+        "lastName": "Vuong",
+        "email": "linda@email.com",
+        "password": "password12345",
+        "role": "client",
+        "id": "5"
+    }
+]
