@@ -6,10 +6,11 @@ const {
   deleteLog
 } = require('../../controllers/logControllers')
 
-router.route('/api/log/:ticketId?drawer=BOOLEAN')
+router.route('/:ticketId?drawer=BOOLEAN')
     .post(createLog);
 
-router.route('/api/log/:ticketId/:logId?drawer=BOOLEAN')
+router.route('/:ticketId/:logId?drawer=BOOLEAN')
+
     .put(editLog)
     .delete(deleteLog);
 

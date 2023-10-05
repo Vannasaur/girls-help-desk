@@ -1,0 +1,47 @@
+[
+    {
+        "clientId": "1",
+        "techId": "",
+        "subject": "Page Loading",
+        "description": "Page won't load",
+        "status": "Resolved",
+        "urgency": "Low",
+        "isArchived": "true"
+    },
+    {
+        "clientId": "2",
+        "techId": "",
+        "subject": "Tablet won't turn on",
+        "description": "My tablet won't turn on",
+        "status": "Pending",
+        "urgency": "Medium",
+        "isArchived": "false"
+    },
+    {
+        "clientId": "3",
+        "techId": "",
+        "subject": "Computer Issues",
+        "description": "My computer isn't working",
+        "status": "Resolved",
+        "urgency": "High",
+        "isArchived": "true"
+    },
+    {
+        "clientId": "4",
+        "techId": "",
+        "subject": "Email is lagging",
+        "description": "My email is lagging",
+        "status": "Open",
+        "urgency": "Medium",
+        "isArchived": "false"
+    },
+    {
+        "clientId": "5",
+        "techId": "",
+        "subject": "Potential Virus",
+        "description": "I think my computer has a virus",
+        "status": "Claimed",
+        "urgency": "Low",
+        "isArchived": "false"
+    },
+]
