@@ -1,7 +1,10 @@
 // Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
-// Import our database connection from config.js
+
+// Import our database connection from utils
 const sequelize = require('../utils/connection');
+const { User, Ticket } = require('./index');
+
 
 // Initialize Product model (table) by extending off Sequelize's Model class
 class Log extends Model { }
@@ -14,7 +17,7 @@ Log.init(
             allownull: false,
             required: true,
             references: {
-                model: "user",
+                model: User,
                 key: "id"
             }
         },
@@ -23,7 +26,7 @@ Log.init(
             allownull: false,
             required: true,
             references: {
-                model: "ticket",
+                model: Ticket,
                 key: "id"
             }
         },
@@ -44,9 +47,11 @@ Log.init(
             required: true,
             defaultValue: false
         },
+    },
+        {
         sequelize,
         freezeTableName: true,
-        underscored: true,
+        underscored: false,
         modelName: 'log'
     }
 );
