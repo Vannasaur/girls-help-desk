@@ -14,7 +14,7 @@ const seedDatabase = async () => {
         individualHooks: true,
         returning: true,
     });
-  
+
     await sequelize.sync({ force: true });
 
     await Ticket.bulkCreate(ticketData, {
