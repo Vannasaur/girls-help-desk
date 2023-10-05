@@ -1,4 +1,4 @@
-const sequelize = require('../config/connection');
+const sequelize = require('../utils/connection');
 
 // seed sample User data
 const { User, Ticket } = require('../models');
