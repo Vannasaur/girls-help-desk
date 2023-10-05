@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../utils/connection');
 
 // define the class for our model
 class Ticket extends Model {
