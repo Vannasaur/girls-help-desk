@@ -1,3 +1,14 @@
+/* universal font */
+@font-face {
+    font-family: couture;
+    src: url(../fonts/couture.otf);
+}
+
+* {
+    font-family: couture;
+    letter-spacing: .3rem;
+}
+
 /* for log modal */
 body {
 margin: 0;
@@ -31,4 +42,15 @@ overflow: hidden;
     background-color: rgb(148, 171, 255);
     box-shadow: -5px 0 15px gray;
     transition: all 0.3s ease-in-out;
+}
+
+/* for views/layouts login */
+/* .login-container {
+    display: flex;
+    justify-content: center;
+} */
+
+#login-email, #login-email-input, #login-pw, 
+#login-pw-input {
+  color: black;
 }

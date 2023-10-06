@@ -1,4 +1,5 @@
 require('dotenv').config(); //create custom environment variables to protect our user and private variables, keep obscure from git
+
 // Bring in Node_Modules imports
 const path = require('path');
 const express = require('express'); //for our server
