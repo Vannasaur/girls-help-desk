@@ -31,17 +31,21 @@ module.exports = {
         return `${month} ${day} ${year} ${time}`
     },
 
-    findDiff: (oldValue, newValue, keyName, activeUser) => {
-        if (oldValue === newValue) {
-            return true;
-    //Object.keys() returns an array whose elements are strings corresponding to the enumerable string-keyed property names found directly upon the object
-        } else if (Object.keys(oldValue) !== Object.keys(newValue)) {
-            return false;
+    findDiff: (newValue, oldValue, activeUser) => {
+        const diff = [];
+        for (const key in newValue) {
+            if (!oldValue.hasOwnProperty(key)) {
+                diff.push(`${key} was added by ${activeUser}`);
+            } else if (newValue[key] !== oldValue[key]) {
+                diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by ${activeUser}`);
+            }
         }
-        console.log(`${keyName} was changed from ${oldValue} to ${newValue} by ${activeUser}.`)
-    },
+        return diff;
+    }
 
 };
+
+
 
 
 
