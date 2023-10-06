@@ -28,7 +28,8 @@ module.exports = {
             let year = timeStamp.getFullYear();
 
         const time = formatTimestamp(timeStamp)
-
+        return `${month} ${day} ${year} ${time}`
+        },
 
 //On each chat log in the ticket
 //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
@@ -60,7 +61,7 @@ module.exports = {
         else {
             return "left-align";
         }
-    }
+    },
 
     findDiff: (newValue, oldValue, activeUser) => {
         const diff = [];
