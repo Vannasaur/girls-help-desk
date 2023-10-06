@@ -1,8 +1,10 @@
 // Import important parts of sequelize library
 const { Model, DataTypes } = require('sequelize');
+
 // Import our database connection from utils
 const sequelize = require('../utils/connection');
 const { User, Ticket } = require('./index');
+
 
 // Initialize Product model (table) by extending off Sequelize's Model class
 class Log extends Model { }
