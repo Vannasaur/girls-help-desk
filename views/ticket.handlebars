@@ -1,9 +1,10 @@
 {{!-- this line below needs to go at the very bottom of this file --}}
-
+<body>
 <header>
-    <nav>
         <div class="nav-wrapper">
-            <a href="" class="brand-logo">Subject</a>
+            <h1 
+              class="brand-logo">Subject
+            </h1>
             <section>
                 Description:
             </section>
@@ -11,14 +12,47 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             </p>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="">urgency</a></li>
-    </nav>
+                <p>
+                    urgency
+                </p>
 </header>
+    <main>
+        <aside>
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+  
+  <div class="card-body text-primary">
+    <h5 class="card-title" id="ticket-subject">Subject</h5>
+    <p class="card-text" id="subject-text">
+        {{!-- input field from employee --}}
+    </p>
+    <h5 class="card-header" id="ticket-description">Description</h5>
 
+    <p class="card-text" id="description-text">
+        {{!-- input field from employee --}}
+    </p>
+
+    <h5 class="card-header" id="ticket-urgency">Urgency</h5>
+    {{!-- dropdown --}}
+
+    <p class="card-text" id="urgency-text">
+        {{!-- input field from employee --}}
+    </p>
+    <h5 class="card-header" id="ticket-status">Status</h5>
+ {{!-- dropdown --}}
+    <p class="card-text" id="status-text">
+        {{!-- input field from employee --}}
+    </p>
+  </div>
+
+        
+
+
+    </main>
 
 
 <script src="/assets/js/ticket.js"></script>
 
+</body>
 
 
 {{!-- The top of the page features a header detailing the current ticket information.
