@@ -45,12 +45,21 @@ overflow: hidden;
 }
 
 /* for views/layouts login */
-/* .login-container {
+.login-container, body {
     display: flex;
     justify-content: center;
-} */
+    align-items: center;
+}
 
 #login-email, #login-email-input, #login-pw, 
 #login-pw-input {
   color: black;
+}
+
+#login-btn {
+    margin-top: 1rem;
+}
+
+body {
+    height: 100vh;
 }
