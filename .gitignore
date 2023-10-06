@@ -132,3 +132,9 @@ dist
 # Ignore Mac system files
 
 .DS_Store
+
+# Additional things to ignore
+
+.html
+
+package-lock.json

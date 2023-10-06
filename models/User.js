@@ -1,6 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../utils/connection');
 const bcrypt = require('bcrypt');
+
+
+// The User model must include an instance method using bcrypt to verify a password is valid upon login.
 
 // define the class for our model
 class User extends Model {
@@ -84,7 +87,7 @@ User.init(
     sequelize,
     timestamps: false,
     freezeTableName: true,
-    underscored: true,
+    underscored: false,
     modelName: 'user'
 
   }
@@ -93,29 +96,7 @@ module.exports = User;
 
 
 
-//User
-// ├── email
-// │   ├── STRING
-// │   ├── Required
-// │   ├── Must be email
-// ├── password
-// │   ├── STRING
-// │   ├── Required
-// │   ├── Cannot be `password`
-// │   ├── Minimum of 6 characters
-// ├── firstName
-// │   ├── STRING
-// │   ├── Required
-// ├── lastName
-// │   ├── STRING
-// │   ├── Required
-// ├── role
-// │   ├── STRING
-// │   ├── Required
-// │   ├── Must be `tech` or `client`
-// │   ├── Default value of `client`
 
-// The User model must include an instance method using bcrypt to verify a password is valid upon login.
 
 // The User model must include custom hooks for beforeCreate and beforeUpdate.
 

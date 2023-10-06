@@ -62,8 +62,16 @@ module.exports = {
             return "left-align";
         }
     }
+
+    findDiff: (newValue, oldValue, activeUser) => {
+        const diff = [];
+        for (const key in newValue) {
+            if (!oldValue.hasOwnProperty(key)) {
+                diff.push(`${key} was added by ${activeUser}`);
+            } else if (newValue[key] !== oldValue[key]) {
+                diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by ${activeUser}`);
+            }
+        }
+        return diff;
+    }
 };
-
-
-
-
