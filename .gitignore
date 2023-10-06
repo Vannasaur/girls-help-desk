@@ -132,3 +132,7 @@ dist
 # Ignore Mac system files
 
 .DS_Store
+
+
+.html
+
