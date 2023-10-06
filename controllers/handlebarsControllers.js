@@ -11,7 +11,7 @@ module.exports = {
                 [Op.not]: {
                     isArchived: true,
                 },
-
+            
 //  If the ticket has been archived, redirect the user back to home view
 
             },
@@ -61,8 +61,10 @@ module.exports = {
 //  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
 
 renderLogin: async function (req, res) {
-    if (req.session.loggedIn) {
-        return res.redirect('/')
+   console.info(req.session.loggedIn);
+    if (req.session.loggedIn == "true" ) {
+    //continues to redirect 
+        return res.status(401).redirect('/')
     }
     res.render('login', {
         title: "Log In",

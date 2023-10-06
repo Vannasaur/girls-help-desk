@@ -8,7 +8,7 @@ renderTicket
 } = require('../controllers/handlebarsControllers')
 
 //route for dashboard page
-router.route('/status:?')
+router.route('/:status?')
 .get(withAuth, renderDashboard);
 
 //route for login page
