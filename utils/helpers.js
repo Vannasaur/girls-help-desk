@@ -10,6 +10,7 @@ module.exports = {
     },
 
     withAuth: (req, res, next) => {
+        console.log("HERE")
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -42,6 +43,8 @@ module.exports = {
         }
         return diff;
     }
+
+
 
 };
 
