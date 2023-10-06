@@ -1,15 +1,15 @@
-
 <h1>Your Tickets</h1>
 <h2>You may filter tickets by Status, or view ALL.</h2>
 
 <div class="button-card">
-<button class="btn-all" type="click" href="/">All</button>
-<button class="tn-open" type="click" href="/Open">Open</button>
-<button class="btn-pending" type="click" href="/Pending">Pending</button>
-<button class="btn-resolved" type="click" href="/Resolved">Resolved</button>
-<button class="btn-claimed" type="click" href="/Claimed">Claimed</button>
+    <button class="btn-all" type="click" href="/">All</button>
+    <button class="tn-open" type="click" href="/Open">Open</button>
+    <button class="btn-pending" type="click" href="/Pending">Pending</button>
+    <button class="btn-resolved" type="click" href="/Resolved">Resolved</button>
+    <button class="btn-claimed" type="click" href="/Claimed">Claimed</button>
 </div>
-{{!-- The top portion of the page is dedicated to several buttons. On click, these buttons will filter the table view to only include tickets which match the selected status. They will function as links which take the user to /:status?
+{{!-- The top portion of the page is dedicated to several buttons. On click, these buttons will filter the table view to
+only include tickets which match the selected status. They will function as links which take the user to /:status?
 All - takes the user to /
 Open - takes the user to '/Open'
 Pending - takes the user to '/Pending'
@@ -24,6 +24,32 @@ The top-half should match the wireframe --}}
 <div class="button-card">
     <button id="logout" type="click" href="/login">Logout</button>
 </div>
+
+
+{{!-- Views - Home - Add Button & Drawer --}}
+
+{{!-- Create New Ticket Button --}}
+<button id="new-ticket-btn">+</button>
+<div id="new-ticket" class="hidden">
+    <form>
+        <label for="ticket-subj">Subject:</label>
+        <br>
+        <input type="text" id="subject">
+        <br>
+        <label for="ticket-desc">Description:</label>
+        <br>
+        <textarea id="description"></textarea>
+        <br>
+        <label for="ticket-urgency">Urgency:</label>
+        <select id="ticket-urgency">
+            <option value="Low" class="urgency">Low</option>
+            <option value="Medium" class="urgency">Medium</option>
+            <option value="High" class="urgency">High</option>
+        </select>
+        <button type="submit" id="submit-ticket-btn">Submit</button>
+    </form>
+</div>
+
 
 {{!-- this line below needs to go at the very bottom of this file --}}
 <script src="/assets/js/home.js"></script>
