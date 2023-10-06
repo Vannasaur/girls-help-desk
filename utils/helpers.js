@@ -29,8 +29,38 @@ module.exports = {
 
         const time = formatTimestamp(timeStamp)
 
-        return `${month} ${day} ${year} ${time}`
+
+//On each chat log in the ticket
+//this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
+//NEED TO STYLE IN CSS
+    determineShowHide: (value) => {
+        return value === true ? "hidden" : "shown";
     },
+
+// {{helperFuncName argument1 argument2}}
+//this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
+//the handlebars does the loop - for each currentUser iterate over the log
+//NEED TO STYLE IN CSS
+    determineAlignment: (log, currentUser) => {
+        let log = log.id
+        let currentUser = currentUser.id
+
+        if (log.type === "Created") {
+            return "center-align";
+        }
+
+        if (log.type === "Modified") {
+            return "center-align";
+        }
+
+        if (currentUser === log.userId) {
+            return "right-align";
+        }
+
+        else {
+            return "left-align";
+        }
+    }
 
     findDiff: (newValue, oldValue, activeUser) => {
         const diff = [];
@@ -43,14 +73,4 @@ module.exports = {
         }
         return diff;
     }
-
-
-
 };
-
-
-
-
-
-
-
