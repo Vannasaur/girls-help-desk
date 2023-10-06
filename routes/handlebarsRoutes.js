@@ -7,10 +7,6 @@ renderLogin,
 renderTicket
 } = require('../controllers/handlebarsControllers')
 
-//route for dashboard page
-router.route('/status:?')
-.get(withAuth, renderDashboard);
-
 //route for login page
 router.route('/login')
 .get(renderLogin)
@@ -18,5 +14,9 @@ router.route('/login')
 //route for ticket page
 router.route('/ticket')
 .get(withAuth, renderTicket)
+
+//route for dashboard page
+router.route('/status:?')
+.get(withAuth, renderDashboard);
 
 module.exports = router;
