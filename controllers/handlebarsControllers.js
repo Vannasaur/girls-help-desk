@@ -2,15 +2,33 @@ const { Ticket, User } = require('../models');
 
 module.exports = {
 
-    renderDashboard: async function (req, res) {
-        const status = req.params.status || '';
-        try {
-            const ticketData = await Ticket.findAll({
-                where: {
-                    status: status,
-                    [Op.not]: {
-                        isArchived: true,
-                    },
+   renderDashboard: async function (req, res) {
+    const status = req.params.status || '';
+    try {
+        const ticketData = await Ticket.findAll({
+            where: {
+                status: status,
+                [Op.not]: {
+                    isArchived: true,
+                },
+            
+//  If the ticket has been archived, redirect the user back to home view
+
+            },
+            include:
+                [{ model: User, as: "client" },
+                { model: User, as: "tech" }]
+        });
+
+//  If the user is signed in as a client, they will not be allowed to view unassociated tickets; if the ticket's clientId property doesn't match their id, they will be automatically redirected back to the home view.
+
+        if (!ticketData) {
+            return res.status(404).json({
+                message: 'No ticket found by that id'
+            })
+        }
+
+        const tickets = ticketData.map(eachTicket => eachTicket.get({ plain: true }))
 
                     //  If the ticket has been archived, redirect the user back to home view
 
@@ -70,9 +88,19 @@ module.exports = {
         });
     },
 
+renderLogin: async function (req, res) {
+   console.info(req.session.loggedIn);
+    if (req.session.loggedIn == "true" ) {
+    //continues to redirect 
+        return res.status(401).redirect('/')
+    }
+    res.render('login', {
+        title: "Log In",
+        layout: "login",
+    });
+},
 
-    renderTicket: async function (req, res) {
-
+  renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
                 include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
