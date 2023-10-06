@@ -1,0 +1,32 @@
+<tbody>
+{{!-- If the user is a client, they will see only their own tickets in this table view. --}}
+{{#if User.role.defaultValue}} 
+<tr href="/Open">{{ticket.clientId}}</tr>
+
+{{!-- If the user is a tech, they will see any tickets which have the status of open or their own tickets. --}}
+{{else}}
+{{ticket.techId}}
+<tr href ="/Open" "/Claimed">{{ticket.status.defaultValue}}</tr>
+
+{{/if}}
+
+{{!-- If the user is a tech and the ticket has a status of Open, they will see an additional column with a button they can
+click to claim. --}}
+{{#if !User.role.defaultValue}}
+<th class="claim-row"><button class="claim-button">Claim</button></th>
+
+{{!-- When there is no ticket data to display as a technician, the table will show "No pending tickets. Check back soon." --}}
+{{#if !ticket.status.defaultValue}}
+<tr>No pending tickets. Check back soon.</tr>
+
+
+{{!-- When there is no ticket data to display as a client, the table will show the same create new ticket form which also
+displays in the drawer. --}}
+{{#if !ticket.status.defaultValue}}
+
+
+
+</tbody>
+
+
+
