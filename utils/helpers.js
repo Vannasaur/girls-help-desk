@@ -17,19 +17,37 @@ module.exports = {
         }
     },
 
-        format_date: (date) => {
-            // Format date as  Mo DD, YYYY hh:mm A format.
-            let timeStamp = new Date(date);
-            let monthData = timeStamp.getMonth();
-            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let month = months[monthData];
-            let day = timeStamp.getDate();
-            let year = timeStamp.getFullYear();
+    format_date: (date) => {
+        // Format date as  Mo DD, YYYY hh:mm A format.
+        let timeStamp = new Date(date);
+        let monthData = timeStamp.getMonth();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let month = months[monthData];
+        let day = timeStamp.getDate();
+        let year = timeStamp.getFullYear();
 
-            const time = formatTimestamp(timeStamp)
+        const time = formatTimestamp(timeStamp)
 
-            return `${month} ${day} ${year} ${time}`
-        },
+        return `${month} ${day} ${year} ${time}`
+    },
+
+    findDiff: (newValue, oldValue, activeUser) => {
+        const diff = [];
+        for (const key in newValue) {
+            if (!oldValue.hasOwnProperty(key)) {
+                diff.push(`${key} was added by ${activeUser}`);
+            } else if (newValue[key] !== oldValue[key]) {
+                diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by ${activeUser}`);
+            }
+        }
+        return diff;
+    }
+
 };
+
+
+
+
+
 
 
