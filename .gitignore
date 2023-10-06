@@ -133,5 +133,8 @@ dist
 
 .DS_Store
 
+# Additional things to ignore
 
 .html
+
+package-lock.json
