@@ -5,10 +5,11 @@ module.exports = {
 
     renderDashboard: async function (req, res) {
         const status = req.params.status || '';
+        const where = status?{status}:{}
         try {
             const ticketData = await Ticket.findAll({
                 where: {
-                    status: status,
+                    ...where,
                     [Op.not]: {
                         isArchived: true,
                     },
