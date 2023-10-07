@@ -5,8 +5,8 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
+    const email = document.querySelector('#login-email-input').value.trim();
+    const password = document.querySelector('#login-pw-input').value.trim();
   
     if (email && password) {
       const response = await fetch('/api/users', {
@@ -32,22 +32,22 @@ const loginFormHandler = async (event) => {
     .addEventListener('submit', loginFormHandler);
   
 
-//log out button 
+// //log out button not needed on login page!!!!
 
-const logout = async () => {
-    const response = await fetch('/api/users/', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
+// const logout = async () => {
+//     const response = await fetch('/api/users/', {
+//       method: 'DELETE',
+//       headers: { 'Content-Type': 'application/json' },
+//     });
   
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log out.');
-    }
-  };
+//     if (response.ok) {
+//       document.location.replace('/');
+//     } else {
+//       alert('Failed to log out.');
+//     }
+//   };
   
-  document.querySelector('#logout').addEventListener('click', logout);
+//   document.querySelector('#logout').addEventListener('click', logout);
 
 
 

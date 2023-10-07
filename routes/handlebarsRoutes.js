@@ -16,7 +16,7 @@ router.route('/ticket')
 .get(withAuth, renderTicket)
 
 //route for dashboard page
-router.route('/status:?')
+router.route('/:status?')
 .get(withAuth, renderDashboard);
 
 module.exports = router;

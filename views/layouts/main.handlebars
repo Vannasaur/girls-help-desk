@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  <link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/public/assets/js/home.js">
-  <link rel="stylesheet" type="text/css" href="/public/assets/js/ticket.js">
+  <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/assets/js/home.js">
+  <link rel="stylesheet" type="text/css" href="/assets/js/ticket.js">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
-    <a href="/public/assets/js/login.js">Login</a>
+    <a href="/assets/js/login.js">Login</a>
     {{/if}}
   </nav>
   <main>
@@ -27,9 +27,6 @@
       {{{body}}}
     </div>
   </main>
-  {{#if loggedIn}}
-  <script src="/views/layouts/main.handlebars"></script>
-  {{/if}}
 </body>
 
 </html>

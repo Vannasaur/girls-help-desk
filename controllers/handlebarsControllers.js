@@ -1,86 +1,88 @@
 const { Ticket, User } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
 
-   renderDashboard: async function (req, res) {
-    const status = req.params.status || '';
-    try {
-        const ticketData = await Ticket.findAll({
-            where: {
-                status: status,
-                [Op.not]: {
-                    isArchived: true,
-                },
-            
-//  If the ticket has been archived, redirect the user back to home view
-
-            },
-            include:
-                [{ model: User, as: "client" },
-                { model: User, as: "tech" }]
-        });
-
-//  If the user is signed in as a client, they will not be allowed to view unassociated tickets; if the ticket's clientId property doesn't match their id, they will be automatically redirected back to the home view.
-
-        if (!ticketData) {
-            return res.status(404).json({
-                message: 'No ticket found by that id'
+    renderDashboard: async (req, res) => {
+        try {
+            const status = req.params.status || '';
+            console.log(status)
+            const where = {};
+            if (status) {
+                where.status = status;
+            };
+            if (req.session.role === 'client') {
+                where.clientId = req.session.user_id
+            } else {
+                //where.techId = req.session.user_id;
+                if (status !== '') {
+                    where.techId = req.session.user_id;
+                } else {
+                    where[Op.or] = [
+                        { techId: req.session.user_id },
+                        { techId: null }
+                    ]
+                }
+            }
+            // IF for req.session.role === tech
+            console.log(where);
+            const ticketData = await Ticket.findAll({
+                where: where,
+                include: [
+                    {
+                        model: User,
+                        as: 'client',
+                        attributes: ['firstName', 'lastName', 'id', 'role'],
+                    },
+                    {
+                        model: User,
+                        as: 'tech',
+                        attributes: ['firstName', 'lastName', 'id', 'role'],
+                    },
+                ]
             })
-        }
-
-        const tickets = ticketData.map(eachTicket => eachTicket.get({ plain: true }))
-
-                    //  If the ticket has been archived, redirect the user back to home view
-
-                },
-                include:
-                    [{ model: User, as: "client" },
-                    { model: User, as: "tech" }]
-            });
-
-            //  If the user is signed in as a client, they will not be allowed to view unassociated tickets; if the ticket's clientId property doesn't match their id, they will be automatically redirected back to the home view.
-
-            if (!ticketData) {
-                return res.status(404).json({
-                    message: 'No ticket found by that id'
-                })
+            console.log(ticketData);
+            let tickets = ticketData.map((tickets) => tickets.get({ plain: true }));
+            console.log(tickets)
+            const isTech = (req.session.role !== 'client') ? true : false;
+            console.log(isTech);
+            //notClaimed needed for handlebars to know that if the techId on the ticket is null, then the claim button should appear
+            const testTicket = (tickets) => {
+                for (const ticket of tickets) {
+                    if (ticket.techId !== null) {
+                        ticket.notClaimed = false
+                    } else {
+                        ticket.notClaimed = true
+                    }
+                }
+                return tickets
             }
 
-            const tickets = ticketData.map(eachTicket => eachTicket.get({ plain: true }))
-
-
-            if (tickets.client.id === req.session.user_id) {
-                res.render('home', {
-                    ...tickets,
-                    loggedIn: req.session.loggedIn,
-                    title: "Dashboard",
-                    layout: "main",
-                    userType: "client"
-                })
-            }
-
-            if (tickets.tech.id === req.session.user_id) {
-
-                res.render('home', {
-                    ...tickets,
-                    loggedIn: req.session.loggedIn,
-                    title: "Dashboard",
-                    layout: "main",
-                    userType: "tech"
-                })
-            }
-
+            tickets = await testTicket(tickets);
+            console.log(tickets);
+            res.render('home',
+                {
+                    tickets: [...tickets.map(ticket => ({ ...ticket, isTech }))],
+                    isTech,
+                    loggedIn: true, // req.session.loggedIn
+                    title: 'Dashboard',
+                    layout: 'main',
+                    userType: req.session.role,
+                    firstName: req.session.firstName
+                }
+            )
         } catch (err) {
-            res.status(500).json(err);
-            console.log(err);
+            console.error(err);
+            res.status(400).json(err);
         }
     },
 
     //  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
 
     renderLogin: async function (req, res) {
-        if (req.session.loggedIn) {
-            return res.redirect('/')
+        if (req.session.loggedIn == "true") {
+            //continues to redirect 
+            return res.status(401).redirect('/')
         }
         res.render('login', {
             title: "Log In",
@@ -88,19 +90,7 @@ module.exports = {
         });
     },
 
-renderLogin: async function (req, res) {
-   console.info(req.session.loggedIn);
-    if (req.session.loggedIn == "true" ) {
-    //continues to redirect 
-        return res.status(401).redirect('/')
-    }
-    res.render('login', {
-        title: "Log In",
-        layout: "login",
-    });
-},
-
-  renderTicket: async function (req, res) {
+    renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
                 include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
@@ -154,7 +144,5 @@ renderLogin: async function (req, res) {
             console.log(err);
         }
         // be sure to include its associated tag data
-    },
-
+    }
 }
-
