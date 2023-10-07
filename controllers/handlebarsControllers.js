@@ -33,7 +33,7 @@ module.exports = {
             const tickets = ticketData.map(eachTicket => eachTicket.get({ plain: true }))
 console.log(tickets)
 
-            /*if (tickets.client.id === req.session.user_id) {
+            if (tickets.client.id === req.session.user_id) {
                 res.render('home', {
                     tickets,
                     loggedIn: req.session.loggedIn,
@@ -52,14 +52,15 @@ console.log(tickets)
                     layout: "main",
                     userType: "tech"
                 })
-            }*/
+            }
 
             res.render('home', {
                 tickets,
                 loggedIn: true,
-                title:" Dashboard",
-                layou:"main",
-                userType:"tech"
+                title: "Dashboard",
+                layout: "main",
+                userType: "tech",
+                client: false
             })
 
         } catch (err) {
