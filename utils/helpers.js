@@ -43,9 +43,7 @@ module.exports = {
 //the handlebars does the loop - for each currentUser iterate over the log
 //NEED TO STYLE IN CSS
     determineAlignment: (log, currentUser) => {
-        let log = log.id
-        let currentUser = currentUser.id
-
+    
         if (log.type === "Created") {
             return "center-align";
         }
@@ -54,7 +52,7 @@ module.exports = {
             return "center-align";
         }
 
-        if (currentUser === log.userId) {
+        if (currentUser.id === log.userId) {
             return "right-align";
         }
 

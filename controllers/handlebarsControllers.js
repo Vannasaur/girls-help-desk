@@ -72,18 +72,6 @@ console.log(tickets)
 
     renderLogin: async function (req, res) {
         if (req.session.loggedIn) {
-            return res.redirect('/')
-        }
-        res.render('login', {
-            title: "Log In",
-            layout: "login",
-        });
-    },
-
-    renderLogin: async function (req, res) {
-        console.info(req.session.loggedIn);
-        if (req.session.loggedIn == "true") {
-            //continues to redirect 
             return res.status(401).redirect('/')
         }
         res.render('login', {
@@ -91,6 +79,18 @@ console.log(tickets)
             layout: "login",
         });
     },
+
+    // renderLogin: async function (req, res) {
+    //     console.info(req.session.loggedIn);
+    //     if (req.session.loggedIn == "true") {
+    //         //continues to redirect 
+    //         return res.status(401).redirect('/')
+    //     }
+    //     res.render('login', {
+    //         title: "Log In",
+    //         layout: "login",
+    //     });
+    // },
 
     renderTicket: async function (req, res) {
         try {
@@ -117,22 +117,12 @@ console.log(tickets)
                     loggedIn: req.session.loggedIn,
                     title: ticket.subject,
                     layout: "main",
-                    userType: "client"
+                    userType: req.session.role
                 })
             }
 
             //  All tickets should include client and tech firstName lastName id and role from associated Users and all Log data for this ticket.
 
-            if (ticket.tech.id === req.session.user_id) {
-
-                res.render('ticket', {
-                    ...ticket,
-                    loggedIn: req.session.loggedIn,
-                    title: ticket.subject,
-                    layout: "main",
-                    userType: "tech"
-                })
-            }
 
             // This view should receive the required values based on context, but also
 

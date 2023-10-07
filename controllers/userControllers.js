@@ -24,6 +24,7 @@ module.exports = {
             req.session.save(() => {
                 req.session.user_id = userData.id;
                 req.session.loggedIn = true;
+                req.session.role = user.role;
             });
 
             res.redirect('/');
