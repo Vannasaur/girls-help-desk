@@ -63,3 +63,7 @@ overflow: hidden;
 body {
     height: 100vh;
 }
+
+#logout {
+    font-weight: bold;
+}
