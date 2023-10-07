@@ -12,7 +12,7 @@ router.route('/login')
 .get(renderLogin)
 
 //route for ticket page
-router.route('/ticket')
+router.route('/ticket/:id')
 .get(withAuth, renderTicket)
 
 //route for dashboard page

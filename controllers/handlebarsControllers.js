@@ -75,6 +75,7 @@ module.exports = {
             console.error(err);
             res.status(400).json(err);
         }
+
     },
 
     //  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
