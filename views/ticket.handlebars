@@ -60,12 +60,27 @@
 
     </aside>
 
-    {{#each log}}
-    <aside class="p-5 col-6">
 
+    <aside class="p-5 col-6">
+      <div class="card mb-3">
+        <div class="card-body text-black m-5 w-75 ">
+          <ul>
+            {{#each log}}
+            <li>
+              {{date}}
+              <ul>
+                {{#each messages}}
+                <li>{{message}}</li>
+                {{/each}}
+              </ul>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
 
     </aside>
-    {{/each}}
+
 
     <section class="offset-md-5 col-md-4 ">
       <button type="button" class="col-md-4 btn  rounded-pill d-flex justify-content-center bg-black text-white">
