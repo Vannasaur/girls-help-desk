@@ -5,6 +5,7 @@ const ticketSubmitBtn = document.querySelector('#submit-ticket-btn');
 
 
 // open drawer
+// Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
 newTicket.addEventListener('click', () => {
     ticketModal.style.right = '0';
     ticketModal.classList.remove('hidden');
@@ -17,7 +18,8 @@ ticketSubmitBtn.addEventListener('click', () => {
 
 
 // create new ticket
-const createNewTicketForm = document.querySelector('#createNewTicketForm');
+// Listen for submit events on the createNewTicket element. When the submit event occurs, capture the form field data and POST to /api/ticket
+const createNewTicketForm = document.querySelector('#submit-ticket-btn');
 
 createNewTicketForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
@@ -25,8 +27,8 @@ createNewTicketForm.addEventListener('submit', async (event) => {
     // Get form field values
     const subject = document.querySelector('#subject').value;
     const description = document.querySelector('#description').value;
-    const status = document.querySelector('#status').value;
-    const urgency = document.querySelector('#urgency').value;
+    const status = 'Open';
+    const urgency = document.querySelector('.urgency').value;
 
     // Create a data object to send as JSON to the server
     const formData = {
@@ -40,10 +42,10 @@ createNewTicketForm.addEventListener('submit', async (event) => {
         // Send a POST request to the server
         const response = await fetch('/api/ticket', {
             method: 'POST',
+            body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
         });
 
         if (response.ok) {
@@ -61,19 +63,20 @@ createNewTicketForm.addEventListener('submit', async (event) => {
 
 
 // claim ticket (for tech)
+// Listen for click events on the claimTicket button elements. When the click event occurs, capture the ticket id data and PUT to /api/ticket/:id
 // Must have a list of tickets with claim buttons, and each button has a data-id attribute containing the ticket ID
 
 const claimTicketButtons = document.querySelectorAll('.claim-ticket-btn');
 
 claimTicketButtons.forEach((button) => {
     button.addEventListener('click', async () => {
-        const ticketId = document.querySelectorAll('[data-id]');
-        const techId = req.session.user_id;
+        const ticketId = button.getAttribute('data-id');
+        
         try {
             // PUT request to claim the ticket
             const response = await fetch(`/api/ticket/${ticketId}`, {
                 method: 'PUT',
-                body: JSON.stringify({ techId: techId }), // techId needed to claim the ticket
+                body: JSON.stringify({techId: true, status: 'Claimed'}), // techId is claiming the ticket in ticketControllers req.body
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -94,8 +97,9 @@ claimTicketButtons.forEach((button) => {
 
 
 // logout
+// Listen for click events on the logout button element. When the click event occurs, make a DELETE call to /api/user
 const logout = async () => {
-    const response = await fetch('/api/users/logout', {
+    const response = await fetch('/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     });
