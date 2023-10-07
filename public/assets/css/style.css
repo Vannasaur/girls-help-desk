@@ -4,6 +4,7 @@
     src: url(../fonts/couture.otf);
 }
 
+
 * {
     font-family: couture;
     letter-spacing: .3rem;
@@ -45,10 +46,11 @@ overflow: hidden;
 }
 
 /* for views/layouts login */
-/* .login-container {
+.login-container, body {
     display: flex;
     justify-content: center;
-} */
+    align-items: center;
+}
 
 #login-email, #login-email-input, #login-pw, 
 #login-pw-input {
@@ -61,4 +63,12 @@ overflow: hidden;
 div.card.mb-3 {
     border-color: #f3e5f5 !important;
     border-width: 1em !important;
+}
+
+#login-btn {
+    margin-top: 1rem;
+}
+
+body {
+    height: 100vh;
 }
