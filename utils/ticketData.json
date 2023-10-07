@@ -28,7 +28,7 @@
     },
     {
         "clientId": "4",
-        "techId": "3",
+        "techId": null,
         "subject": "Email is lagging",
         "description": "My email is lagging",
         "status": "Open",
