@@ -18,33 +18,34 @@ module.exports = {
         }
     },
 
-        format_date: (date) => {
-            // Format date as  Mo DD, YYYY hh:mm A format.
-            let timeStamp = new Date(date);
-            let monthData = timeStamp.getMonth();
-            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let month = months[monthData];
-            let day = timeStamp.getDate();
-            let year = timeStamp.getFullYear();
+    format_date: (date) => {
+        // Format date as  Mo DD, YYYY hh:mm A format.
+        let timeStamp = new Date(date);
+        let monthData = timeStamp.getMonth();
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let month = months[monthData];
+        let day = timeStamp.getDate();
+        let year = timeStamp.getFullYear();
 
         const time = formatTimestamp(timeStamp)
         return `${month} ${day} ${year} ${time}`
-        },
+    },
 
-//On each chat log in the ticket
-//this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
-//NEED TO STYLE IN CSS
+    //On each chat log in the ticket
+    //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
+    //NEED TO STYLE IN CSS
     determineShowHide: (value) => {
+        if (value === "Open")
+            return true;
+
         return value === true ? "hidden" : "shown";
     },
 
-// {{helperFuncName argument1 argument2}}
-//this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
-//the handlebars does the loop - for each currentUser iterate over the log
-//NEED TO STYLE IN CSS
+    // {{helperFuncName argument1 argument2}}
+    //this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
+    //the handlebars does the loop - for each currentUser iterate over the log
+    //NEED TO STYLE IN CSS
     determineAlignment: (log, currentUser) => {
-        let log = log.id
-        let currentUser = currentUser.id
 
         if (log.type === "Created") {
             return "center-align";
@@ -54,7 +55,7 @@ module.exports = {
             return "center-align";
         }
 
-        if (currentUser === log.userId) {
+        if (currentUser.id === log.userId) {
             return "right-align";
         }
 
@@ -73,5 +74,18 @@ module.exports = {
             }
         }
         return diff;
+    },
+
+    // The status argument should be the ticket.status value.
+    //  The id argument should be the ticket.id value.
+    showClaimButton: (status, id) => {
+        if (status === "Open") {
+            return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
+        }
+        else {
+            return "";
+        }
     }
+
 };
+
