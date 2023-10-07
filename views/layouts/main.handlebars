@@ -3,6 +3,10 @@
 <html lang="en">
 
 <head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Help Desk</title>
@@ -18,25 +22,20 @@
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to the Help Desk</h1>
-    </header>
-    <nav>
-        <a href="/views/home.handlebars">Home</a>
-        {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">Logout</button>
-        {{else}}
-        <a href="/public/assets/js/login.js">Login</a>
-        {{/if}}
-    </nav>
-    <main>
-        <div class="ticket">
-            {{{body}}}
-        </div>
-    </main>
-    {{#if loggedIn}}
-    <script src="/views/layouts/main.handlebars"></script>
-    {{/if}}
+  <main class="card container">
+      <h3>Your Tickets</h3>
+    <div class="ticket">
+
+<!-- home.handlebars -->
+{{{body}}}
+<!-- home.handlebars -->
+
+    </div>
+
+  </main>
+  <!-- {{#if loggedIn}} -->
+  <script src="/views/layouts/main.handlebars"></script>
+  <!-- {{/if}} -->
 </body>
 
 </html>
