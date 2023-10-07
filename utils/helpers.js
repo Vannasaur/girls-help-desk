@@ -53,6 +53,7 @@ module.exports = {
         }
 
         if (currentUser.id === log.userId) {
+        if (currentUser.id === log.userId) {
             return "right-align";
         }
 
