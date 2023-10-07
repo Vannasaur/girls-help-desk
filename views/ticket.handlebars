@@ -1,29 +1,30 @@
 <body>
   <header>
     <div class="nav-wrapper">
-      <h1 class="brand-logo p-5 mt-2 mb-1">Subject
-      </h1>
+      <h1 class="brand-logo p-5 mt-2 mb-1">{{subject}}</h1>
       <section class="p-4 ml-3">
-        Description: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Description: {{description}}
       </section>
 
       <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
-        <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Urgency
-        </button>
+        <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+      </ul>
   </header>
   <main class="row container-fluid">
     <aside class="p-5 col-6">
       <div class="card mb-3">
 
         <div class="card-body text-black m-5 w-75 ">
-          <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-subject text">Subject</h5>
+          <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-subject text">{{subject}}</h5>
 
           <p class="card-text" id="subject-text">
+            {{subject}}
           </p>
 
           <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-description">Description</h5>
 
           <p class="card-text" id="description-text">
+            {{description}}
           </p>
 
           <div class="dropdown fs-6 mb-3">
