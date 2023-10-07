@@ -52,7 +52,7 @@ module.exports = {
             return "center-align";
         }
 
-        if (currentUser.id === log.userId) {
+
         if (currentUser.id === log.userId) {
             return "right-align";
         }
