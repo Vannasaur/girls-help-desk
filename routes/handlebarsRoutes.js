@@ -12,11 +12,11 @@ router.route('/login')
 .get(renderLogin)
 
 //route for ticket page
-router.route('/ticket')
+router.route('/ticket/:id')
 .get(withAuth, renderTicket)
 
 //route for dashboard page
-router.route('/status:?')
-.get(withAuth, renderDashboard);
+router.route('/:status?')
+.get(/*withAuth, */renderDashboard);
 
 module.exports = router;

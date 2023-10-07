@@ -10,6 +10,7 @@ module.exports = {
     },
 
     withAuth: (req, res, next) => {
+        console.log("HERE")
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -17,19 +18,18 @@ module.exports = {
         }
     },
 
-    format_date: (date) => {
-        // Format date as  Mo DD, YYYY hh:mm A format.
-        let timeStamp = new Date(date);
-        let monthData = timeStamp.getMonth();
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        let month = months[monthData];
-        let day = timeStamp.getDate();
-        let year = timeStamp.getFullYear();
+        format_date: (date) => {
+            // Format date as  Mo DD, YYYY hh:mm A format.
+            let timeStamp = new Date(date);
+            let monthData = timeStamp.getMonth();
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            let month = months[monthData];
+            let day = timeStamp.getDate();
+            let year = timeStamp.getFullYear();
 
         const time = formatTimestamp(timeStamp)
-
         return `${month} ${day} ${year} ${time}`
-    },
+        },
 
 //On each chat log in the ticket
 //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
@@ -43,9 +43,6 @@ module.exports = {
 //the handlebars does the loop - for each currentUser iterate over the log
 //NEED TO STYLE IN CSS
     determineAlignment: (log, currentUser) => {
-        let log = log.id
-        let currentUser = currentUser.id
-
         if (log.type === "Created") {
             return "center-align";
         }
@@ -54,14 +51,14 @@ module.exports = {
             return "center-align";
         }
 
-        if (currentUser === log.userId) {
+        if (currentUser.id === log.userId) {
             return "right-align";
         }
 
         else {
             return "left-align";
         }
-    }
+    },
 
     findDiff: (newValue, oldValue, activeUser) => {
         const diff = [];
