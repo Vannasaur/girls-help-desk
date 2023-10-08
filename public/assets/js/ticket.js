@@ -130,6 +130,18 @@ const hideMessageHandler = async (event) => {
 
 document.querySelector('#hide-message').addEventListener('click', hideMessageHandler);
 
+//backbutton functionality
+
+const backButtonHandler = async (event) => {
+    event.preventDefault();
+    const id = event.target.getAttribute('data-id');
+        document.location.replace(`/ticket/${id}`);
+    
+};
+
+
+document.querySelector('#back-button').addEventListener('click', backButtonHandler);
+
 
 // logout
 // Listen for click events on the logout button element. When the click event occurs, make a DELETE call to /api/users
