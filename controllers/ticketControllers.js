@@ -21,7 +21,7 @@ module.exports = {
     },
     // Edit ticket
     editTicket: async function (req, res) {
-
+        const {id} = req.params;
         try { // find the ticket with selected id
             const { id } = req.params.id;
             const editTicketData = await Ticket.findbyPk(id);

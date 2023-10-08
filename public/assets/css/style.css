@@ -4,6 +4,7 @@
     src: url(../fonts/couture.otf);
 }
 
+
 * {
     font-family: couture;
     letter-spacing: .3rem;
@@ -67,6 +68,15 @@ body {
 #login-pw,
 #login-pw-input {
     color: black;
+}
+
+
+/* tickethandlebars */
+
+div.card.mb-3 {
+    border-color: #f3e5f5 !important;
+    border-width: 1em !important;
+    padding: 0;
 }
 
 #login-btn {

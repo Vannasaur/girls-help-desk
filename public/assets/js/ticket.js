@@ -3,15 +3,16 @@ const chatModal = document.querySelector('#chat-dialogue');
 const closeDialogueBtn = document.querySelector('#dialogue-btn');
 // show modal (open drawer)
 // Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
-showChat.addEventListener('click', () => {
-    chatModal.style.right = '0';
-    chatModal.classList.remove('hidden');
-})
-// hide modal (toggleHideMessage)
-closeDialogueBtn.addEventListener('click', () => {
-    chatModal.style.right = '-300px';
-    chatModal.classList.add('hidden');
-})
+// showChat.addEventListener('click', () => {
+//     chatModal.style.right = '0';
+//     chatModal.classList.remove('hidden');
+// })
+
+// // hide modal (toggleHideMessage)
+// closeDialogueBtn.addEventListener('click', () => {
+//     chatModal.style.right = '-300px';
+//     chatModal.classList.add('hidden');
+// })
 
 
 // update ticket (for tech)
@@ -52,9 +53,9 @@ const saveEditBtnHandler = async (event) => {
 };
 
 // update ticket btn listener
-document
-    .querySelector('.edit-ticket-btn')
-    .addEventListener('submit', saveEditBtnHandler);
+// document
+//     .querySelector('.edit-ticket-btn')
+//     .addEventListener('submit', saveEditBtnHandler);
 
 
 // add message
@@ -90,9 +91,9 @@ const addMessageHandler = async (event) => {
 };
 
 // add message btn listener
-document
-    .querySelector('.add-message-btn')
-    .addEventListener('submit', addMessageHandler);
+// document
+//     .querySelector('.add-message-btn')
+//     .addEventListener('submit', addMessageHandler);
 
 
 // toggle hide message
@@ -128,7 +129,9 @@ const hideMessageHandler = async (event) => {
     }
 };
 
-document.querySelector('#hide-message').addEventListener('click', hideMessageHandler);
+// document.querySelector('#hide-message').addEventListener('click', hideMessageHandler);
+
+
 
 
 // logout
@@ -147,4 +150,4 @@ const logout = async () => {
     }
 };
 
-document.querySelector('#logout').addEventListener('click', logout);
+// document.querySelector('#logout').addEventListener('click', logout);
