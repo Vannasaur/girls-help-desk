@@ -64,14 +64,17 @@ const addMessageHandler = async (event) => {
 
     const messageTxt = document.querySelector('#message-txt').value.trim();
     const id = event.target.getAttribute('data-id');
-    const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    const isHidden = document.querySelector('#toggle-hide').value;
+    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    // ?drawer=${drawerBoolean}
 
-    const response = await fetch(`/api/log/${id}?drawer=${drawerBoolean}`, {
+    const response = await fetch(`/api/log/${id}`, {
         method: 'POST',
         body: JSON.stringify({
             ticketId: id,
             message: messageTxt,
             type: 'Message', // WOULD TYPE ALWAYS BE MESSAGE?
+            isHidden,
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -100,7 +103,7 @@ const hideMessageHandler = async (event) => {
     const toggleHideBtn = document.querySelector('#toggle-hide').value;
     const id = event.target.getAttribute('data-id');
     const logId = document.querySelector('#log-id').value;
-    const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
 
     if (toggleHideBtn === true) {
         (toggleHideBtn === false)
@@ -109,8 +112,8 @@ const hideMessageHandler = async (event) => {
     if (toggleHideBtn === false) {
         (toggleHideBtn === true)
     }
-
-    const response = await fetch(`/api/log/${id}/${logId}?drawer=${drawerBoolean}`, {
+//?drawer=${drawerBoolean}
+    const response = await fetch(`/api/log/${id}/${logId}`, {
         method: 'PUT',
         body: JSON.stringify({
             isHidden: toggleHideBtn
