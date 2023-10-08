@@ -11,7 +11,7 @@ module.exports = {
             });
 
             if (!userData) {
-                res.status(400).json({ message: 'Incorrect email or password, please try again'});
+                res.status(404).json({ message: 'Incorrect email or password, please try again'});
                 return;
             }
             const validPassword = await userData.checkPassword(req.body.password);
@@ -24,25 +24,25 @@ module.exports = {
             req.session.save(() => {
                 req.session.user_id = userData.id;
                 req.session.loggedIn = true;
+                req.session.role = userData.role;
+                req.session.firstName = userData.firstName;
+
+                res.status(200).json('Data has been successfully saved.')
             });
 
-            res.redirect('/');
             
         } catch (err) {
-            res.status(400).json(err);
+            res.status(500).json(err);
         }
     },
 
     // logout
-    logoutUser: async function (req, res) {
-        if (req.session.loggedIn) {
-            req.session.destroy(() => {
-                // 204 means server handled request successfully but wont return anything
-                res.redirect('/login')
-                res.status(204).end();
-            });
-        } else {
-            res.status(404).end();
-        }
+    logoutUser: (req, res) => {
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).send('Server Error during logout');
+            }
+            return res.redirect('/login'); // Redirect to login page
+        });
     }
 };

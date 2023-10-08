@@ -36,7 +36,7 @@ module.exports = {
                 editTicketData.description = req.body.description;
             }
             if (req.body.techId) {
-                editTicketData.techId  = req.body.techId;
+                editTicketData.techId  = req.session.user_id;
                     // If a new techId is added, update the status to "Claimed"
                     editTicketData.status = 'Claimed';
             }

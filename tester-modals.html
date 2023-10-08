@@ -1,0 +1,47 @@
+<!-- just a tester for modals!! move later to handlebars
+split between home.handlebars and ticket.handlebars -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+            <title>Document</title>
+        <link rel="stylesheet" href="./public/assets/css/style.css">
+        </head>
+        <body>
+    <!-- show logs for specific ticket modal (ticket.handlebars)-->
+    <button id="show-chat">Show Chat Logs</button>
+    <!--modal div for log messages-->
+    <div id="chat-dialogue" class="hidden">
+        <div class="dialogue-content">
+            <h3>Help Desk Chat</h3>
+            <!-- for {{#each}} -->
+            <p>Log Content</p>
+        </div>
+        <button id="dialogue-btn">Close Chat</button>
+    </div>
+<!-- new ticket modal (home.handlebars)-->
+    <button id="new-ticket-btn">+</button>
+    <div id="new-ticket" class="hidden">
+        <form>
+            <label for ="ticket-subj">Subject:</label>
+            <br>
+            <input type="text">
+            <br>
+            <label for ="ticket-desc">Description:</label>
+            <br>
+            <textarea></textarea>
+            <br>
+            <label for="ticket-urgency">Urgency:</label>
+            <select id="ticket-urgency">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+            <button type="submit" id="submit-ticket-btn">Submit</button>
+        </form>
+    </div>
+</body>
+<script src="public/assets/js/modal-test.js"></script>
+</html>

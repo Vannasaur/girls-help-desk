@@ -99,13 +99,14 @@ claimTicketButtons.forEach((button) => {
 // logout
 // Listen for click events on the logout button element. When the click event occurs, make a DELETE call to /api/user
 const logout = async () => {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/users/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
-        document.location.replace('/');
+        console.log('Signed out!');
+    document.location.replace('/login');
     } else {
         alert('Failed to log out.');
     }
