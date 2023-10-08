@@ -2,6 +2,7 @@
 const newTicket = document.querySelector('#new-ticket-btn');
 const ticketModal = document.querySelector('#new-ticket');
 const ticketSubmitBtn = document.querySelector('#submit-ticket-btn');
+const closeModalBtn = document.querySelector('#close-new-ticket-modal');
 
 // open drawer
 // Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
@@ -9,12 +10,15 @@ newTicket.addEventListener('click', () => {
     ticketModal.style.right = '0';
     ticketModal.classList.remove('hidden');
 })
-// close drawer ticket
+// close drawer (new ticket modal)
 ticketSubmitBtn.addEventListener('click', () => {
     ticketModal.style.right = '-300px';
     ticketModal.classList.add('hidden');
 })
-
+closeModalBtn.addEventListener('click', () => {
+    ticketModal.style.right = '-300px';
+    ticketModal.classList.add('hidden');
+})
 
 // create new ticket
 // Listen for submit events on the createNewTicket element. When the submit event occurs, capture the form field data and POST to /api/ticket
@@ -45,6 +49,7 @@ createNewTicketForm.addEventListener('click', async (event) => {
             },
         });
 
+        
         if (response.ok) {
             // if ticket creation successful
             console.log('New ticket created!');
@@ -53,6 +58,11 @@ createNewTicketForm.addEventListener('click', async (event) => {
             ];
             console.log(ticketId)
             document.location.replace(`/ticket/${ticketId}`)
+            // const ticketId = response.url.split('/')[
+            //     response.url.split('/').length - 1
+            // ];
+            // console.log(ticketId)
+            // // document.location.replace(`/ticket/${ticketId}`)
 
         } else {
             // if ticket creation failed

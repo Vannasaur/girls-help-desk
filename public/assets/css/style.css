@@ -59,6 +59,13 @@ body {
     height: 100px;
 }
 
+#close-new-ticket-modal {
+    color: white;
+    background-color: black;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
 /* for views/layouts login */
 .login-container,
 body {
