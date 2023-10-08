@@ -121,13 +121,24 @@ module.exports = {
 
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
 
+
             if (ticket.client.id === req.session.user_id) {
                 res.render('ticket', {
                     ...ticket,
                     loggedIn: req.session.loggedIn,
                     title: ticket.subject,
                     layout: "main",
-                    userType: req.session.role
+                    userType: "client"
+                })
+            }
+
+            if (ticket.tech.id === req.session.user_id) {
+                res.render('ticket', {
+                    ...ticket,
+                    loggedIn: req.session.loggedIn,
+                    title: ticket.subject,
+                    layout: "main",
+                    userType: "tech"
                 })
             }
 
