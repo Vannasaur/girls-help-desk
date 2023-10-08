@@ -1,14 +1,5 @@
 module.exports = {
-    formatTimestamp: (date) => {
-        let timeStamp = new Date(date);
-        let hour = timeStamp.getHours();
-        let minutes = timeStamp.getMinutes();
-        let meridiem = hours >= 12 ? 'PM' : 'AM';
-        hour = hour % 12;
-        hour = hour ? hour : 12
-        return `${hour}:${minutes} ${meridiem}`
-    },
-
+   
     withAuth: (req, res, next) => {
         console.log("HERE")
         if (!req.session.loggedIn) {
@@ -26,9 +17,18 @@ module.exports = {
         let month = months[monthData];
         let day = timeStamp.getDate();
         let year = timeStamp.getFullYear();
-
-        const time = formatTimestamp(timeStamp)
+        const time = formatTimestamp(date)
         return `${month} ${day} ${year} ${time}`
+    },
+
+    formatTimestamp: (date) => {
+        let timeStamp = new Date(date);
+        let hours = timeStamp.getHours();
+        let minutes = timeStamp.getMinutes();
+        let meridien = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12
+        return `${hours}:${minutes} ${meridien}`;
     },
 
     //On each chat log in the ticket

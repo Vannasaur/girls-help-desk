@@ -1,6 +1,7 @@
 const showChat = document.querySelector("#show-chat");
 const chatModal = document.querySelector('#chat-dialogue');
 const closeDialogueBtn = document.querySelector('#dialogue-btn');
+
 // show modal (open drawer)
 // Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
 // showChat.addEventListener('click', () => {
