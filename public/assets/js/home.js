@@ -3,7 +3,6 @@ const newTicket = document.querySelector('#new-ticket-btn');
 const ticketModal = document.querySelector('#new-ticket');
 const ticketSubmitBtn = document.querySelector('#submit-ticket-btn');
 
-
 // open drawer
 // Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
 newTicket.addEventListener('click', () => {
@@ -85,6 +84,7 @@ claimTicketButtons.forEach((button) => {
             if (response.ok) {
                 // if ticket claimed successfully
                 console.log(`Ticket ${ticketId} claimed.`);
+                document.location.replace('/');
             } else {
                 // if ticket claiming fails
                 console.error(`Error claiming ticket ${ticketId}:`, response.statusText);
