@@ -1,12 +1,12 @@
 <header>
-    <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
-    <section class="p-2 ml-3">
-      Description: {{description}}
-    </section>
+  <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
+  <section class="p-2 ml-3">
+    Description: {{description}}
+  </section>
 
-    <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-    </ul>
+  <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
+    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+  </ul>
 </header>
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -27,11 +27,12 @@
             Urgency
           </button>
           <ul class="dropdown-menu">
-            <li><option class="dropdown-item w-100" value="{{this}}">{{this.urgency}}</option></li>
-            {{!-- <li><option class="dropdown-item w-100" href="#">Medium</option></li>
-            <li><option class="dropdown-item w-100" href="#">High</option></li> --}}
+            <li><a class="dropdown-item w-100" href="#">Low</a></li>
+            <li><a class="dropdown-item w-100" href="#">Medium</a></li>
+            <li><a class="dropdown-item w-100" href="#">High</a></li>
           </ul>
         </div>
+
 
         <div class="dropdown fs-6 mb-3">
           <button class="btn btn-secondary dropdown-toggle bg-black w-100" type="button" data-bs-toggle="dropdown"
@@ -75,7 +76,8 @@
   </aside>
 
   <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"  class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
       <i class="material-icons white-text">arrow_back</i>
       Back
     </button>
