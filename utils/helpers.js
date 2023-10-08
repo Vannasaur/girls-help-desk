@@ -1,24 +1,24 @@
-module.exports = {
-    formatTimestamp: (date) => {
+
+    const format_timestamp = (date) => {
         let timeStamp = new Date(date);
         let hour = timeStamp.getHours();
         let minutes = timeStamp.getMinutes();
-        let meridiem = hours >= 12 ? 'PM' : 'AM';
+        let meridien = hour >= 12 ? 'PM' : 'AM';
         hour = hour % 12;
         hour = hour ? hour : 12
-        return `${hour}:${minutes} ${meridiem}`
-    },
+        return `${hour}:${minutes} ${meridien}`
+    };
 
-    withAuth: (req, res, next) => {
+    const withAuth = (req, res, next) => {
         console.log("HERE")
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
             next();
         }
-    },
+    };
 
-    format_date: (date) => {
+    const format_date = (date) => {
         // Format date as  Mo DD, YYYY hh:mm A format.
         let timeStamp = new Date(date);
         let monthData = timeStamp.getMonth();
@@ -27,25 +27,25 @@ module.exports = {
         let day = timeStamp.getDate();
         let year = timeStamp.getFullYear();
 
-        const time = formatTimestamp(timeStamp)
+        const time = format_timestamp(timeStamp)
         return `${month} ${day} ${year} ${time}`
-    },
+    };
 
     //On each chat log in the ticket
     //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
     //NEED TO STYLE IN CSS
-    determineShowHide: (value) => {
+    const determineShowHide = (value) => {
         if (value === "Open")
             return true;
 
         return value === true ? "hidden" : "shown";
-    },
+    };
 
     // {{helperFuncName argument1 argument2}}
     //this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
     //the handlebars does the loop - for each currentUser iterate over the log
     //NEED TO STYLE IN CSS
-    determineAlignment: (log, currentUser) => {
+    const determineAlignment = (log, currentUser) => {
 
         if (log.type === "Created") {
             return "center-align";
@@ -63,9 +63,9 @@ module.exports = {
         else {
             return "left-align";
         }
-    },
+    };
 
-    findDiff: (newValue, oldValue, activeUser) => {
+    const findDiff = (newValue, oldValue, activeUser) => {
         const diff = [];
         for (const key in newValue) {
             if (!oldValue.hasOwnProperty(key)) {
@@ -75,18 +75,19 @@ module.exports = {
             }
         }
         return diff;
-    },
+    };
+    
 
     // The status argument should be the ticket.status value.
     //  The id argument should be the ticket.id value.
-    showClaimButton: (status, id) => {
+    const showClaimButton = (status, id) => {
         if (status === "Open") {
             return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
         }
         else {
             return "";
         }
-    }
+    };
 
-};
 
+    module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton };

@@ -56,7 +56,7 @@
   <aside class="p-2 col-6">
     <div class="card mb-3">
       <div class="card-body text-black m-5 w-75 ">
-        {{!-- <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{}}</h5> --}}
+        <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{format_date createdAt}}</h5>
         <ul>
           {{#each log}}
           <li>

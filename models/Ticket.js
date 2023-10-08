@@ -10,7 +10,7 @@ const { User } = require('./index');
 class Ticket extends Model {
 
     async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
-        const differences = await helper.findDiff(this, oldData); //find difference between current ticket value and previous ticket values
+        const differences = helper.findDiff(this.dataValues, oldData); //find difference between current ticket value and previous ticket values
         if (differences.length === 0) {
             return;
         }
@@ -20,7 +20,7 @@ class Ticket extends Model {
             userId,
             ticketId: this.id,
         });
-        await log.save();
+        //await log.save();
     }
 }
 // init the model
@@ -102,9 +102,6 @@ Ticket.init(
         underscored: false,
         modelName: 'ticket',
     }
-
-
-
 
 );
 
