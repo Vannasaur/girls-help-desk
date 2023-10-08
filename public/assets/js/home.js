@@ -20,20 +20,18 @@ ticketSubmitBtn.addEventListener('click', () => {
 // Listen for submit events on the createNewTicket element. When the submit event occurs, capture the form field data and POST to /api/ticket
 const createNewTicketForm = document.querySelector('#submit-ticket-btn');
 
-createNewTicketForm.addEventListener('submit', async (event) => {
+createNewTicketForm.addEventListener('click', async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
     // Get form field values
     const subject = document.querySelector('#subject').value;
     const description = document.querySelector('#description').value;
-    const status = 'Open';
-    const urgency = document.querySelector('.urgency').value;
-
+    const urgency = document.querySelector('#urgencyFilter').value;
+    console.log(subject, description, urgency)
     // Create a data object to send as JSON to the server
     const formData = {
         subject,
         description,
-        status,
         urgency,
     };
 
@@ -49,8 +47,13 @@ createNewTicketForm.addEventListener('submit', async (event) => {
 
         if (response.ok) {
             // if ticket creation successful
-            const ticketData = await response.json();
-            console.log('New ticket created:', ticketData);
+            console.log('New ticket created!');
+            const ticketId = response.url.split('/')[
+                response.url.split('/').length - 1
+            ];
+            console.log(ticketId)
+            document.location.replace(`/ticket/${ticketId}`)
+
         } else {
             // if ticket creation failed
             console.error('Error creating the ticket:', response.statusText);
@@ -70,12 +73,12 @@ const claimTicketButtons = document.querySelectorAll('.claim-ticket-btn');
 claimTicketButtons.forEach((button) => {
     button.addEventListener('click', async () => {
         const ticketId = button.getAttribute('data-id');
-        
+
         try {
             // PUT request to claim the ticket
             const response = await fetch(`/api/ticket/${ticketId}`, {
                 method: 'PUT',
-                body: JSON.stringify({techId: userId, status: 'Claimed'}), // techId is claiming the ticket in ticketControllers req.body
+                body: JSON.stringify({ techId: userId, status: 'Claimed' }), // techId is claiming the ticket in ticketControllers req.body
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -106,7 +109,7 @@ const logout = async () => {
 
     if (response.ok) {
         console.log('Signed out!');
-    document.location.replace('/login');
+        document.location.replace('/login');
     } else {
         alert('Failed to log out.');
     }
