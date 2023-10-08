@@ -6,11 +6,12 @@ module.exports = {
     createTicket: async function (req, res) {
         try {
             const createTicketData = await Ticket.create({
+                clientId: req.session.user_id,
                 subject: req.body.subject,
                 description: req.body.description,
                 urgency: req.body.urgency,
-                clientId: req.session.user_id
             });
+            console.log(createTicketData);
             // Redirect to the newly created ticket page
             res.redirect(`/ticket/${createTicketData.id}`);
 
