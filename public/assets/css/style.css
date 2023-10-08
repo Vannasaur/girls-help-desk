@@ -15,6 +15,31 @@ body {
     padding: 0;
 }
 
+/* if "hidden" class, for determineClass helper function */
+.notShown {
+display: none;
+}
+
+/* if "shown" class, for determineClass helper function */
+.shown {
+display: block;
+}
+
+/* if "center-align" class, for determineAlignment helper function */
+.center-align {
+text-align: center;
+}
+
+/* if "right-align" class, for determineAlignment helper function */
+.right-align {
+text-align: right;
+}
+
+/* if "left-align" class, for determineAlignment helper function */
+.left-align {
+text-align: left;
+}
+
 /* for chat log modal */
 #chat-dialogue {
     position: fixed;
