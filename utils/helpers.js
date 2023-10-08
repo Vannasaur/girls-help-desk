@@ -1,4 +1,3 @@
-
     const format_timestamp = (date) => {
         let timeStamp = new Date(date);
         let hour = timeStamp.getHours();
@@ -77,7 +76,6 @@
         return diff;
     };
     
-
     // The status argument should be the ticket.status value.
     //  The id argument should be the ticket.id value.
     const showClaimButton = (status, id) => {

@@ -1,51 +1,56 @@
 <header>
-    <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
-    <section class="p-2 ml-3">
-      Description: {{description}}
-    </section>
+  <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
+  <section class="p-2 ml-3">
+    Description: {{description}}
+  </section>
 
-    <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-    </ul>
+  <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
+    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+  </ul>
 </header>
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
+      <div class="card-body text-black m-2 w-90">
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
-      <div class="card-body text-black m-3 w-90">
-        <h5 class="card-header fs-5 w-100" id="ticket-subject text">{{subject}}</h5>
+        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
 
-        <h5 class="card-header fs-6 w-100 text-center" id="ticket-description">Description</h5>
-
-        <p class="card-text" id="description-text">
+        <p class="card-header mb-3" id="description-text">
           {{description}}
         </p>
 
-        <div class="dropdown fs-6 mb-3">
-          <button class="btn btn-secondary dropdown-toggle bg-black w-100" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Urgency
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item w-100" href="#">Low</a></li>
-            <li><a class="dropdown-item w-100" href="#">Medium</a></li>
-            <li><a class="dropdown-item w-100" href="#">High</a></li>
-          </ul>
+        <div class='form-field'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <option>SELECT URGENCY</option>
+            <option>LOW</option>
+            <option>MEDIUM</option>
+            <option>HIGH</option>
+            {{#each urgency}}
+            <option value="{{this}}">{{this.urgency.type}}</option>
+            {{/each}}
+          </select>
         </div>
 
-        <div class="dropdown fs-6 mb-3">
-          <button class="btn btn-secondary dropdown-toggle bg-black w-100" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Status
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item w-100" href="#">Open</a></li>
-            <li><a class="dropdown-item w-100" href="#">Pending</a></li>
-            <li><a class="dropdown-item w-100" href="#">Claimed</a></li>
-            <li><a class="dropdown-item w-100" href="#">Resolved</a></li>
-          </ul>
+
+        <div class='form-field mt-3'>
+
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+
+            <option>SELECT STATUS</option>
+            <option>OPEN</option>
+            <option>PENDING</option>
+            <option>RESOLVED</option>
+            <option>CLAIMED</option>
+            {{#each status}}
+            <option value="{{this}}">{{this.status.type}}</option>
+            {{/each}}
+          </select>
         </div>
-        <button class="btn bg-white border-black w-100 text-black" type="button">
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
           Save Changes
         </button>
 
@@ -63,7 +68,7 @@
             {{format_date createdAt}}
             <ul>
               {{#each messages}}
-              <li>{{message}}</li>
+              <li>{{this.message}}</li>
               {{/each}}
             </ul>
           </li>
@@ -71,11 +76,11 @@
         </ul>
       </div>
     </div>
-
   </aside>
 
   <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"  class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
       <i class="material-icons white-text">arrow_back</i>
       Back
     </button>
