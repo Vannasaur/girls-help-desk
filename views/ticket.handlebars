@@ -67,7 +67,7 @@
           <ul>
             {{#each log}}
             <li>
-              {{formatTimestamp date}}
+              {{format_date createdAt}}
               <ul>
                 {{#each messages}}
                 <li>{{message}}</li>

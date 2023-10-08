@@ -100,6 +100,10 @@ Ticket.init(
         underscored: false,
         modelName: 'ticket',
     }
+
+
+
+
 );
 
 module.exports = Ticket;
