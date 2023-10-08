@@ -13,7 +13,7 @@ module.exports = {
             });
             console.log(createTicketData);
             // Redirect to the newly created ticket page
-            res.redirect(`/ticket/${createTicketData.id}`);
+            return res.redirect(`/ticket/${createTicketData.id}`);
 
         } catch (err) {
             console.error(err);
@@ -24,8 +24,7 @@ module.exports = {
 
     editTicket: async (req, res) => {
         try {
-
-            console.log("Edit Ticket function hit!");
+            console.log("This is the Edit Ticket function try block!");
 
             const { id } = req.params;
             let ticket = await Ticket.findByPk(id);

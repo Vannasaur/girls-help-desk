@@ -103,17 +103,22 @@ module.exports = {
                 include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
             });
 
-
             if (!ticketData) {
                 return res.status(404).json({
                     message: 'No ticket found by that id'
                 })
             }
-
+            //  We will need to serialize the data before the view renders.
             const ticket = ticketData.get({ plain: true })
 
-            //  We will need to serialize the data before the view renders.
 
+            if (ticket.isArchived) {
+                res.redirect('/');
+            }
+            if (req.session.role === 'client' && ticket.clientId !== req.session.user_id) {
+                res.redirect('/');
+                return;
+              
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             //const isTicketCreator = (ticket.clientId === req.session.user_id);
 
@@ -142,11 +147,41 @@ module.exports = {
                     client: false
                     // showClaim: true
                 })
-            }
 
+            }
+                //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
+            res.render('ticket', {
+                ...ticket,
+                loggedIn: req.session.loggedIn,
+                title: ticket.subject,
+                layout: 'main',
+                role: req.session.role,
+                firstName: req.session.firstName,
+                user: req.session.user_id,
+            })
         } catch (err) {
             res.status(500).json(err);
             console.log(err);
         }
     }
 };
+            // Code for client works below but code for tech does not work, only allows you to view tickets they have claimed
+            // if (ticket.client.id === req.session.user_id) {
+                //     res.render('ticket', {
+                //         ...ticket,
+                //         loggedIn: req.session.loggedIn,
+                //         title: ticket.subject,
+                //         layout: "main",
+                //         userType: "client"
+                //     })
+                // }
+                // ///////////////////////////////////////
+                // if (ticket.tech.id === req.session.user_id) {
+                //     res.render('ticket', {
+                //         ...ticket,
+                //         loggedIn: req.session.loggedIn,
+                //         title: ticket.subject,
+                //         layout: "main",
+                //         userType: "tech"
+                //     })
+                // }
