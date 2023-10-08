@@ -1,3 +1,88 @@
-{{!-- this line below needs to go at the very bottom of this file --}}
+<header>
+    <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
+    <section class="p-2 ml-3">
+      Description: {{description}}
+    </section>
+
+    <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+    </ul>
+</header>
+<main class="row container-fluid">
+  <aside class="p-2 col-6 float-">
+    <div class="card mb-3 text-center">
+
+      <div class="card-body text-black m-3 w-90">
+        <h5 class="card-header fs-5 w-100" id="ticket-subject text">{{subject}}</h5>
+
+        <h5 class="card-header fs-6 w-100 text-center" id="ticket-description">Description</h5>
+
+        <p class="card-text" id="description-text">
+          {{description}}
+        </p>
+
+        <div class="dropdown fs-6 mb-3">
+          <button class="btn btn-secondary dropdown-toggle bg-black w-100" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Urgency
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item w-100" href="#">Low</a></li>
+            <li><a class="dropdown-item w-100" href="#">Medium</a></li>
+            <li><a class="dropdown-item w-100" href="#">High</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown fs-6 mb-3">
+          <button class="btn btn-secondary dropdown-toggle bg-black w-100" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Status
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item w-100" href="#">Open</a></li>
+            <li><a class="dropdown-item w-100" href="#">Pending</a></li>
+            <li><a class="dropdown-item w-100" href="#">Claimed</a></li>
+            <li><a class="dropdown-item w-100" href="#">Resolved</a></li>
+          </ul>
+        </div>
+        <button class="btn bg-white border-black w-100 text-black" type="button">
+          Save Changes
+        </button>
+
+      </div>
+
+  </aside>
+
+  <aside class="p-2 col-6">
+    <div class="card mb-3">
+      <div class="card-body text-black m-5 w-75 ">
+        {{!-- <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{}}</h5> --}}
+        <ul>
+          {{#each log}}
+          <li>
+            {{format_date createdAt}}
+            <ul>
+              {{#each messages}}
+              <li>{{message}}</li>
+              {{/each}}
+            </ul>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+
+  </aside>
+
+  <section class="offset-md-5 col-md-4 ">
+    <button type="button" id="back-button"  class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+      <i class="material-icons white-text">arrow_back</i>
+      Back
+    </button>
+
+  </section>
+
+</main>
 
 <script src="/assets/js/ticket.js"></script>
+<script src="/assets/js/backbutton.js"></script>
