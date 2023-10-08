@@ -1,4 +1,4 @@
-    const format_timestamp = (date) => {
+const format_timestamp = (date) => {
         let timeStamp = new Date(date);
         let hour = timeStamp.getHours();
         let minutes = timeStamp.getMinutes();
@@ -32,18 +32,16 @@
 
     //On each chat log in the ticket
     //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
-    //NEED TO STYLE IN CSS
     const determineShowHide = (value) => {
         if (value === "Open")
             return true;
 
-        return value === true ? "hidden" : "shown";
+        return value === true ? "notShown" : "shown";
     };
 
     // {{helperFuncName argument1 argument2}}
     //this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
     //the handlebars does the loop - for each currentUser iterate over the log
-    //NEED TO STYLE IN CSS
     const determineAlignment = (log, currentUser) => {
 
         if (log.type === "Created") {
@@ -78,14 +76,78 @@
     
     // The status argument should be the ticket.status value.
     //  The id argument should be the ticket.id value.
-    const showClaimButton = (status, id) => {
-        if (status === "Open") {
+    const showClaimButton = (status, id, userType) => {
+        if (status === "Open" && "tech") {
+            return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
+        // } else {
+        //     return "notShown"; //this pops up where the claim button does not
+        // }
+        
+        
+        } else if (status === "Open" && "client") {
+            return "";
+        }
+    };
+
+    // const showClaimButton = (status, userType, clientIdUser, client_id) => {
+    //     const clientIdUser = ticket.clientId;
+    //     const client_id = ticket.client.id;
+    //     if (status === "Open" && userType === "tech" && clientIdUser !== client_id) {
+    //       return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`;
+    //     } else {
+    //       return "";
+    //     }
+    //   };
+
+
+
+
+    const hideClaimButton = (status, id, userType) => {
+
+        if (status === "Open" && "tech") {
             return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
         }
-        else {
+        if (status === "Open" && "client") {
+            return "";
+        }
+        
+        if (status === "Pending" && "tech") {
+            return "";
+        }
+
+        if (status === "Pending" && userType !== "tech") {
+            return "";
+        }
+
+        if (status === "Resolved" && "tech") {
+            return "";
+        }
+
+        if (status === "Resolved" && userType !== "tech") {
             return "";
         }
     };
 
 
-    module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton };
+
+    const showLinkButton = (status, id) => {
+        
+        if (status === "Open") {
+            return `<a class="btn btn-primary black white-text btn-open-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
+        }
+
+        if (status === "Pending") {
+            return `<a class="btn btn-primary black white-text btn-pending-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
+        }
+
+        if (status === "Resolved") {
+            return `<a class="btn btn-primary black white-text btn-resolved-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
+        }
+
+        if (status === "Claimed") {
+            return `<a class="btn btn-primary black white-text btn-claimed-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
+        }
+    };
+
+
+    module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton, showLinkButton };
