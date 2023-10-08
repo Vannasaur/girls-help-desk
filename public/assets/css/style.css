@@ -4,6 +4,7 @@
     src: url(../fonts/couture.otf);
 }
 
+
 * {
     font-family: couture;
     letter-spacing: .3rem;
@@ -56,10 +57,23 @@ overflow: hidden;
   color: black;
 }
 
+
+/* tickethandlebars */
+
+div.card.mb-3 {
+    border-color: #f3e5f5 !important;
+    border-width: 1em !important;
+    padding: 0;
+}
+
 #login-btn {
     margin-top: 1rem;
 }
 
 body {
     height: 100vh;
+}
+
+#logout {
+    font-weight: bold;
 }

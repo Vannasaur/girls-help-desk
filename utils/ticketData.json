@@ -1,7 +1,7 @@
 [
     {
         "clientId": "1",
-        "techId": null,
+        "techId": "3",
         "subject": "Page Loading",
         "description": "Page won't load",
         "status": "Resolved",
@@ -10,7 +10,7 @@
     },
     {
         "clientId": "2",
-        "techId": null,
+        "techId": "3",
         "subject": "Tablet won't turn on",
         "description": "My tablet won't turn on",
         "status": "Pending",
@@ -19,7 +19,7 @@
     },
     {
         "clientId": "3",
-        "techId": null,
+        "techId": "3",
         "subject": "Computer Issues",
         "description": "My computer isn't working",
         "status": "Resolved",
@@ -37,7 +37,7 @@
     },
     {
         "clientId": "5",
-        "techId": null,
+        "techId": "3",
         "subject": "Potential Virus",
         "description": "I think my computer has a virus",
         "status": "Claimed",

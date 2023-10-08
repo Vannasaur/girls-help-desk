@@ -21,9 +21,9 @@ module.exports = {
     },
     // Edit ticket
     editTicket: async function (req, res) {
-
+        const {id} = req.params;
         try { // find the ticket with selected id
-            const editTicketData = await Ticket.findbyPk(req.params.id);
+            const editTicketData = await Ticket.findbyPk(id);
             const oldData = {...editTicketData};
             if (!editTicketData) {
                 return res.status(404).send('Ticket not found');
@@ -36,7 +36,7 @@ module.exports = {
                 editTicketData.description = req.body.description;
             }
             if (req.body.techId) {
-                editTicketData.techId  = req.body.techId;
+                editTicketData.techId  = req.session.user_id;
                     // If a new techId is added, update the status to "Claimed"
                     editTicketData.status = 'Claimed';
             }

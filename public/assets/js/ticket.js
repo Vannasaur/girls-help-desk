@@ -3,15 +3,16 @@ const chatModal = document.querySelector('#chat-dialogue');
 const closeDialogueBtn = document.querySelector('#dialogue-btn');
 // show modal (open drawer)
 // Listen for click events on the openDrawer element. When the click event occurs, open the side drawer element.
-showChat.addEventListener('click', () => {
-    chatModal.style.right = '0';
-    chatModal.classList.remove('hidden');
-})
-// hide modal (toggleHideMessage)
-closeDialogueBtn.addEventListener('click', () => {
-    chatModal.style.right = '-300px';
-    chatModal.classList.add('hidden');
-})
+// showChat.addEventListener('click', () => {
+//     chatModal.style.right = '0';
+//     chatModal.classList.remove('hidden');
+// })
+
+// // hide modal (toggleHideMessage)
+// closeDialogueBtn.addEventListener('click', () => {
+//     chatModal.style.right = '-300px';
+//     chatModal.classList.add('hidden');
+// })
 
 
 // update ticket (for tech)
@@ -52,9 +53,9 @@ const saveEditBtnHandler = async (event) => {
 };
 
 // update ticket btn listener
-document
-    .querySelector('.edit-ticket-btn')
-    .addEventListener('submit', saveEditBtnHandler);
+// document
+//     .querySelector('.edit-ticket-btn')
+//     .addEventListener('submit', saveEditBtnHandler);
 
 
 // add message
@@ -64,14 +65,17 @@ const addMessageHandler = async (event) => {
 
     const messageTxt = document.querySelector('#message-txt').value.trim();
     const id = event.target.getAttribute('data-id');
-    const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    const isHidden = document.querySelector('#toggle-hide').value;
+    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    // ?drawer=${drawerBoolean}
 
-    const response = await fetch(`/api/log/${id}?drawer=${drawerBoolean}`, {
+    const response = await fetch(`/api/log/${id}`, {
         method: 'POST',
         body: JSON.stringify({
             ticketId: id,
             message: messageTxt,
             type: 'Message', // WOULD TYPE ALWAYS BE MESSAGE?
+            isHidden,
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -87,9 +91,9 @@ const addMessageHandler = async (event) => {
 };
 
 // add message btn listener
-document
-    .querySelector('.add-message-btn')
-    .addEventListener('submit', addMessageHandler);
+// document
+//     .querySelector('.add-message-btn')
+//     .addEventListener('submit', addMessageHandler);
 
 
 // toggle hide message
@@ -100,7 +104,7 @@ const hideMessageHandler = async (event) => {
     const toggleHideBtn = document.querySelector('#toggle-hide').value;
     const id = event.target.getAttribute('data-id');
     const logId = document.querySelector('#log-id').value;
-    const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
+    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
 
     if (toggleHideBtn === true) {
         (toggleHideBtn === false)
@@ -109,8 +113,8 @@ const hideMessageHandler = async (event) => {
     if (toggleHideBtn === false) {
         (toggleHideBtn === true)
     }
-
-    const response = await fetch(`/api/log/${id}/${logId}?drawer=${drawerBoolean}`, {
+//?drawer=${drawerBoolean}
+    const response = await fetch(`/api/log/${id}/${logId}`, {
         method: 'PUT',
         body: JSON.stringify({
             isHidden: toggleHideBtn
@@ -125,7 +129,9 @@ const hideMessageHandler = async (event) => {
     }
 };
 
-document.querySelector('#hide-message').addEventListener('click', hideMessageHandler);
+// document.querySelector('#hide-message').addEventListener('click', hideMessageHandler);
+
+
 
 
 // logout
@@ -144,4 +150,4 @@ const logout = async () => {
     }
 };
 
-document.querySelector('#logout').addEventListener('click', logout);
+// document.querySelector('#logout').addEventListener('click', logout);

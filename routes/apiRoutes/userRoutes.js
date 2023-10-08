@@ -10,8 +10,10 @@ const {
 //  POST will call the loginUser controller.
 //  DELETE will call the logoutUser controller.
 router.route('/')
-    .post(loginUser)
-    .delete(logoutUser);
+    .post(loginUser);
+
+router.route('/logout')
+    .post(logoutUser);
 
 module.exports = router;
 

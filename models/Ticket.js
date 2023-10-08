@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../utils/connection');
+const helper = require('../utils/helpers');
+const log = require('./Log');
 
 const { User } = require('./index');
 
@@ -8,13 +10,13 @@ const { User } = require('./index');
 class Ticket extends Model {
 
     async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
-        const differences = await findDiff(this, oldData); //find difference between current ticket value and previous ticket values
+        const differences = await helper.findDiff(this, oldData); //find difference between current ticket value and previous ticket values
         if (differences.length === 0) {
             return;
         }
         await log.create({
             type: "Modified",
-            message: `${differences.length} changes were made on ${new Date()} by user ${userId}. ${diffs.join(", ")}`, //combine previous updates + new updates separated by commas
+            message: `${differences.length} changes were made on ${new Date()} by user ${userId}. ${differences.join(", ")}`, //combine previous updates + new updates separated by commas
             userId,
             ticketId: this.id,
         });
@@ -100,6 +102,10 @@ Ticket.init(
         underscored: false,
         modelName: 'ticket',
     }
+
+
+
+
 );
 
 module.exports = Ticket;
