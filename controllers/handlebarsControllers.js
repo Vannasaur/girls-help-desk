@@ -24,7 +24,7 @@ module.exports = {
                     ]
                 }
             }
-            // IF for req.session.role === tech
+
             console.log(where);
             const ticketData = await Ticket.findAll({
                 where: where,
@@ -63,6 +63,7 @@ module.exports = {
             res.render('home',
                 {
                     tickets: [...tickets.map(ticket => ({ ...ticket, isTech }))],
+                    userid: req.session.user_id,
                     isTech,
                     loggedIn: true, // req.session.loggedIn
                     title: 'Dashboard',
@@ -89,18 +90,6 @@ module.exports = {
         });
     },
 
-    // renderLogin: async function (req, res) {
-    //     console.info(req.session.loggedIn);
-    //     if (req.session.loggedIn == "true") {
-    //         //continues to redirect 
-    //         return res.status(401).redirect('/')
-    //     }
-    //     res.render('login', {
-    //         title: "Log In",
-    //         layout: "login",
-    //     });
-    // },
-
     renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
@@ -116,7 +105,6 @@ module.exports = {
             //  We will need to serialize the data before the view renders.
 
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
-
 
             if (ticket.client.id === req.session.user_id) {
                 res.render('ticket', {
@@ -137,22 +125,9 @@ module.exports = {
                 })
             }
 
-            //  All tickets should include client and tech firstName lastName id and role from associated Users and all Log data for this ticket.
-
-
-            // This view should receive the required values based on context, but also
-
-            // loggedIn: BOOLEAN
-            // title: STRING
-            // layout: STRING
-            // userType: STRING
-
         } catch (err) {
             res.status(500).json(err);
             console.log(err);
-        }  
-    },
+        }
+    }
 };
-
-
-
