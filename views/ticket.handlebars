@@ -59,11 +59,9 @@
   </aside>
 
   <aside class="p-2 col-6">
-
-    <div class="card mb-3 text-center">
-      <div class="card-body text-black m-3 w-90">
-        {{!-- <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{format_date
-          this.createdAt}}</h5> --}}
+    <div class="card mb-3">
+      <div class="card-body text-black m-5 w-75 ">
+        <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{format_date createdAt}}</h5>
         <ul>
           {{#each log}}
           <li>
