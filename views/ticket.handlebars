@@ -39,7 +39,7 @@
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <select id='urgencyFilter' 'edit-urgency' class='form-control text-center bg-black text-white'>
             <option>SELECT URGENCY</option>
             <option>LOW</option>
             <option>MEDIUM</option>
@@ -52,42 +52,36 @@
 
         <div class='form-field mt-3'>
 
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <form id='edit-status'>
+            <select id='urgencyFilter' 'edit-status' class='form-control text-center bg-black text-white'>
+              <option>SELECT STATUS</option>
+              <option>OPEN</option>
+              <option>PENDING</option>
+              <option>RESOLVED</option>
+              <option>CLAIMED</option>
+              {{#each status}}
+              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
+              {{/each}}
+            </select>
 
-            <option>SELECT STATUS</option>
-            <option>OPEN</option>
-            <option>PENDING</option>
-            <option>RESOLVED</option>
-            <option>CLAIMED</option>
-            {{#each status}}
-            <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
-            {{/each}}
-          </select>
         </div>
 
 
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
           Save Changes
         </button>
+        </form>
       </div>
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
-    <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-            <ul>
-                {{#each logs}}
-                <ul>
-                    <li>{{this.message}}</li>
-                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-                </ul>
-                {{/each}}
-            </ul>
-</div>
-</aside>
+
+
+
+
+
+
+
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -130,21 +124,14 @@
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
-    <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-            <ul>
-                {{#each logs}}
-                <ul>
-                    <li>{{this.message}}</li>
-                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-                </ul>
-                {{/each}}
-            </ul>
-</div>
-</aside>
+
+
+
+
+
+
+
+
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -173,7 +160,8 @@
       <textarea id="message-txt" class="form-input"></textarea>
 
       <div class="form-check">
-        {{!-- <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault hide-message toggle-hide log-id"> --}}
+        {{!-- <input class="form-check-input" type="checkbox" value="true"
+          id="flexCheckDefault hide-message toggle-hide log-id"> --}}
         <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Hide Message
