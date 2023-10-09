@@ -1,6 +1,6 @@
 <header>
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
-  <section class="p-2 ml-3">
+  <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
   </section>
 
@@ -22,8 +22,9 @@
   </div>
 </header>
 
+{{!-- TICKET CARDS --}}
 {{#if isTechLoggedIn}}
-
+{{!-- TECH SIDE --}}
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -49,7 +50,6 @@
           </select>
         </div>
 
-
         <div class='form-field mt-3'>
 
           <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
@@ -66,13 +66,28 @@
         </div>
 
 
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
           Save Changes
         </button>
       </div>
   </aside>
 
-
+  {{!-- TIMELINE --}}
+<aside class="p-2 col-6">
+    <div class="card mb-3">
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
+            <ul>
+                {{#each logs}}
+                <ul>
+                    <li>{{this.message}}</li>
+                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+                </ul>
+                {{/each}}
+            </ul>
+</div>
+</aside>
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -84,7 +99,7 @@
 </main>
 {{else}}
 
-
+{{!-- CLIENT SIDE --}}
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -111,9 +126,25 @@
           </div>
         </div>
 
-
       </div>
   </aside>
+
+  {{!-- TIMELINE --}}
+<aside class="p-2 col-6">
+    <div class="card mb-3">
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
+            <ul>
+                {{#each logs}}
+                <ul>
+                    <li>{{this.message}}</li>
+                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+                </ul>
+                {{/each}}
+            </ul>
+</div>
+</aside>
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -122,9 +153,37 @@
       Back
     </button>
   </section>
+
 </main>
 
 {{/if}}
 
-<script src="/assets/js/ticket.js"></script>
-<script src="/assets/js/backbutton.js"></script>
+
+{{!-- Show Chat Modal --}}
+<!-- show logs for specific ticket modal (ticket.handlebars)-->
+<button id="show-chat">Show Chat Logs</button>
+<!--modal div for log messages-->
+<div id="chat-dialogue" class="hidden">
+  <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
+  <div class="dialogue-content">
+    {{!-- <h4>Help Desk Chat</h4> --}}
+    {{!-- {{#each messages as |message|}} --}}
+    <form>
+      <label for="message">Message:</label>
+      <textarea id="message-txt" class="form-input"></textarea>
+
+      <div class="form-check">
+        {{!-- <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault hide-message toggle-hide log-id"> --}}
+        <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Hide Message
+        </label>
+      </div>
+      <button type="submit" id="add-message-btn" class="btn btn-primary white black-text">Send</button>
+    </form>
+  </div>
+</div>
+
+
+<script defer src="/assets/js/ticket.js"></script>
+<script defer src="/assets/js/backbutton.js"></script>

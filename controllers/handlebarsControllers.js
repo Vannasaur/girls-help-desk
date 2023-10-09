@@ -1,4 +1,4 @@
-const { Ticket, User } = require('../models');
+const { Ticket, User, Log } = require('../models');
 const { Op } = require('sequelize');
 
 module.exports = {
@@ -99,7 +99,7 @@ module.exports = {
     renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
-                include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
+                include: [{ model: User, as: "client" }, { model: User, as: "tech" }, { model: Log, include: [{ model: User, attributes: ['firstName'] }]}]
             });
 
             if (!ticketData) {
