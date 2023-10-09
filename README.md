@@ -1,4 +1,4 @@
-# E-commerce Back End Starter Code
+# Girls-Help-Desk
 
 ## Description
 The motive behind this project was to create a help desk for claim tickets. It will save the companies a ton of time organizing claims made by their clients. We learned how to implement an MVC view engine using handlebars syntax, how to create functioning modals, and also how to create different viewing abilities for client vs tech. 
@@ -18,7 +18,7 @@ The motive behind this project was to create a help desk for claim tickets. It w
 ![Screenshot of client view](./public/assets/images/ClientView.png)
 4. Techs can view all tickets
 ![Screenshot of tech view](./public/assets/images/TechView.png)
-5. Tickets will show 
+5. Ticket view shows description and timeline of ticket logs
 ![Screenshot of ticket view](./public/assets/images/TicketView.png)
 
 ## Deployed Link
