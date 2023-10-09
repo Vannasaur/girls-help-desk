@@ -1,9 +1,8 @@
-{{#if tech}}
+{{#if isTech}}
 {{#each tickets as |ticket|}}
 <tr>
     <a href="/api/ticket/{{ticket.id}}">
         <td class="claim-row">{{{showClaimButton ticket.status ticket.id userType}}}</td>
-                {{!-- <td class="claim-row">{{{showClaimButton ticket.status UserType.role ticket.clientId ticket.client.id}}}</td> --}}
         <td class="status-row">{{ticket.status}}</td>
         <td class="urgency-row">{{ticket.urgency}}</td>
         <td class="client-row">{{ticket.client.firstName}}</td>
@@ -26,7 +25,5 @@
         <td class="link-row">{{{showLinkButton ticket.id}}}</td>
     </a>
 </tr>
-
 {{/each}}
-
 {{/if}}

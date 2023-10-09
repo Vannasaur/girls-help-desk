@@ -46,6 +46,7 @@ module.exports = {
             console.log(tickets)
             const isTech = (req.session.role !== 'client') ? true : false;
             console.log(isTech);
+
             //notClaimed needed for handlebars to know that if the techId on the ticket is null, then the claim button should appear
             const testTicket = (tickets) => {
                 for (const ticket of tickets) {
