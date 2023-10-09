@@ -1,0 +1,157 @@
+<header>
+  <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
+  <section class="p-2 ml-3 brand-logo">
+    Description: {{description}}
+  </section>
+
+  <div class="container">
+    <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
+
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
+        {{client.firstName}} on {{format_date createdAt}}</button>
+
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
+    </div>
+
+  </div>
+</header>
+
+{{#if isTechLoggedIn}}
+
+<main class="row container-fluid">
+  <aside class="p-2 col-6 float-">
+    <div class="card mb-3 text-center">
+      <div class="card-body text-black m-2 w-90">
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+
+        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+
+        <p class="card-header mb-3" id="description-text">
+          {{description}}
+        </p>
+
+        <div class='form-field'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <option>SELECT URGENCY</option>
+            <option>LOW</option>
+            <option>MEDIUM</option>
+            <option>HIGH</option>
+            {{#each urgency}}
+            <option value="{{this}}">{{this.urgency.type}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+
+        <div class='form-field mt-3'>
+
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+
+            <option>SELECT STATUS</option>
+            <option>OPEN</option>
+            <option>PENDING</option>
+            <option>RESOLVED</option>
+            <option>CLAIMED</option>
+            {{#each status}}
+            <option value="{{this}}">{{this.status.type}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
+          Save Changes
+        </button>
+      </div>
+  </aside>
+
+  <section class="offset-md-5 col-md-4 ">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+      <i class="material-icons white-text">arrow_back</i>
+      Back
+    </button>
+  </section>
+</main>
+{{else}}
+
+<main class="row container-fluid">
+  <aside class="p-2 col-6 float-">
+    <div class="card mb-3 text-center">
+      <div class="card-body text-black m-2 w-90">
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+
+        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+
+        <p class="card-header mb-3" id="description-text">
+          {{description}}
+        </p>
+
+        <div class='form-field'>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{urgency}}</p>
+          </div>
+        </div>
+
+
+        <div class='form-field mt-3'>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{status}}</p>
+          </div>
+        </div>
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+          Save Changes
+        </button>
+
+      </div>
+  </aside>
+
+  <section class="offset-md-5 col-md-4 ">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+      <i class="material-icons white-text">arrow_back</i>
+      Back
+    </button>
+  </section>
+</main>
+
+
+{{!-- Show Chat Modal --}}
+<!-- show logs for specific ticket modal (ticket.handlebars)-->
+<button id="show-chat">Show Chat Logs</button>
+<!--modal div for log messages-->
+<div id="chat-dialogue" class="hidden">
+  <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
+  <div class="dialogue-content">
+    {{!-- <h4>Help Desk Chat</h4> --}}
+    {{!-- {{#each messages as |message|}} --}}
+    <form>
+      <label for="message">Message:</label>
+      <textarea id="message-txt" class="form-input"></textarea>
+
+      <div class="form-check">
+        {{!-- <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault hide-message toggle-hide log-id"> --}}
+        <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Hide Message
+        </label>
+      </div>
+      <button type="submit" id="add-message-btn" class="btn btn-primary white black-text">Send</button>
+    </form>
+  </div>
+</div>
+
+
+<script defer src="/assets/js/ticket.js"></script>
+<script defer src="/assets/js/backbutton.js"></script>
