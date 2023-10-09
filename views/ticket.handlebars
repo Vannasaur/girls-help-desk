@@ -4,10 +4,27 @@
     Description: {{description}}
   </section>
 
-  <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
+<div class="container">
+  <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
+
+    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by {{client.firstName}} on {{format_date createdAt}}</button>
+
+  {{!-- </div>
+  <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
     <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-  </ul>
+  {{!-- </div>
+  <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
+  </div>
+
+</div>
+
+
 </header>
+
+{{#if isTech}}
+{{#each tickets as |ticket|}}
+
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -53,29 +70,70 @@
         <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
           Save Changes
         </button>
-
       </div>
-
   </aside>
 
-  <aside class="p-2 col-6">
-    <div class="card mb-3">
-      <div class="card-body text-black m-5 w-75 ">
-        <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-        <ul>
-          {{#each log}}
-          <li>
-            {{format_date createdAt}}
-            <ul>
-              {{#each messages}}
-              <li>{{this.message}}</li>
-              {{/each}}
-            </ul>
-          </li>
-          {{/each}}
-        </ul>
+
+
+  <section class="offset-md-5 col-md-4 ">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+      <i class="material-icons white-text">arrow_back</i>
+      Back
+    </button>
+  </section>
+</main>
+
+{{/each}}
+{{else}}
+{{#each tickets as |ticket|}}
+
+<main class="row container-fluid">
+  <aside class="p-2 col-6 float-">
+    <div class="card mb-3 text-center">
+      <div class="card-body text-black m-2 w-90">
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+
+        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+
+        <p class="card-header mb-3" id="description-text">
+          {{description}}
+        </p>
+
+        <div class='form-field'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <option>TEST!!!!</option>
+            <option>LOW</option>
+            <option>MEDIUM</option>
+            <option>HIGH</option>
+            {{#each urgency}}
+            <option value="{{this}}">{{this.urgency.type}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+
+        <div class='form-field mt-3'>
+
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+
+            <option>LALALALALA</option>
+            <option>OPEN</option>
+            <option>PENDING</option>
+            <option>RESOLVED</option>
+            <option>CLAIMED</option>
+            {{#each status}}
+            <option value="{{this}}">{{this.status.type}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+          Save Changes
+        </button>
       </div>
-    </div>
   </aside>
 
   <section class="offset-md-5 col-md-4 ">
@@ -84,10 +142,11 @@
       <i class="material-icons white-text">arrow_back</i>
       Back
     </button>
-
   </section>
-
 </main>
+
+{{/each}}
+{{/if}}
 
 <script src="/assets/js/ticket.js"></script>
 <script src="/assets/js/backbutton.js"></script>
