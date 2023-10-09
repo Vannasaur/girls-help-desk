@@ -1,12 +1,13 @@
 <header>
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
-  <section class="p-2 ml-3">
+  <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
   </section>
 
-  <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
-    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-  </ul>
+  <div id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
+    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white"
+      id="status">{{urgency}}</button>
+  </div>
 </header>
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -50,7 +51,7 @@
         </div>
 
 
-        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
           Save Changes
         </button>
 
@@ -60,18 +61,15 @@
 
   <aside class="p-2 col-6">
     <div class="card mb-3">
-      <div class="card-body text-black m-5 w-75 ">
-        <h5 class="card-header w-75 fs-6 w-100 text-center" id="ticket-timestamp text">{{format_date createdAt}}</h5>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
         <ul>
-          {{#each log}}
-          <li>
-            {{format_date createdAt}}
+          {{#each logs}}
             <ul>
-              {{#each messages}}
               <li>{{this.message}}</li>
-              {{/each}}
+              <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
             </ul>
-          </li>
           {{/each}}
         </ul>
       </div>
@@ -86,8 +84,33 @@
     </button>
 
   </section>
-
 </main>
 
-<script src="/assets/js/ticket.js"></script>
-<script src="/assets/js/backbutton.js"></script>
+{{!-- Show Chat Modal --}}
+<!-- show logs for specific ticket modal (ticket.handlebars)-->
+<button id="show-chat">Show Chat Logs</button>
+<!--modal div for log messages-->
+<div id="chat-dialogue" class="hidden">
+  <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
+  <div class="dialogue-content">
+    {{!-- <h4>Help Desk Chat</h4> --}}
+    {{!-- {{#each messages as |message|}} --}}
+    <form>
+      <label for="message">Message:</label>
+      <textarea id="message-txt" class="form-input"></textarea>
+
+      <div class="form-check">
+        {{!-- <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault hide-message toggle-hide log-id"> --}}
+        <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Hide Message
+        </label>
+      </div>
+      <button type="submit" id="add-message-btn" class="btn btn-primary white black-text">Send</button>
+    </form>
+  </div>
+</div>
+
+
+<script defer src="/assets/js/ticket.js"></script>
+<script defer src="/assets/js/backbutton.js"></script>

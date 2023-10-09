@@ -1,4 +1,4 @@
-const { Ticket, User } = require('../models');
+const { Ticket, User, Log } = require('../models');
 const { Op } = require('sequelize');
 
 module.exports = {
@@ -101,7 +101,7 @@ module.exports = {
     renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
-                include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
+                include: [{ model: User, as: "client" }, { model: User, as: "tech" }, { model: Log, include: [{ model: User, attributes: ['firstName'] }]}]
             });
 
             if (!ticketData) {
@@ -118,7 +118,10 @@ module.exports = {
             }
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             //const isTicketCreator = (ticket.clientId === req.session.user_id);
-
+            const isTech = (req.session.role !== 'client') ? true : false;
+            console.log(isTech);
+            const spread = ticket;
+            console.log(spread);
             res.render('ticket', {
                 ...ticket,
                 loggedIn: req.session.loggedIn,
@@ -127,6 +130,7 @@ module.exports = {
                 role: req.session.role,
                 firstName: req.session.firstName,
                 user: req.session.user_id,
+                isTech,
             })
         } catch (err) {
             res.status(500).json(err);
