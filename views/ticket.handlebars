@@ -2,21 +2,15 @@
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
+    <br>
+      Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">
-    <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
-
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
-        {{client.firstName}} on {{format_date createdAt}}</button>
-
-      {{!--
-    </div>
-    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
+  <div class="container">  
+    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-      {{!--
     </div>
-    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
     </div>
   </div>
@@ -32,10 +26,11 @@
         <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
         <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
-        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mb-3 " id="ticket-description">Description
+        </h5>
 
-        <p class="card-header mb-3" id="description-text">
-          {{description}}
+        <p class="card-header mb-3" id="description-text" style="max-height: 10em; overflow-y: auto;">
+          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure nesciunt. Corrupti?
         </p>
 
         <div class='form-field'>
@@ -75,28 +70,29 @@
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
-      <div class="card-body text-black m-3 w-80">
-        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-        <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-        <ul>
-          {{#each logs}}
-          <ul>
-            <li>{{this.message}}</li>
-            <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-          </ul>
-          {{/each}}
-        </ul>
-      </div>
-  </aside>
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <ul>
+                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+                {{>timeline}}
+                </div>
+            </ul>
+</div>
+</aside>
 
-  <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"
-      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
-      <i class="material-icons white-text">arrow_back</i>
+</main>
+
+    <button 
+      class="btn btn-primary black white-text btn black btn-style"
+      id="back-button">
       Back
     </button>
-  </section>
-</main>
+    <button
+      class="btn btn-primary black white-text btn black btn-style"
+      id="show-chat">
+      Show Chat Logs
+    </button> 
+
 {{else}}
 
 {{!-- CLIENT SIDE --}}
@@ -132,36 +128,35 @@
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
-      <div class="card-body text-black m-3 w-80">
-        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-        <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-        <ul>
-          {{#each logs}}
-          <ul>
-            <li>{{this.message}}</li>
-            <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-          </ul>
-          {{/each}}
-        </ul>
-      </div>
-  </aside>
-
-  <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"
-      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
-      <i class="material-icons white-text">arrow_back</i>
-      Back
-    </button>
-  </section>
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <ul>
+                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+                {{>timeline}}
+                </div>
+            </ul>
+</div>
+</aside>
 
 </main>
+
+    <button 
+      class="btn btn-primary black white-text btn black btn-style"
+      id="back-button">
+      Back
+    </button>
+    <button
+      class="btn btn-primary black white-text btn black btn-style"
+      id="show-chat">
+      Show Chat Logs
+    </button>
 
 {{/if}}
 
 
 {{!-- Show Chat Modal --}}
 <!-- show logs for specific ticket modal (ticket.handlebars)-->
-<button id="show-chat">Show Chat Logs</button>
+
 <!--modal div for log messages-->
 <div id="chat-dialogue" class="hidden">
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
