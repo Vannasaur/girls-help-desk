@@ -26,10 +26,11 @@
         <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
         <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
-        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mb-3 " id="ticket-description">Description
+        </h5>
 
-        <p class="card-header mb-3" id="description-text">
-          {{description}}
+        <p class="card-header mb-3" id="description-text" style="max-height: 10em; overflow-y: auto;">
+          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure nesciunt. Corrupti?
         </p>
 
         <div class='form-field'>
@@ -71,14 +72,10 @@
     <div class="card mb-3">
         <div class="card-body text-black m-3 w-80">
             <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
             <ul>
-                {{#each logs}}
-                <ul>
-                    <li>{{this.message}}</li>
-                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-                </ul>
-                {{/each}}
+                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+                {{>timeline}}
+                </div>
             </ul>
 </div>
 </aside>
@@ -133,14 +130,10 @@
     <div class="card mb-3">
         <div class="card-body text-black m-3 w-80">
             <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
             <ul>
-                {{#each logs}}
-                <ul>
-                    <li>{{this.message}}</li>
-                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-                </ul>
-                {{/each}}
+                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+                {{>timeline}}
+                </div>
             </ul>
 </div>
 </aside>
