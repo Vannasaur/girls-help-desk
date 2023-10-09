@@ -4,26 +4,25 @@
     Description: {{description}}
   </section>
 
-<div class="container">
-  <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
+  <div class="container">
+    <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
 
-    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by {{client.firstName}} on {{format_date createdAt}}</button>
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
+        {{client.firstName}} on {{format_date createdAt}}</button>
 
-  {{!-- </div>
-  <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
-    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-  {{!-- </div>
-  <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
-    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
+    </div>
   </div>
-
-</div>
-
-
 </header>
 
-{{#if isTech}}
-{{#each tickets as |ticket|}}
+{{#if isTechLoggedIn}}
 
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -83,10 +82,8 @@
     </button>
   </section>
 </main>
-
-{{/each}}
 {{else}}
-{{#each tickets as |ticket|}}
+
 
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -102,31 +99,16 @@
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
-            <option>TEST!!!!</option>
-            <option>LOW</option>
-            <option>MEDIUM</option>
-            <option>HIGH</option>
-            {{#each urgency}}
-            <option value="{{this}}">{{this.urgency.type}}</option>
-            {{/each}}
-          </select>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{urgency}}</p>
+          </div>
         </div>
 
 
         <div class='form-field mt-3'>
-
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
-
-            <option>LALALALALA</option>
-            <option>OPEN</option>
-            <option>PENDING</option>
-            <option>RESOLVED</option>
-            <option>CLAIMED</option>
-            {{#each status}}
-            <option value="{{this}}">{{this.status.type}}</option>
-            {{/each}}
-          </select>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{status}}</p>
+          </div>
         </div>
 
 
@@ -145,7 +127,6 @@
   </section>
 </main>
 
-{{/each}}
 {{/if}}
 
 <script src="/assets/js/ticket.js"></script>
