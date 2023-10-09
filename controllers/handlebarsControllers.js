@@ -118,38 +118,10 @@ module.exports = {
             if (req.session.role === 'client' && ticket.clientId !== req.session.user_id) {
                 res.redirect('/');
                 return;
-              
+            }
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             //const isTicketCreator = (ticket.clientId === req.session.user_id);
 
-            if (ticket.client.id === req.session.user_id) {
-                res.render('ticket', {
-                    ...ticket,
-                    loggedIn: req.session.loggedIn,
-                    title: ticket.subject,
-                    layout: "main",
-                    userType: "client",
-                    client: true,
-                    //isTicketCreator: true
-                    tech: false
-                    // showClaim: false
-                })
-            }
-
-            if (ticket.tech.id === req.session.user_id) {
-                res.render('ticket', {
-                    ...ticket,
-                    loggedIn: req.session.loggedIn,
-                    title: ticket.subject,
-                    layout: "main",
-                    tech: true,
-                    //isTicketCreator: false
-                    client: false
-                    // showClaim: true
-                })
-
-            }
-                //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             res.render('ticket', {
                 ...ticket,
                 loggedIn: req.session.loggedIn,
