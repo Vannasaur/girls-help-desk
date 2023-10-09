@@ -34,7 +34,7 @@
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <select id='urgencyFilter' 'edit-urgency' class='form-control text-center bg-black text-white'>
             <option>SELECT URGENCY</option>
             <option>LOW</option>
             <option>MEDIUM</option>
@@ -47,23 +47,25 @@
 
         <div class='form-field mt-3'>
 
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <form id='edit-status'>
+            <select id='urgencyFilter' 'edit-status' class='form-control text-center bg-black text-white'>
+              <option>SELECT STATUS</option>
+              <option>OPEN</option>
+              <option>PENDING</option>
+              <option>RESOLVED</option>
+              <option>CLAIMED</option>
+              {{#each status}}
+              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
+              {{/each}}
+            </select>
 
-            <option>SELECT STATUS</option>
-            <option>OPEN</option>
-            <option>PENDING</option>
-            <option>RESOLVED</option>
-            <option>CLAIMED</option>
-            {{#each status}}
-            <option value="{{this}}">{{this.status.type}}</option>
-            {{/each}}
-          </select>
         </div>
 
 
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
           Save Changes
         </button>
+        </form>
       </div>
   </aside>
 
