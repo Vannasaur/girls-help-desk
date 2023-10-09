@@ -32,6 +32,7 @@ be filtered to only match the tickets by that status. --}}
             <th class="client-row">Client</th>
             <th class="technician-row">Technician</th>
             <th class="created-row">Created</th>
+            <th class="link-row"></th>
             <th></th>
         </tr>
     </thead>
@@ -56,8 +57,9 @@ Each row on this table will be clickable, and will function as a link to take th
 DELETE]--------------------------------}}
 
 {{!-- Create New Ticket Button --}}
-{{!-- <button id="new-ticket-btn">+</button> --}}
+
 <div id="new-ticket" class="hidden">
+    <button id="close-new-ticket-modal" class="position-absolute top-0 end-0">X</button>
     <form>
         <label for="ticket-subj">Subject:</label>
         <br>
@@ -67,15 +69,20 @@ DELETE]--------------------------------}}
         <br>
         <textarea id="description" class="form-input"></textarea>
         <br>
-        <label for="ticket-urgency">Urgency:</label>
-        <select id="ticket-urgency">
-            <option value="Low" class="urgency">Low</option>
-            <option value="Medium" class="urgency">Medium</option>
-            <option value="High" class="urgency">High</option>
-        </select>
-        <br>
-        <br>
-        <button type="submit" id="submit-ticket-btn" class="btn btn-primary white black-text">Submit Request</button>
+        <div class='form-field'>
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+                <option>SELECT URGENCY</option>
+                <option value="Low">LOW</option>
+                <option value="Medium">MEDIUM</option>
+                <option value="High">HIGH</option>
+                {{#each urgency}}
+                <option value="{{this}}">{{this.urgency.type}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <br>
+            <button type="submit" id="submit-ticket-btn" class="btn btn-primary white black-text">Submit
+                Request</button>
     </form>
 </div>
 

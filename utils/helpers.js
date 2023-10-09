@@ -1,4 +1,4 @@
-    const format_timestamp = (date) => {
+const format_timestamp = (date) => {
         let timeStamp = new Date(date);
         let hour = timeStamp.getHours();
         let minutes = timeStamp.getMinutes();
@@ -32,18 +32,16 @@
 
     //On each chat log in the ticket
     //this goes in ticket.handlebars {{ determineShowHide log.isHidden }}
-    //NEED TO STYLE IN CSS
     const determineShowHide = (value) => {
         if (value === "Open")
             return true;
 
-        return value === true ? "hidden" : "shown";
+        return value === true ? "notShown" : "shown";
     };
 
     // {{helperFuncName argument1 argument2}}
     //this goes in ticket.handlebars {{determineAlignment {isHidden" false, user_id: 1, type: "message"} {id: 1} }}
     //the handlebars does the loop - for each currentUser iterate over the log
-    //NEED TO STYLE IN CSS
     const determineAlignment = (log, currentUser) => {
 
         if (log.type === "Created") {
@@ -81,10 +79,12 @@
         if (status === "Open") {
             return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
         }
-        else {
             return "";
-        }
+    };
+
+    const showLinkButton = (id) => {
+            return `<a class="btn btn-primary black white-text btn-claimed-link" type="click" href="/ticket/${id}">View Ticket</a>`
     };
 
 
-    module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton };
+    module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton, showLinkButton };

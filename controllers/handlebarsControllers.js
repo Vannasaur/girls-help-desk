@@ -46,6 +46,7 @@ module.exports = {
             console.log(tickets)
             const isTech = (req.session.role !== 'client') ? true : false;
             console.log(isTech);
+
             //notClaimed needed for handlebars to know that if the techId on the ticket is null, then the claim button should appear
             const testTicket = (tickets) => {
                 for (const ticket of tickets) {
@@ -59,6 +60,10 @@ module.exports = {
             }
 
             tickets = await testTicket(tickets);
+            //for each ticket, define the ticket creator
+            // tickets.forEach((ticket) => {
+            //     ticket.isTicketCreator = (ticket.clientId === req.session.user_id);
+            // });
             console.log(tickets);
             res.render('home',
                 {
@@ -69,7 +74,9 @@ module.exports = {
                     title: 'Dashboard',
                     layout: 'main',
                     userType: req.session.role,
-                    firstName: req.session.firstName
+                    firstName: req.session.firstName,
+                    tech: true,
+                    client: true,
                 }
             )
         } catch (err) {
@@ -100,11 +107,15 @@ module.exports = {
                     message: 'No ticket found by that id'
                 })
             }
+            //  We will need to serialize the data before the view renders.
             const ticket = ticketData.get({ plain: true })
 
-            //  We will need to serialize the data before the view renders.
-
+            if (req.session.role === 'client' && ticket.clientId !== req.session.user_id) {
+                res.redirect('/');
+                return;
+            }
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
+            //const isTicketCreator = (ticket.clientId === req.session.user_id);
 
             if (ticket.client.id === req.session.user_id) {
                 res.render('ticket', {
@@ -125,9 +136,38 @@ module.exports = {
                 })
             }
 
+            res.render('ticket', {
+                ...ticket,
+                loggedIn: req.session.loggedIn,
+                title: ticket.subject,
+                layout: 'main',
+                role: req.session.role,
+                firstName: req.session.firstName,
+                user: req.session.user_id,
+            })
         } catch (err) {
             res.status(500).json(err);
             console.log(err);
         }
     }
 };
+            // Code for client works below but code for tech does not work, only allows you to view tickets they have claimed
+            // if (ticket.client.id === req.session.user_id) {
+                //     res.render('ticket', {
+                //         ...ticket,
+                //         loggedIn: req.session.loggedIn,
+                //         title: ticket.subject,
+                //         layout: "main",
+                //         userType: "client"
+                //     })
+                // }
+                // ///////////////////////////////////////
+                // if (ticket.tech.id === req.session.user_id) {
+                //     res.render('ticket', {
+                //         ...ticket,
+                //         loggedIn: req.session.loggedIn,
+                //         title: ticket.subject,
+                //         layout: "main",
+                //         userType: "tech"
+                //     })
+                // }

@@ -1,30 +1,29 @@
-{{#if client}}
+{{#if isTech}}
 {{#each tickets as |ticket|}}
 <tr>
-    <a href="/ticket/{{ticket.id}}">
+    <a href="/api/ticket/{{ticket.id}}">
+        <td class="claim-row">{{{showClaimButton ticket.status ticket.id userType}}}</td>
         <td class="status-row">{{ticket.status}}</td>
         <td class="urgency-row">{{ticket.urgency}}</td>
         <td class="client-row">{{ticket.client.firstName}}</td>
         <td class="technician-row">{{ticket.tech.firstName}}</td>
         <td class="created-row">{{format_date ticket.createdAt}}</td>
+        <td class="link-row">{{{showLinkButton ticket.id}}}</td>
     </a>
 </tr>
 {{/each}}
 
 {{else}}
-
 {{#each tickets as |ticket|}}
 <tr>
-    <a href="/ticket/{{ticket.id}}">
-        <td class="claim-row">{{{showClaimButton ticket.status ticket.id}}}</td>
+    <a href="/api/ticket/{{ticket.id}}">
         <td class="status-row">{{ticket.status}}</td>
         <td class="urgency-row">{{ticket.urgency}}</td>
         <td class="client-row">{{ticket.client.firstName}}</td>
         <td class="technician-row">{{ticket.tech.firstName}}</td>
         <td class="created-row">{{format_date ticket.createdAt}}</td>
+        <td class="link-row">{{{showLinkButton ticket.id}}}</td>
     </a>
 </tr>
-
 {{/each}}
-
 {{/if}}
