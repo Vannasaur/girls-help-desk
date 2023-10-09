@@ -177,23 +177,24 @@ body {
 
 .card-header {
     margin-top: 3px !important;
+}
 
 .claim-ticket-btn {
-    background-color: black;
-    color: white;
-    padding: .5em 1.5em;
-    font-family: couture;
-    letter-spacing: 0;
-    border: none;
+  background-color: black;
+  color: white;
+  padding: .5em 1.5em;
+  font-family: couture;
+  letter-spacing: 0;
+  border: none;
 }
 
 /* tickethandlebars */
 
 div.card.mb-3 {
-    border: solid 2px #d5b3db;
-    box-shadow: 5px 5px 1rem #d5b3db;
-    padding: 0;
-    border-radius: 5px;
+  border: solid 2px #d5b3db;
+  box-shadow: 5px 5px 1rem #d5b3db;
+  padding: 0;
+  border-radius: 5px;
 }
 
 #login-btn {
