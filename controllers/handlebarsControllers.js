@@ -60,11 +60,9 @@ module.exports = {
             }
 
             tickets = await testTicket(tickets);
-            //for each ticket, define the ticket creator
-            // tickets.forEach((ticket) => {
-            //     ticket.isTicketCreator = (ticket.clientId === req.session.user_id);
-            // });
             console.log(tickets);
+
+
             res.render('home',
                 {
                     tickets: [...tickets.map(ticket => ({ ...ticket, isTech }))],
@@ -116,8 +114,23 @@ module.exports = {
                 res.redirect('/');
                 return;
             }
+
+            const isTech = (req.session.role !== 'client') ? true : false;
+            console.log(req.session.role);
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
-            //const isTicketCreator = (ticket.clientId === req.session.user_id);
+
+            // const ticketWithoutClient = {}
+            // for (const property in ticket) {
+            //     if (property === 'client') {
+            //         continue;
+            //     }
+            //     ticketWithoutClient[property] = ticket[property];
+            // }
+            // console.log(ticketWithoutClient);
+            // const tixNoClient = (ticketWithoutClient) => ticketWithoutClient.client !== null;
+
+            const isTechLoggedIn = (req.session.loggedIn && req.session.role === "tech") ? true : false;
+            console.log(isTechLoggedIn);
 
             res.render('ticket', {
                 ...ticket,
@@ -127,7 +140,12 @@ module.exports = {
                 role: req.session.role,
                 firstName: req.session.firstName,
                 user: req.session.user_id,
+                isTech,
+                tixNoClient,
+                isTechLoggedIn
             })
+
+            console.log(ticket);
         } catch (err) {
             res.status(500).json(err);
             console.log(err);
