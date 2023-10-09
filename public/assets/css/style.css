@@ -185,6 +185,7 @@ body {
   letter-spacing: 0;
   border: none;
 }
+
 .card-header {
     margin-top: 3px !important;
 }
@@ -206,10 +207,18 @@ body {
   height: 100vh;
 }
 
-#logout {
+#logout, #back-button, #show-chat {
   font-weight: bold;
 }
 
+.btn-style {
+  background-color: black;
+  color: white;
+  font-family: couture;
+  letter-spacing: 0;
+  border: none;
+  margin-bottom: 1.5em;
+}
 
 * {
   box-sizing: border-box;
