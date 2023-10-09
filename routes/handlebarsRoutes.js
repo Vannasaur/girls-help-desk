@@ -11,6 +11,10 @@ renderTicket
 router.route('/login')
 .get(renderLogin)
 
+//route for drawer to stay open after creating message/log
+router.route('/ticket/:id?drawer=BOOLEAN')
+.get(withAuth, renderTicket)
+
 //route for ticket page
 router.route('/ticket/:id')
 .get(withAuth, renderTicket)
