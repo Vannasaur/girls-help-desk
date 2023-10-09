@@ -112,10 +112,6 @@ module.exports = {
             //  We will need to serialize the data before the view renders.
             const ticket = ticketData.get({ plain: true })
 
-
-            if (ticket.isArchived) {
-                res.redirect('/');
-            }
             if (req.session.role === 'client' && ticket.clientId !== req.session.user_id) {
                 res.redirect('/');
                 return;

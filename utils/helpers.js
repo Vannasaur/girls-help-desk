@@ -83,23 +83,8 @@ const format_timestamp = (date) => {
             return "";
     };
 
-    const showLinkButton = (status, id) => {
-        
-        if (status === "Open") {
-            return `<a class="btn btn-primary black white-text btn-open-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
-        }
-
-        if (status === "Pending") {
-            return `<a class="btn btn-primary black white-text btn-pending-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
-        }
-
-        if (status === "Resolved") {
-            return `<a class="btn btn-primary black white-text btn-resolved-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
-        }
-
-        if (status === "Claimed") {
-            return `<a class="btn btn-primary black white-text btn-claimed-link" type="click" href="/api/ticket/${id}">View Ticket</a>`
-        }
+    const showLinkButton = (id) => {
+            return `<a class="btn btn-primary black white-text btn-claimed-link" type="click" href="/ticket/${id}">View Ticket</a>`
     };
 
 
