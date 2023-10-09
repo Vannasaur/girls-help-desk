@@ -76,59 +76,12 @@ const format_timestamp = (date) => {
     
     // The status argument should be the ticket.status value.
     //  The id argument should be the ticket.id value.
-    const showClaimButton = (status, id, userType) => {
-        if (status === "Open" && "tech") {
-            return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
-        // } else {
-        //     return "notShown"; //this pops up where the claim button does not
-        // }
-        
-        
-        } else if (status === "Open" && "client") {
-            return "";
-        }
-    };
-
-    // const showClaimButton = (status, userType, clientIdUser, client_id) => {
-    //     const clientIdUser = ticket.clientId;
-    //     const client_id = ticket.client.id;
-    //     if (status === "Open" && userType === "tech" && clientIdUser !== client_id) {
-    //       return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`;
-    //     } else {
-    //       return "";
-    //     }
-    //   };
-
-
-
-
-    const hideClaimButton = (status, id, userType) => {
-
-        if (status === "Open" && "tech") {
+    const showClaimButton = (status, id) => {
+        if (status === "Open") {
             return `<button class="claim-ticket-btn" data-id=${id}>Claim</button>`
         }
-        if (status === "Open" && "client") {
             return "";
-        }
-        
-        if (status === "Pending" && "tech") {
-            return "";
-        }
-
-        if (status === "Pending" && userType !== "tech") {
-            return "";
-        }
-
-        if (status === "Resolved" && "tech") {
-            return "";
-        }
-
-        if (status === "Resolved" && userType !== "tech") {
-            return "";
-        }
     };
-
-
 
     const showLinkButton = (status, id) => {
         
