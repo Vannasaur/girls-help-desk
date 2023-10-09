@@ -7,7 +7,7 @@
   <div class="container">
     <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
 
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white ">Opened by
         {{client.firstName}} on {{format_date createdAt}}</button>
 
       {{!--
@@ -49,7 +49,6 @@
           </select>
         </div>
 
-
         <div class='form-field mt-3'>
 
           <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
@@ -65,13 +64,11 @@
           </select>
         </div>
 
-        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button" >
           Save Changes
         </button>
       </div>
   </aside>
-
-
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -98,7 +95,7 @@
         </p>
 
         <div class='form-field'>
-          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <div id='urgencyFilter' class='form-control bg-black text-white'>
             <p>{{urgency}}</p>
           </div>
         </div>
@@ -109,11 +106,6 @@
             <p>{{status}}</p>
           </div>
         </div>
-
-
-        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
-          Save Changes
-        </button>
       </div>
   </aside>
 
