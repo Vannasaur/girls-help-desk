@@ -20,10 +20,6 @@ body {
     border: solid 1px #d5b3db;
 }
 
-/* .tester-ticket {
-    box-shadow: 2px 2px 2rem #79767a !important;
-} */
-
 .brand-logo {
     /* transform: scale(1); */
     transform-origin: top left;
@@ -32,7 +28,11 @@ body {
 
 .date-size {
     font-size: 12px;
-    text-align: end;
+    /* text-align: end; */
+}
+
+label {
+  color: white !important;
 }
 
 @keyframes grow {

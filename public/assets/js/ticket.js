@@ -12,20 +12,13 @@ const statusPill = document.querySelector('#status');
 showChat.addEventListener('click', () => {
     chatModal.classList.remove('hidden');
     chatModal.classList.add('openDrawer');
-    statusPill.style.opacity = '0';
+    //statusPill.style.opacity = '0';
 })
-
-// // hide modal (toggleHideMessage)
-// chatSubmitBtn.addEventListener('click', () => {
-//     chatModal.style.right = '-700px';
-//     chatModal.classList.add('hidden');
-//     statusPill.style.opacity = '1';
-// })
 
 closeChatModalBtn.addEventListener('click', () => {
     chatModal.classList.remove('openDrawer');
     chatModal.classList.add('hidden');
-    statusPill.style.opacity = '1';
+    //statusPill.style.opacity = '1';
 })
 
 // update ticket (for tech)
@@ -75,7 +68,7 @@ const addMessageHandler = async (event) => {
     event.preventDefault();
 
     const messageTxt = document.querySelector('#message-txt').value.trim();
-    const isHidden = document.querySelector('#toggle-hide').value;
+    const isHidden = document.querySelector('.toggle-hide').value;
 
     console.log(messageTxt, id, isHidden);
     //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
