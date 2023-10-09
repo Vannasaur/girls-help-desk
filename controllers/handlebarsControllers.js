@@ -46,6 +46,7 @@ module.exports = {
             console.log(tickets)
             const isTech = (req.session.role !== 'client') ? true : false;
             console.log(isTech);
+
             //notClaimed needed for handlebars to know that if the techId on the ticket is null, then the claim button should appear
             const testTicket = (tickets) => {
                 for (const ticket of tickets) {
@@ -111,10 +112,6 @@ module.exports = {
             //  We will need to serialize the data before the view renders.
             const ticket = ticketData.get({ plain: true })
 
-
-            if (ticket.isArchived) {
-                res.redirect('/');
-            }
             if (req.session.role === 'client' && ticket.clientId !== req.session.user_id) {
                 res.redirect('/');
                 return;
