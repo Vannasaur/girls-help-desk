@@ -177,6 +177,14 @@ body {
 
 .card-header {
     margin-top: 3px !important;
+
+.claim-ticket-btn {
+    background-color: black;
+    color: white;
+    padding: .5em 1.5em;
+    font-family: couture;
+    letter-spacing: 0;
+    border: none;
 }
 
 /* tickethandlebars */
