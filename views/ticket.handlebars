@@ -68,12 +68,13 @@
         <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
           Save Changes
         </button>
+        {{/each}}
       </div>
-
-      {{/each}}
-      {{else}}
-      {{#each tickets as |ticket|}}
+      {{!-- {{else}}
+      {{#each tickets as |ticket|}} --}}
       <div class="card-body text-black m-2 w-90">
+        {{else}}
+        {{#each tickets as |ticket|}}
         <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
         <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
@@ -101,9 +102,9 @@
             <option value="{{this}}">{{this.status.type}}</option>
             {{/each}}
           </select>
+          {{/each}}
+          {{/if}}
         </div>
-        {{/each}}
-        {{/if}}
   </aside>
 
   <aside class="p-2 col-6">
