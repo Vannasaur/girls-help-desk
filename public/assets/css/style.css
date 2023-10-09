@@ -173,14 +173,19 @@ body {
   color: black;
 }
 
-.claim-ticket-btn {
-    background-color: black;
-    color: white;
-    padding: .5em 1.5em;
-    font-family: couture;
-    letter-spacing: 0;
-    border: none;
+.card-header {
+    margin-top: 3px !important;
 }
+
+.claim-ticket-btn {
+  background-color: black;
+  color: white;
+  padding: .5em 1.5em;
+  font-family: couture;
+  letter-spacing: 0;
+  border: none;
+}
+
 .card-header {
     margin-top: 3px !important;
 }
@@ -188,10 +193,10 @@ body {
 /* tickethandlebars */
 
 div.card.mb-3 {
-    border: solid 2px #d5b3db;
-    box-shadow: 5px 5px 1rem #d5b3db;
-    padding: 0;
-    border-radius: 5px;
+  border: solid 2px #d5b3db;
+  box-shadow: 5px 5px 1rem #d5b3db;
+  padding: 0;
+  border-radius: 5px;
 }
 
 #login-btn {
@@ -202,10 +207,18 @@ body {
   height: 100vh;
 }
 
-#logout {
+#logout, #back-button, #show-chat {
   font-weight: bold;
 }
 
+.btn-style {
+  background-color: black;
+  color: white;
+  font-family: couture;
+  letter-spacing: 0;
+  border: none;
+  margin-bottom: 1.5em;
+}
 
 * {
   box-sizing: border-box;

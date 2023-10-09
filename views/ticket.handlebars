@@ -2,21 +2,15 @@
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
+    <br>
+      Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">
-    <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
-
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
-        {{client.firstName}} on {{format_date createdAt}}</button>
-
-      {{!--
-    </div>
-    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
+  <div class="container">  
+    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-      {{!--
     </div>
-    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
     </div>
   </div>
@@ -89,14 +83,19 @@
 </div>
 </aside>
 
-  <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"
-      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
-      <i class="material-icons white-text">arrow_back</i>
+</main>
+
+    <button 
+      class="btn btn-primary black white-text btn black btn-style"
+      id="back-button">
       Back
     </button>
-  </section>
-</main>
+    <button
+      class="btn btn-primary black white-text btn black btn-style"
+      id="show-chat">
+      Show Chat Logs
+    </button> 
+
 {{else}}
 
 {{!-- CLIENT SIDE --}}
@@ -146,34 +145,33 @@
 </div>
 </aside>
 
-  <section class="offset-md-5 col-md-4 ">
-    <button type="button" id="back-button"
-      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
-      <i class="material-icons white-text">arrow_back</i>
+</main>
+
+    <button 
+      class="btn btn-primary black white-text btn black btn-style"
+      id="back-button">
       Back
     </button>
-  </section>
-
-</main>
+    <button
+      class="btn btn-primary black white-text btn black btn-style"
+      id="show-chat">
+      Show Chat Logs
+    </button>
 
 {{/if}}
 
 
 {{!-- Show Chat Modal --}}
 <!-- show logs for specific ticket modal (ticket.handlebars)-->
-<button id="show-chat">Show Chat Logs</button>
+
 <!--modal div for log messages-->
 <div id="chat-dialogue" class="hidden">
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
   <div class="dialogue-content">
-    {{!-- <h4>Help Desk Chat</h4> --}}
-    {{!-- {{#each messages as |message|}} --}}
     <form>
       <label for="message">Message:</label>
       <textarea id="message-txt" class="form-input"></textarea>
-
       <div class="form-check">
-        {{!-- <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault hide-message toggle-hide log-id"> --}}
         <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Hide Message
