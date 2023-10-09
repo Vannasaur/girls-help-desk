@@ -8,7 +8,7 @@
         <td class="client-row">{{ticket.client.firstName}}</td>
         <td class="technician-row">{{ticket.tech.firstName}}</td>
         <td class="created-row">{{format_date ticket.createdAt}}</td>
-        <td class="link-row">{{{showLinkButton ticket.status ticket.id}}}</td>
+        <td class="link-row">{{{showLinkButton ticket.id}}}</td>
     </a>
 </tr>
 {{/each}}
