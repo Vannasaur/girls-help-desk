@@ -7,15 +7,10 @@
   <ul id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
     <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
   </ul>
-
 </header>
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
-
-      {{#if isTech}}
-      {{#each tickets as |ticket|}}
-
       <div class="card-body text-black m-2 w-90">
         <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
         <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
@@ -39,10 +34,10 @@
         </div>
 
 
-
         <div class='form-field mt-3'>
 
           <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+
             <option>SELECT STATUS</option>
             <option>OPEN</option>
             <option>PENDING</option>
@@ -54,47 +49,12 @@
           </select>
         </div>
 
-
         <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
           Save Changes
         </button>
-        {{/each}}
+
       </div>
-      {{!-- {{else}}
-      {{#each tickets as |ticket|}} --}}
-      <div class="card-body text-black m-2 w-90">
-        {{else}}
-        {{#each tickets as |ticket|}}
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
-        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
-
-        <p class="card-header mb-3" id="description-text">
-          {{description}}
-        </p>
-
-        <div class='card-body text-black m-2 w-90'>
-          <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">URGENCY</h5>
-          <h5 class="card-header fs-6 w-100 text-black" id="ticket-urgency text">{{urgency}}</h5>
-          {{!-- <select class='form-control text-center bg-black text-white'></select>
-          {{#each urgency}}
-          <option value="{{this}}">{{this.urgency.type}}</option>
-          {{/each}}
-          </select> --}}
-        </div>
-
-        <div class='card-body text-black m-2 w-90'>
-          <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">STATUS</h5>
-          <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{status}}</h5>
-          <select class='form-control text-center bg-black text-white'>
-            {{#each status}}
-            <option value="{{this}}">{{this.status.type}}</option>
-            {{/each}}
-          </select>
-          {{/each}}
-          {{/if}}
-        </div>
   </aside>
 
   <aside class="p-2 col-6">
@@ -132,5 +92,3 @@
 <script src="/assets/js/backbutton.js"></script>
 
 
-{{!-- when client we dont want it to be able to change but just saved, so no ability to select the buttons status or urgency --}}
-{{!-- save changes button only for tech side --}}

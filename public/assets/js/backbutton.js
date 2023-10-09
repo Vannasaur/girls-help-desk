@@ -7,5 +7,4 @@ const backButtonHandler = async (event) => {
     
 };
 
-
 document.querySelector('#back-button').addEventListener('click', backButtonHandler);

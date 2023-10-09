@@ -117,6 +117,8 @@ module.exports = {
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             //const isTicketCreator = (ticket.clientId === req.session.user_id);
 
+    
+
             if (ticket.client.id === req.session.user_id) {
                 res.render('ticket', {
                     ...ticket,
@@ -143,8 +145,9 @@ module.exports = {
                 layout: 'main',
                 role: req.session.role,
                 firstName: req.session.firstName,
-                user: req.session.user_id,
+                userType: req.session.user_id,
             })
+
         } catch (err) {
             res.status(500).json(err);
             console.log(err);
