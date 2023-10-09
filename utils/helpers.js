@@ -52,7 +52,6 @@ const format_timestamp = (date) => {
             return "center-align";
         }
 
-
         if (currentUser.id === log.userId) {
             return "right-align";
         }

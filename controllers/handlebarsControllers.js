@@ -86,7 +86,6 @@ module.exports = {
 
     },
 
-    //  If the user is not logged in, they will be automatically redirected away from this view to the Login page instead through the withAuth middleware.
 
     renderLogin: async function (req, res) {
         if (req.session.loggedIn) {
@@ -103,7 +102,6 @@ module.exports = {
             const ticketData = await Ticket.findByPk(req.params.id, {
                 include: [{ model: User, as: "client" }, { model: User, as: "tech" }]
             });
-
             if (!ticketData) {
                 return res.status(404).json({
                     message: 'No ticket found by that id'
@@ -118,6 +116,25 @@ module.exports = {
             }
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
             //const isTicketCreator = (ticket.clientId === req.session.user_id);
+
+            if (ticket.client.id === req.session.user_id) {
+                res.render('ticket', {
+                    ...ticket,
+                    loggedIn: req.session.loggedIn,
+                    title: ticket.subject,
+                    layout: "main",
+                    userType: "client"
+                })
+            }
+            if (ticket.tech.id === req.session.user_id) {
+                res.render('ticket', {
+                    ...ticket,
+                    loggedIn: req.session.loggedIn,
+                    title: ticket.subject,
+                    layout: "main",
+                    userType: "tech"
+                })
+            }
 
             res.render('ticket', {
                 ...ticket,
