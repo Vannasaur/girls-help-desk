@@ -4,11 +4,26 @@
     Description: {{description}}
   </section>
 
-  <div id="nav-mobile" class="right hide-on-med-and-down fixed-top mt-5 p-4 ">
-    <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white"
-      id="status">{{urgency}}</button>
+  <div class="container">
+    <div class="right hide-on-med-and-down fixed-top mb-2 mt-2 p-4 d-flex justify-content-end col-m-4">
+
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">Opened by
+        {{client.firstName}} on {{format_date createdAt}}</button>
+
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
+      {{!--
+    </div>
+    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
+      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
+    </div>
   </div>
 </header>
+
+{{#if isTechLoggedIn}}
+
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -54,26 +69,53 @@
         <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
           Save Changes
         </button>
-
       </div>
-
   </aside>
 
-  <aside class="p-2 col-6">
-    <div class="card mb-3">
-      <div class="card-body text-black m-3 w-80">
-        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-        <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
-        <ul>
-          {{#each logs}}
-            <ul>
-              <li>{{this.message}}</li>
-              <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-            </ul>
-          {{/each}}
-        </ul>
+
+
+  <section class="offset-md-5 col-md-4 ">
+    <button type="button" id="back-button"
+      class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
+      <i class="material-icons white-text">arrow_back</i>
+      Back
+    </button>
+  </section>
+</main>
+{{else}}
+
+
+<main class="row container-fluid">
+  <aside class="p-2 col-6 float-">
+    <div class="card mb-3 text-center">
+      <div class="card-body text-black m-2 w-90">
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+
+        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+
+        <p class="card-header mb-3" id="description-text">
+          {{description}}
+        </p>
+
+        <div class='form-field'>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{urgency}}</p>
+          </div>
+        </div>
+
+
+        <div class='form-field mt-3'>
+          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+            <p>{{status}}</p>
+          </div>
+        </div>
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+          Save Changes
+        </button>
       </div>
-    </div>
   </aside>
 
   <section class="offset-md-5 col-md-4 ">
@@ -82,9 +124,10 @@
       <i class="material-icons white-text">arrow_back</i>
       Back
     </button>
-
   </section>
 </main>
+
+{{/if}}
 
 {{!-- Show Chat Modal --}}
 <!-- show logs for specific ticket modal (ticket.handlebars)-->
