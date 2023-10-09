@@ -71,7 +71,6 @@ body {
 
 /* for chat log modal */
 #chat-dialogue {
-
     position: fixed;
     top: 0;
     width: 700px;
@@ -83,7 +82,6 @@ body {
     padding: 30px;
     z-index: 50 !important;
     overflow: hidden;
-
 }
 #status {
 z-index: 0 !important;
@@ -105,7 +103,7 @@ z-index: 0 !important;
     position:relative;
 }
 
-#nav-mobile {
+.fixed-top {
     z-index: 0 !important;
 }
 
@@ -175,9 +173,6 @@ body {
   color: black;
 }
 
-.card-header {
-    margin-top: 3px !important;
-
 .claim-ticket-btn {
     background-color: black;
     color: white;
@@ -185,6 +180,9 @@ body {
     font-family: couture;
     letter-spacing: 0;
     border: none;
+}
+.card-header {
+    margin-top: 3px !important;
 }
 
 /* tickethandlebars */

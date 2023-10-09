@@ -119,22 +119,6 @@ module.exports = {
             console.log(req.session.role);
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
 
-            //const isTicketCreator = (ticket.clientId === req.session.user_id);
-            const isTech = (req.session.role !== 'client') ? true : false;
-            console.log(isTech);
-            const spread = ticket;
-            console.log(spread);
-
-            // const ticketWithoutClient = {}
-            // for (const property in ticket) {
-            //     if (property === 'client') {
-            //         continue;
-            //     }
-            //     ticketWithoutClient[property] = ticket[property];
-            // }
-            // console.log(ticketWithoutClient);
-            // const tixNoClient = (ticketWithoutClient) => ticketWithoutClient.client !== null;
-
             const isTechLoggedIn = (req.session.loggedIn && req.session.role === "tech") ? true : false;
             console.log(isTechLoggedIn);
 

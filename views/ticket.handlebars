@@ -19,12 +19,12 @@
     <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
     </div>
-
   </div>
 </header>
 
+{{!-- TICKET CARDS --}}
 {{#if isTechLoggedIn}}
-
+{{!-- TECH SIDE --}}
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -50,7 +50,6 @@
           </select>
         </div>
 
-
         <div class='form-field mt-3'>
 
           <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
@@ -73,6 +72,23 @@
       </div>
   </aside>
 
+  {{!-- TIMELINE --}}
+<aside class="p-2 col-6">
+    <div class="card mb-3">
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
+            <ul>
+                {{#each logs}}
+                <ul>
+                    <li>{{this.message}}</li>
+                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+                </ul>
+                {{/each}}
+            </ul>
+</div>
+</aside>
+
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
       class="col-md-4 btn rounded-pill d-flex justify-content-center bg-black text-white">
@@ -83,6 +99,7 @@
 </main>
 {{else}}
 
+{{!-- CLIENT SIDE --}}
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
@@ -109,13 +126,25 @@
           </div>
         </div>
 
-
-        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
-          Save Changes
-        </button>
-
       </div>
   </aside>
+
+  {{!-- TIMELINE --}}
+<aside class="p-2 col-6">
+    <div class="card mb-3">
+        <div class="card-body text-black m-3 w-80">
+            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <h5 class="fs-6 w-100 text-center date-size" id="ticket-timestamp text">{{format_date createdAt}}</h5>
+            <ul>
+                {{#each logs}}
+                <ul>
+                    <li>{{this.message}}</li>
+                    <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+                </ul>
+                {{/each}}
+            </ul>
+</div>
+</aside>
 
   <section class="offset-md-5 col-md-4 ">
     <button type="button" id="back-button"
@@ -124,7 +153,10 @@
       Back
     </button>
   </section>
+
 </main>
+
+{{/if}}
 
 
 {{!-- Show Chat Modal --}}
