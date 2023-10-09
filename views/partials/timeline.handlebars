@@ -1,0 +1,20 @@
+{{!-- [ ] Timeline needs to show created at, comments, etc.
+[ ] Timeline needs an add comment button that brings up the chat log modal --}}
+
+
+{{!-- for each log, we will render the comment & timestamp --}}
+
+<body class="timeline-body">
+    <aside class="timeline">
+        <div class="timeline-container">
+        {{#each logs as |log|}}
+            <div class="content-container timeline-right">
+                <div class="content">
+                    <h7>{{log.message}}</h7>
+                    <p>{{format_date createdAt}}.</p>
+                </div>
+            </div>
+        {{/each}}
+        </div>
+    </aside>
+</body>
