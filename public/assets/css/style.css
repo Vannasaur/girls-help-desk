@@ -15,6 +15,35 @@ body {
   padding: 0;
 }
 
+.tester {
+    box-shadow: 2px 2px 2rem #d5b3db;
+    border: solid 1px #d5b3db;
+}
+
+/* .tester-ticket {
+    box-shadow: 2px 2px 2rem #79767a !important;
+} */
+
+.brand-logo {
+    /* transform: scale(1); */
+    transform-origin: top left;
+    animation: grow 1.5s linear forwards;
+}
+
+.date-size {
+    font-size: 12px;
+    text-align: end;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
 /* if "hidden" class, for determineClass helper function */
 .notShown {
   display: none;
@@ -42,22 +71,62 @@ body {
 
 /* for chat log modal */
 #chat-dialogue {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  color: white;
-  background-color: black;
-  box-shadow: -5px 0 15px gray;
-  transition: all 0.3s ease-in-out;
-  padding: 30px;
-  z-index: 50;
-  overflow: hidden;
+
+    position: fixed;
+    top: 0;
+    width: 700px;
+    height: 100%;
+    color: white;
+    background-color: black;
+    box-shadow: -5px 0 15px gray;
+    transition: all 0.3s ease-in-out;
+    padding: 30px;
+    z-index: 50 !important;
+    overflow: hidden;
+
+}
+#status {
+z-index: 0 !important;
 }
 
 .hidden {
-  width: 0;
+    width: 0;
+    right: -700px;
+}
+
+.openDrawer {
+    right: 0;
+}
+
+#message-txt {
+    height: 100px;
+    color: white;
+    z-index: 51;
+    position:relative;
+}
+
+#nav-mobile {
+    z-index: 0 !important;
+}
+
+#close-chat-modal {
+    color: white;
+    background-color: black;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#hide-message {
+    background-color: white;
+    color: white;
+}
+
+input[type="checkbox"] {
+    opacity: 1 !important;
+}
+
+#add-message-btn {
+    margin-top: 10px;
 }
 
 /* for ticket modal */
@@ -106,13 +175,25 @@ body {
   color: black;
 }
 
+.card-header {
+    margin-top: 3px !important;
+
+.claim-ticket-btn {
+    background-color: black;
+    color: white;
+    padding: .5em 1.5em;
+    font-family: couture;
+    letter-spacing: 0;
+    border: none;
+}
 
 /* tickethandlebars */
 
 div.card.mb-3 {
-  border-color: #f3e5f5 !important;
-  border-width: 1em !important;
-  padding: 0;
+    border: solid 2px #d5b3db;
+    box-shadow: 5px 5px 1rem #d5b3db;
+    padding: 0;
+    border-radius: 5px;
 }
 
 #login-btn {

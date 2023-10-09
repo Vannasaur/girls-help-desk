@@ -1,6 +1,6 @@
 <header>
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
-  <section class="p-2 ml-3">
+  <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
   </section>
 
@@ -19,6 +19,7 @@
     <div class="right hide-on-med-and-down fixed-top mt-10 p-4 "> --}}
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
     </div>
+
   </div>
 </header>
 
@@ -64,7 +65,8 @@
           </select>
         </div>
 
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button" >
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
           Save Changes
         </button>
       </div>
@@ -79,7 +81,6 @@
   </section>
 </main>
 {{else}}
-
 
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -106,6 +107,11 @@
             <p>{{status}}</p>
           </div>
         </div>
+
+
+        <button class="btn bg-black border-black w-100 text-white mt-3" type="button">
+          Save Changes
+        </button>
       </div>
   </aside>
 
@@ -122,5 +128,3 @@
 
 <script src="/assets/js/ticket.js"></script>
 <script src="/assets/js/backbutton.js"></script>
-
-

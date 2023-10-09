@@ -6,7 +6,7 @@ const {
   deleteLog
 } = require('../../controllers/logControllers')
 
-router.route('/:ticketId?drawer=BOOLEAN')
+router.route('/:ticketId')
     // POST will call the createLog controller.
     .post(createLog);
 

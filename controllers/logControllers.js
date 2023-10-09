@@ -5,13 +5,17 @@ module.exports = {
     createLog: async function (req, res) {
         try {
             const newLog = await Log.create({
-                userId: req.session.user,
+                userId: req.session.user_id,
                 ticketId: req.params.ticketId,
                 message: req.body.message,
                 type: req.body.type
             });
-            res.status(200).json(newLog);
-            res.redirect(`/log/${newLog.id}`);
+            const redirect = req.query.drawer==='true'
+            ? `/ticket/${newLog.ticketId}?drawer=true`: `/ticket/${newLog.ticketId}`
+
+            console.log(redirect);
+
+            res.redirect(redirect);
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
