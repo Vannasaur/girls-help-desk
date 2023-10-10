@@ -54,7 +54,6 @@ console.log(status, urgency);
 // update ticket btn listener
 document
     .querySelector('.edit-ticket-btn')
-    // .addEventListener('click', saveEditBtnHandler);
     .addEventListener('click', saveEditBtnHandler);
 
 
