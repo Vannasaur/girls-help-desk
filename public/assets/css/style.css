@@ -31,10 +31,6 @@ body {
     /* text-align: end; */
 }
 
-label {
-  color: white !important;
-}
-
 @keyframes grow {
     0% {
         transform: scale(0)
@@ -61,7 +57,7 @@ label {
 
 /* if "right-align" class, for determineAlignment helper function */
 .right-align {
-  text-align: right;
+  text-align: end;
 }
 
 /* if "left-align" class, for determineAlignment helper function */
@@ -85,6 +81,10 @@ label {
 }
 #status {
 z-index: 0 !important;
+}
+
+label, .form-check {
+  color: white;
 }
 
 .hidden {

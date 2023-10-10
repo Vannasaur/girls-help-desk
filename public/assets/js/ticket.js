@@ -28,18 +28,13 @@ closeChatModalBtn.addEventListener('click', () => {
 const saveEditBtnHandler = async (event) => {
     event.preventDefault();
 
-    const subject = document.querySelector('#edit-subject').value.trim();
-    const description = document.querySelector('#edit-description').value.trim();
-    const status = document.querySelector('#edit-status').value;
-    const urgency = document.querySelector('#edit-urgency').value;
-
-    // is this supposed to be /api/ticket/:ticketId? 
+    const status = document.querySelector('.edit-status').value;
+    const urgency = document.querySelector('.edit-urgency').value;
+console.log(status, urgency);
     const response = await fetch(`/api/ticket/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
             ticket_id: id,
-            subject,
-            description,
             status,
             urgency
         }),
@@ -59,7 +54,7 @@ const saveEditBtnHandler = async (event) => {
 // update ticket btn listener
 document
     .querySelector('.edit-ticket-btn')
-    .addEventListener('submit', saveEditBtnHandler);
+    .addEventListener('click', saveEditBtnHandler);
 
 
 // add message
@@ -71,8 +66,6 @@ const addMessageHandler = async (event) => {
     const isHidden = document.querySelector('.toggle-hide').value;
 
     console.log(messageTxt, id, isHidden);
-    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
-    // ?drawer=${drawerBoolean}
 
     const response = await fetch(`/api/log/${id}?drawer=true`, {
         method: 'POST',
@@ -88,7 +81,6 @@ const addMessageHandler = async (event) => {
     });
 
     if (response.ok) {
-        // document.location.replace(`/ticket/${id}`);
         console.log('Message created!');
         document.location.replace(`/ticket/${id}?drawer=true`);
     } else {
@@ -117,7 +109,7 @@ modalChatHider();
 const hideMessageHandler = async (event) => {
     event.preventDefault();
 
-    const toggleHideBtn = document.querySelector('#toggle-hide').value;
+    const toggleHideBtn = document.querySelector('.toggle-hide').value;
     const logId = document.querySelector('.log-id').value;
 
     if (toggleHideBtn === true) {
@@ -127,7 +119,6 @@ const hideMessageHandler = async (event) => {
     if (toggleHideBtn === false) {
         (toggleHideBtn === true)
     }
-    //?drawer=${drawerBoolean}
     const response = await fetch(`/api/log/${id}/${logId}`, {
         method: 'PUT',
         body: JSON.stringify({

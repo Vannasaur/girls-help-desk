@@ -23,8 +23,8 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</h5>
 
         <h5 class="card-text fs-6 w-100 text-center text-black mb-3 " id="ticket-description">Description
         </h5>
@@ -34,7 +34,7 @@
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' 'edit-urgency' class='form-control text-center bg-black text-white'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
             <option>SELECT URGENCY</option>
             <option>LOW</option>
             <option>MEDIUM</option>
@@ -47,12 +47,12 @@
 
         <div class='form-field mt-3'>
 
-          <form id='edit-status'>
-            <select id='urgencyFilter' 'edit-status' class='form-control text-center bg-black text-white'>
+          <form id='status-form'>
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
               <option>SELECT STATUS</option>
               <option>OPEN</option>
               <option>PENDING</option>
-              <option>RESOLVED</option>
+              {{!-- <option>RESOLVED</option> --}}
               <option>CLAIMED</option>
               {{#each status}}
               <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
@@ -98,8 +98,8 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</h5>
 
         <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
 
@@ -115,7 +115,7 @@
 
 
         <div class='form-field mt-3'>
-          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <div id='statusFilter' class='form-control text-center bg-black text-white'>
             <p>{{status}}</p>
           </div>
         </div>
@@ -159,7 +159,7 @@
     <div class="container">
       <ul>
         {{#each logs}}
-        <ul class="chat-ul">
+        <ul class="chat-ul {{determineAlignment}}">
           <li class="chat-msg-txt">{{this.message}}</li>
           <li class="date-size chat-msg-tag">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
         </ul>
