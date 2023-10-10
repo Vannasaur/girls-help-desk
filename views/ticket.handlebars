@@ -25,6 +25,7 @@
 
 {{!-- TICKET CARDS --}}
 {{#if isTechLoggedIn}}
+
 {{!-- TECH SIDE --}}
 <main class="row container-fluid">
   <aside class="p-2 col-6 float-">
@@ -66,8 +67,8 @@
               {{/each}}
             </select>
 
+         
         </div>
-
 
         <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="button">
           Save Changes
@@ -120,7 +121,6 @@
           </div>
         </div>
 
-
         <div class='form-field mt-3'>
           <div id='statusFilter' class='form-control text-center bg-black text-white'>
             <p>{{status}}</p>
@@ -154,6 +154,8 @@
 
 {{/if}}
 
+
+   
 
 {{!-- Show Chat Modal --}}
 <!-- show logs for specific ticket modal (ticket.handlebars)-->

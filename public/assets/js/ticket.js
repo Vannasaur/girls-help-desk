@@ -104,6 +104,8 @@ const modalChatHider = () => {
 
 modalChatHider();
 
+
+
 // toggle hide message
 // Listen for click events on the toggleHideMessage button elements. When the click event occurs capture the log id and make a PUT call to /api/log/:ticketId/:logId?drawer=<BOOLEAN>
 const hideMessageHandler = async (event) => {

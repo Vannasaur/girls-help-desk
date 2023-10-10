@@ -52,7 +52,7 @@ const format_timestamp = (date) => {
         }
 
 
-        if (currentUser.id === log.userId) {
+        if (currentUser === log.userId) {
             return "right-align";
         }
 
