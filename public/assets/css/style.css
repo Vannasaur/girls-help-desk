@@ -87,9 +87,9 @@ body {
     overflow: hidden;
 }
 
-.save-changes {
+/* .save-changes {
   margin-bottom: 5%;
-}
+} */
 #status {
 z-index: 0 !important;
 }

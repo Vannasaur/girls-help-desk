@@ -60,14 +60,11 @@
               <option value="{{this}}">{{this.status.type}}"</option>
               {{/each}} --}}
             </select>
-
         </div>
 
         <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn save-changes" type="submit">
-
           Save Changes
         </button>
-        {{!-- </form> --}}
       </div>
   </aside>
 
@@ -100,52 +97,54 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-5 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
-        <p class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</p>
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</h5>
 
-        <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">DESCRIPTION: </h5>
-        <p class="card-header mb-3" id="description-text">{{description}}</p>
+        <h5 class="card-text fs-6 w-100 text-center text-black mb-3 " id="ticket-description">Description
+        </h5>
 
-      </div>
-      <div class='form-field'>
-        <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
-          <option>SELECT URGENCY</option>
-          <option>LOW</option>
-          <option>MEDIUM</option>
-          <option>HIGH</option>
-          {{#each urgency}}
-          <option value="{{this}}">{{this.urgency.type}}</option>
-          {{/each}}
-        </select>
-      </div>
+        <p class="card-header mb-3" id="description-text" style="max-height: 10em; overflow-y: auto;">
+          {{description}}
+        </p>
 
-      <div class='form-field mt-3'>
-
-        <form id='status-form'>
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
-            <option>SELECT STATUS</option>
-            {{!-- <option>OPEN</option> --}}
-            <option>PENDING</option>
-            <option>RESOLVED</option>
-            {{!-- <option>CLAIMED</option> --}}
-            {{#each status}}
-            <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
-            {{/each}}
+        <div class='form-field'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
+            <option>SELECT URGENCY</option>
+            <option>LOW</option>
+            <option>MEDIUM</option>
+            <option>HIGH</option>
+            {{!-- {{#each urgency}}
+            <option value="{{this}}">{{this.urgency.type}}</option>
+            {{/each}} --}}
           </select>
-      </div>
+        </div>
 
-      <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn save-changes" type="submit">
-        Save Changes
-      </button>
-      </form>
-    </div>
+        <div class='form-field mt-3'>
+
+          {{!-- <form id='status-form'> --}}
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
+              <option>SELECT STATUS</option>
+              {{!-- <option>OPEN</option> --}}
+              <option>PENDING</option>
+              <option>RESOLVED</option>
+              {{!-- <option>CLAIMED</option> --}}
+              {{!-- {{#each status}}
+              <option value="{{this}}">{{this.status.type}}"</option>
+              {{/each}} --}}
+            </select>
+        </div>
+
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn save-changes" type="submit">
+          Save Changes
+        </button>
+      </div>
   </aside>
 
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
       <div class="card-body text-black m-3 w-80">
-        <h4 class="card-header fs-5 w-100 text-center">Ticket Log</h4>
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
         <ul>
           <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
             {{>timeline}}
