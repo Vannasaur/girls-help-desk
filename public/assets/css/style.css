@@ -53,16 +53,23 @@ body {
 /* if "center-align" class, for determineAlignment helper function */
 .center-align {
   text-align: center;
+  justify-content: center;
+  margin-left: 140px;
+  margin-right: 140px;
 }
 
 /* if "right-align" class, for determineAlignment helper function */
 .right-align {
   text-align: end;
+  justify-content: end;
+  margin-left: 280px;
 }
 
 /* if "left-align" class, for determineAlignment helper function */
 .left-align {
   text-align: left;
+  justify-content: start;
+  /* margin-right: 150px; */
 }
 
 /* for chat log modal */
@@ -107,6 +114,10 @@ label, .form-check {
     z-index: 0 !important;
 }
 
+.chat-ul {
+  width: 100%;
+}
+
 #close-chat-modal {
     color: white;
     background-color: black;
@@ -127,16 +138,18 @@ input[type="checkbox"] {
     margin-top: 10px;
 }
 
-.chat-ul {
+.chat-msg-txt {
   background-color: white;
   color: black;
   margin-bottom: 10px;
   border-radius: 5px;
-}
-
-.chat-msg-txt {
+  width: fit-content;
   padding: 10px;
 }
+
+/* .chat-msg-txt {
+  padding: 10px;
+} */
 
 .chat-msg-tag {
   padding-left: 10px;

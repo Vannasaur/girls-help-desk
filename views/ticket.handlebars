@@ -107,7 +107,7 @@
           {{description}}
         </p>
 
-        <div class='form-field'>
+        {{!-- <div class='form-field'>
           <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
             <p>{{urgency}}</p>
           </div>
@@ -120,6 +120,38 @@
           </div>
         </div>
 
+      </div> --}}
+              <div class='form-field'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
+            <option>SELECT URGENCY</option>
+            <option>LOW</option>
+            <option>MEDIUM</option>
+            <option>HIGH</option>
+            {{#each urgency}}
+            <option value="{{this}}">{{this.urgency.type}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div class='form-field mt-3'>
+
+          <form id='status-form'>
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
+              <option>SELECT STATUS</option>
+              {{!-- <option>OPEN</option> --}}
+              <option>PENDING</option>
+              <option>RESOLVED</option>
+              {{!-- <option>CLAIMED</option> --}}
+              {{#each status}}
+              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
+              {{/each}}
+            </select>
+        </div>
+
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
+          Save Changes
+        </button>
+        </form>
       </div>
   </aside>
 
@@ -155,17 +187,11 @@
 <div id="chat-dialogue" class="hidden">
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
   <div class="dialogue-content">
-    {{!-- Help Desk Chat --}}
-    <div class="container">
-      <ul>
+        <ul class="chat-ul">
         {{#each logs}}
-        <ul class="chat-ul {{determineAlignment}}">
-          <li class="chat-msg-txt">{{this.message}}</li>
-          <li class="date-size chat-msg-tag">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-        </ul>
+          <li class="chat-msg-txt {{determineAlignment this ../user}}">{{this.message}} <br> -{{this.user.firstName}}, {{format_date this.createdAt}}</li>
         {{/each}}
-      </ul>
-    </div>
+        </ul>
     <form>
       <label for="message">Message:</label>
       <textarea id="message-txt" class="form-input"></textarea>
