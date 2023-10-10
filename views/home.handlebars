@@ -46,9 +46,10 @@ be filtered to only match the tickets by that status. --}}
     {{>table}}
 
 </table>
- {{#unless isTech}}
+ {{!-- {{#unless isClient}}
     <tr>No pending tickets.Check back soon.</tr>
-    {{/unless}}
+    {{/unless}} --}}
+
 {{!-- The table columns will include Status, Urgency, Client, Technician, Date Created.
 Each row on this table will be clickable, and will function as a link to take the user to the individual ticket page.
 --}}
