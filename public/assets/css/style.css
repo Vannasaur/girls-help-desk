@@ -52,7 +52,7 @@ body {
 
 /* if "center-align" class, for determineAlignment helper function */
 .center-align {
-  text-align: center;
+  text-align: start !important;
   justify-content: center;
   margin-left: 140px;
   margin-right: 140px;
@@ -85,6 +85,10 @@ body {
     padding: 30px;
     z-index: 50 !important;
     overflow: hidden;
+}
+
+.save-changes {
+  margin-bottom: 5%;
 }
 #status {
 z-index: 0 !important;

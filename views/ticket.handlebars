@@ -1,14 +1,16 @@
 <header>
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
 
-    {{!-- <div class="hide-on-med-and-down"> --}}
-      <button class="btn rounded-pill bg-black text-white btn-style-2">Urgency: {{urgency}}</button>
-    {{!-- </div> --}}
-   {{!-- <div class="hide-on-med-and-down"> --}}
-      <button class="btn rounded-pill bg-black text-white btn-style-2">Status: {{status}}</button>
-    {{!-- </div> --}}
-<br>
-<br>
+  {{!-- <div class="hide-on-med-and-down"> --}}
+    <button class="btn rounded-pill bg-black text-white btn-style-2">Urgency: {{urgency}}</button>
+    {{!--
+  </div> --}}
+  {{!-- <div class="hide-on-med-and-down"> --}}
+    <button class="btn rounded-pill bg-black text-white btn-style-2">Status: {{status}}</button>
+    {{!--
+  </div> --}}
+  <br>
+  <br>
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
     <br>
@@ -61,8 +63,8 @@
 
         </div>
 
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
-        
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn save-changes" type="submit">
+
           Save Changes
         </button>
         {{!-- </form> --}}
@@ -104,77 +106,53 @@
         <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">DESCRIPTION: </h5>
         <p class="card-header mb-3" id="description-text">{{description}}</p>
 
-        {{!-- <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">STATUS: </h5>
-        <p class="card-header mb-3" id="description-text">{{status}}</p>
+      </div>
+      <div class='form-field'>
+        <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
+          <option>SELECT URGENCY</option>
+          <option>LOW</option>
+          <option>MEDIUM</option>
+          <option>HIGH</option>
+          {{#each urgency}}
+          <option value="{{this}}">{{this.urgency.type}}</option>
+          {{/each}}
+        </select>
+      </div>
 
-        <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">URGENCY: </h5>
-        <p class="card-header mb-3" id="description-text">{{urgency}}</p> --}}
+      <div class='form-field mt-3'>
 
-        {{!-- <div class='form-field'>
-        {{!-- <div class='form-field'>
-          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
-            <p>{{urgency}}</p>
-          </div>
-        </div>
-
-
-        <div class='form-field mt-3'>
-          <div id='statusFilter' class='form-control text-center bg-black text-white'>
-            <p>{{status}}</p>
-          </div>
-        </div> --}}
-
-        <button class="btn btn-primary black white-text w-100 mt-3 btn-style-2" type="submit">
-          Resolved
-        </button>
-
-      </div> --}}
-              <div class='form-field'>
-          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
-            <option>SELECT URGENCY</option>
-            <option>LOW</option>
-            <option>MEDIUM</option>
-            <option>HIGH</option>
-            {{#each urgency}}
-            <option value="{{this}}">{{this.urgency.type}}</option>
+        <form id='status-form'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
+            <option>SELECT STATUS</option>
+            {{!-- <option>OPEN</option> --}}
+            <option>PENDING</option>
+            <option>RESOLVED</option>
+            {{!-- <option>CLAIMED</option> --}}
+            {{#each status}}
+            <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
             {{/each}}
           </select>
-        </div>
-
-        <div class='form-field mt-3'>
-
-          <form id='status-form'>
-            <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
-              <option>SELECT STATUS</option>
-              {{!-- <option>OPEN</option> --}}
-              <option>PENDING</option>
-              <option>RESOLVED</option>
-              {{!-- <option>CLAIMED</option> --}}
-              {{#each status}}
-              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
-              {{/each}}
-            </select>
-        </div>
-
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
-          Save Changes
-        </button>
-        </form>
       </div>
+
+      <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn save-changes" type="submit">
+        Save Changes
+      </button>
+      </form>
+    </div>
   </aside>
 
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-5 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-5 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
@@ -195,11 +173,12 @@
 <div id="chat-dialogue" class="hidden">
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
   <div class="dialogue-content">
-        <ul class="chat-ul">
-        {{#each logs}}
-          <li class="chat-msg-txt {{determineAlignment this ../user}}">{{this.message}} <br> -{{this.user.firstName}}, {{format_date this.createdAt}}</li>
-        {{/each}}
-        </ul>
+    <ul class="chat-ul">
+      {{#each logs}}
+      <li class="chat-msg-txt {{determineAlignment this ../user}}">{{this.message}} <br> -{{this.user.firstName}},
+        {{format_date this.createdAt}}</li>
+      {{/each}}
+    </ul>
     <form>
       <label for="message">Message:</label>
       <textarea id="message-txt" class="form-input"></textarea>
