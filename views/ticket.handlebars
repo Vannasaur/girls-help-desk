@@ -3,10 +3,10 @@
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
     <br>
-      Opened by {{client.firstName}} on {{format_date createdAt}}
+    Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">  
+  <div class="container">
     <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
     </div>
@@ -23,8 +23,8 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</h5>
 
         <h5 class="card-text fs-6 w-100 text-center text-black mb-3 " id="ticket-description">Description
         </h5>
@@ -34,7 +34,7 @@
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' 'edit-urgency' class='form-control text-center bg-black text-white'>
+          <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-urgency'>
             <option>SELECT URGENCY</option>
             <option>LOW</option>
             <option>MEDIUM</option>
@@ -47,12 +47,12 @@
 
         <div class='form-field mt-3'>
 
-          <form id='edit-status'>
-            <select id='urgencyFilter' 'edit-status' class='form-control text-center bg-black text-white'>
+          <form id='status-form'>
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
               <option>SELECT STATUS</option>
               <option>OPEN</option>
               <option>PENDING</option>
-              <option>RESOLVED</option>
+              {{!-- <option>RESOLVED</option> --}}
               <option>CLAIMED</option>
               {{#each status}}
               <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
@@ -70,30 +70,26 @@
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
+  <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button> 
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{else}}
 
@@ -102,8 +98,8 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
+        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-subject">SUBJECT</h5>
+        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject-text">{{subject}}</h5>
 
         <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
 
@@ -119,7 +115,7 @@
 
 
         <div class='form-field mt-3'>
-          <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
+          <div id='statusFilter' class='form-control text-center bg-black text-white'>
             <p>{{status}}</p>
           </div>
         </div>
@@ -128,30 +124,26 @@
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
+  <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button>
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{/if}}
 
@@ -163,15 +155,27 @@
 <div id="chat-dialogue" class="hidden">
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
   <div class="dialogue-content">
+    {{!-- Help Desk Chat --}}
+    <div class="container">
+      <ul>
+        {{#each logs}}
+        <ul class="chat-ul {{determineAlignment}}">
+          <li class="chat-msg-txt">{{this.message}}</li>
+          <li class="date-size chat-msg-tag">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+        </ul>
+        {{/each}}
+      </ul>
+    </div>
     <form>
       <label for="message">Message:</label>
       <textarea id="message-txt" class="form-input"></textarea>
-      <div class="form-check">
-        <input type="checkbox" value="true" id="toggle-hide" class="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-          Hide Message
-        </label>
-      </div>
+
+      <label class="form-check">
+        <input class="form-check-input hide-message toggle-hide log-id" type="checkbox" value="true"
+          id="flexCheckDefault">
+        Hide Message
+      </label>
+
       <button type="submit" id="add-message-btn" class="btn btn-primary white black-text">Send</button>
     </form>
   </div>
