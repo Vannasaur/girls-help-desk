@@ -12,33 +12,49 @@ const statusPill = document.querySelector('#status');
 showChat.addEventListener('click', () => {
     chatModal.classList.remove('hidden');
     chatModal.classList.add('openDrawer');
-    statusPill.style.opacity = '0';
+    //statusPill.style.opacity = '0';
 })
-
-// // hide modal (toggleHideMessage)
-// chatSubmitBtn.addEventListener('click', () => {
-//     chatModal.style.right = '-700px';
-//     chatModal.classList.add('hidden');
-//     statusPill.style.opacity = '1';
-// })
 
 closeChatModalBtn.addEventListener('click', () => {
     chatModal.classList.remove('openDrawer');
     chatModal.classList.add('hidden');
-    statusPill.style.opacity = '1';
+    //statusPill.style.opacity = '1';
 })
 
 // update ticket (for tech)
 // Listen for submit events on the updateTicket element. When the submit event occurs, capture the form field data and PUT to /api/ticket/:ticketId
 
-
-
+// save edit button handler
+const saveEditBtnHandler = async (event) => {
+    event.preventDefault()
+    const status = document.querySelector('.edit-status').value;
+    const urgency = document.querySelector('.edit-urgency').value;
+console.log(status, urgency);
+    const response = await fetch(`/api/ticket/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            ticket_id: id,
+            status,
+            urgency
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    // redirect to ticket they are updating
+    if (response.ok) {
+        document.location.replace(`/ticket/${id}`);
+    } else {
+        alert('Failed to save updates');
+        console.log(response.statusText)
+    }
+};
 
 
 // update ticket btn listener
 document
     .querySelector('.edit-ticket-btn')
-    // .addEventListener('submit', saveEditBtnHandler);
+    // .addEventListener('click', saveEditBtnHandler);
     .addEventListener('click', saveEditBtnHandler);
 
 
@@ -48,11 +64,9 @@ const addMessageHandler = async (event) => {
     event.preventDefault();
 
     const messageTxt = document.querySelector('#message-txt').value.trim();
-    const isHidden = document.querySelector('#toggle-hide').value;
+    const isHidden = document.querySelector('.toggle-hide').value;
 
     console.log(messageTxt, id, isHidden);
-    //const drawerBoolean = document.querySelector('#drawer-boolean').value; // IS THIS RIGHT? WOULD I HAVE THIS SET TO TRUE SINCE THE DRAWER SHOULD BE OPEN WHEN THEY SEND A MESSAGE? or is this for the ishidden property??
-    // ?drawer=${drawerBoolean}
 
     const response = await fetch(`/api/log/${id}?drawer=true`, {
         method: 'POST',
@@ -68,7 +82,6 @@ const addMessageHandler = async (event) => {
     });
 
     if (response.ok) {
-        // document.location.replace(`/ticket/${id}`);
         console.log('Message created!');
         document.location.replace(`/ticket/${id}?drawer=true`);
     } else {
@@ -97,7 +110,7 @@ modalChatHider();
 const hideMessageHandler = async (event) => {
     event.preventDefault();
 
-    const toggleHideBtn = document.querySelector('#toggle-hide').value;
+    const toggleHideBtn = document.querySelector('.toggle-hide').value;
     const logId = document.querySelector('.log-id').value;
 
     if (toggleHideBtn === true) {
@@ -107,7 +120,6 @@ const hideMessageHandler = async (event) => {
     if (toggleHideBtn === false) {
         (toggleHideBtn === true)
     }
-    //?drawer=${drawerBoolean}
     const response = await fetch(`/api/log/${id}/${logId}`, {
         method: 'PUT',
         body: JSON.stringify({

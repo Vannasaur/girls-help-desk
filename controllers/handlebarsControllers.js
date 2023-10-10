@@ -141,23 +141,3 @@ module.exports = {
         }
     }
 };
-            // Code for client works below but code for tech does not work, only allows you to view tickets they have claimed
-            // if (ticket.client.id === req.session.user_id) {
-                //     res.render('ticket', {
-                //         ...ticket,
-                //         loggedIn: req.session.loggedIn,
-                //         title: ticket.subject,
-                //         layout: "main",
-                //         userType: "client"
-                //     })
-                // }
-                // ///////////////////////////////////////
-                // if (ticket.tech.id === req.session.user_id) {
-                //     res.render('ticket', {
-                //         ...ticket,
-                //         loggedIn: req.session.loggedIn,
-                //         title: ticket.subject,
-                //         layout: "main",
-                //         userType: "tech"
-                //     })
-                // }
