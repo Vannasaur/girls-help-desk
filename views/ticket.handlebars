@@ -1,19 +1,20 @@
 <header>
   <h2 class="brand-logo p-2 mt-3 mb-1">{{subject}}</h2>
+
+    {{!-- <div class="hide-on-med-and-down"> --}}
+      <button class="btn rounded-pill bg-black text-white btn-style-2">Urgency: {{urgency}}</button>
+    {{!-- </div> --}}
+   {{!-- <div class="hide-on-med-and-down"> --}}
+      <button class="btn rounded-pill bg-black text-white btn-style-2">Status: {{status}}</button>
+    {{!-- </div> --}}
+<br>
+<br>
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
     <br>
       Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">  
-    <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
-    </div>
-    <div class="right hide-on-med-and-down fixed-top mt-10 p-4 ">
-      <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{status}}</button>
-    </div>
-  </div>
 </header>
 
 {{!-- TICKET CARDS --}}
@@ -61,8 +62,7 @@
 
         </div>
 
-
-        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
+        <button class="btn btn-primary black white-text w-100 mt-3 btn-style-2" type="submit">
           Save Changes
         </button>
         </form>
@@ -102,16 +102,20 @@
   <aside class="p-2 col-6 float-">
     <div class="card mb-3 text-center">
       <div class="card-body text-black m-2 w-90">
-        <h5 class="card-text fs-6 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT</h5>
-        <h5 class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</h5>
 
-        <h5 class="card-text fs-6 w-100 text-center  text-black mb-3 " id="ticket-description">Description</h5>
+        <h5 class="card-text fs-5 w-100 text-center text-black mt-1" id="ticket-description">SUBJECT:</h5>
+        <p class="card-header fs-6 w-100 text-black" id="ticket-subject text">{{subject}}</p>
 
-        <p class="card-header mb-3" id="description-text">
-          {{description}}
-        </p>
+        <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">DESCRIPTION: </h5>
+        <p class="card-header mb-3" id="description-text">{{description}}</p>
 
-        <div class='form-field'>
+        {{!-- <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">STATUS: </h5>
+        <p class="card-header mb-3" id="description-text">{{status}}</p>
+
+        <h5 class="card-text fs-5 w-100 text-center  text-black mb-3 " id="ticket-description">URGENCY: </h5>
+        <p class="card-header mb-3" id="description-text">{{urgency}}</p> --}}
+
+        {{!-- <div class='form-field'>
           <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
             <p>{{urgency}}</p>
           </div>
@@ -122,7 +126,11 @@
           <div id='urgencyFilter' class='form-control text-center bg-black text-white'>
             <p>{{status}}</p>
           </div>
-        </div>
+        </div> --}}
+
+        <button class="btn btn-primary black white-text w-100 mt-3 btn-style-2" type="submit">
+          Resolved
+        </button>
 
       </div>
   </aside>
@@ -131,7 +139,7 @@
 <aside class="p-2 col-6">
     <div class="card mb-3">
         <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+            <h4 class="card-header fs-5 w-100 text-center">Ticket Log</h4>
             <ul>
                 <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
                 {{>timeline}}

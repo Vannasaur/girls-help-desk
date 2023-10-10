@@ -220,6 +220,14 @@ body {
   margin-bottom: 1.5em;
 }
 
+.edit-ticket-btn, .btn-style-2 {
+  background-color: black;
+  color: white;
+  font-family: couture;
+  letter-spacing: 0;
+  border: none;
+}
+
 * {
   box-sizing: border-box;
 }
