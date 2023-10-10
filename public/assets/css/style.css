@@ -127,6 +127,22 @@ input[type="checkbox"] {
     margin-top: 10px;
 }
 
+.chat-ul {
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.chat-msg-txt {
+  padding: 10px;
+}
+
+.chat-msg-tag {
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
 /* for ticket modal */
 #new-ticket {
   position: fixed;

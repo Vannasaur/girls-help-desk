@@ -3,10 +3,10 @@
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
     <br>
-      Opened by {{client.firstName}} on {{format_date createdAt}}
+    Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">  
+  <div class="container">
     <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
     </div>
@@ -30,7 +30,9 @@
         </h5>
 
         <p class="card-header mb-3" id="description-text" style="max-height: 10em; overflow-y: auto;">
-          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure nesciunt. Corrupti?
+          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum
+          impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure
+          nesciunt. Corrupti?
         </p>
 
         <div class='form-field'>
@@ -72,28 +74,24 @@
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button> 
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{else}}
 
@@ -130,28 +128,24 @@
   {{!-- TIMELINE --}}
   <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button>
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{/if}}
 
@@ -164,20 +158,23 @@
   <button id="close-chat-modal" class="position-absolute top-0 end-0 z-5">X</button>
   <div class="dialogue-content">
     {{!-- Help Desk Chat --}}
-    <ul>
-      {{#each logs}}
+    <div class="container">
       <ul>
-        <li>{{this.message}}</li>
-        <li class="date-size">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+        {{#each logs}}
+        <ul class="chat-ul">
+          <li class="chat-msg-txt">{{this.message}}</li>
+          <li class="date-size chat-msg-tag">-{{this.user.firstName}}, {{format_date this.createdAt}}</li>
+        </ul>
+        {{/each}}
       </ul>
-      {{/each}}
-    </ul>
+    </div>
     <form>
       <label for="message">Message:</label>
       <textarea id="message-txt" class="form-input"></textarea>
 
       <label class="form-check">
-        <input class="form-check-input hide-message toggle-hide log-id" type="checkbox" value="true" id="flexCheckDefault">
+        <input class="form-check-input hide-message toggle-hide log-id" type="checkbox" value="true"
+          id="flexCheckDefault">
         Hide Message
       </label>
 
