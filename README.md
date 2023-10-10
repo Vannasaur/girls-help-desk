@@ -57,4 +57,4 @@ The motive behind this project was to create a help desk for claim tickets. It w
 - Sequelize v6.33.0
 
 ## Deployed Link
-[Click here for deployed application]()
+[Click here for deployed application](https://murmuring-chamber-70429-75790581b652.herokuapp.com/)
