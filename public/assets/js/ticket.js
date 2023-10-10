@@ -31,42 +31,15 @@ closeChatModalBtn.addEventListener('click', () => {
 // update ticket (for tech)
 // Listen for submit events on the updateTicket element. When the submit event occurs, capture the form field data and PUT to /api/ticket/:ticketId
 
-// save edit button handler
-const saveEditBtnHandler = async (event) => {
-    event.preventDefault();
 
-    const subject = document.querySelector('#edit-subject').value.trim();
-    const description = document.querySelector('#edit-description').value.trim();
-    const status = document.querySelector('#edit-status').value;
-    const urgency = document.querySelector('#edit-urgency').value;
 
-    // is this supposed to be /api/ticket/:ticketId? 
-    const response = await fetch(`/api/ticket/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-            ticket_id: id,
-            subject,
-            description,
-            status,
-            urgency
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    // redirect to ticket they are updating
-    if (response.ok) {
-        document.location.replace(`/ticket/${id}`);
-    } else {
-        alert('Failed to save updates');
-        console.log(response.statusText)
-    }
-};
+
 
 // update ticket btn listener
 document
     .querySelector('.edit-ticket-btn')
-    .addEventListener('submit', saveEditBtnHandler);
+    // .addEventListener('submit', saveEditBtnHandler);
+    .addEventListener('click', saveEditBtnHandler);
 
 
 // add message

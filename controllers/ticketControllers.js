@@ -67,6 +67,7 @@ module.exports = {
         }
     },
 
+
     // Archive Ticket
     archiveTicket: async function (req, res) {
         try {

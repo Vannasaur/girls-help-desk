@@ -62,7 +62,6 @@ module.exports = {
             tickets = await testTicket(tickets);
             console.log(tickets);
 
-
             res.render('home',
                 {
                     tickets: [...tickets.map(ticket => ({ ...ticket, isTech }))],
@@ -122,6 +121,7 @@ module.exports = {
             const isTechLoggedIn = (req.session.loggedIn && req.session.role === "tech") ? true : false;
             console.log(isTechLoggedIn);
 
+
             res.render('ticket', {
                 ...ticket,
                 loggedIn: req.session.loggedIn,
@@ -131,7 +131,7 @@ module.exports = {
                 firstName: req.session.firstName,
                 user: req.session.user_id,
                 isTech,
-                isTechLoggedIn
+                isTechLoggedIn,
             })
 
             console.log(ticket);

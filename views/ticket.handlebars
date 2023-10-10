@@ -3,10 +3,10 @@
   <section class="p-2 ml-3 brand-logo">
     Description: {{description}}
     <br>
-      Opened by {{client.firstName}} on {{format_date createdAt}}
+    Opened by {{client.firstName}} on {{format_date createdAt}}
   </section>
 
-  <div class="container">  
+  <div class="container">
     <div class="right hide-on-med-and-down fixed-top mb-4 mt-5 p-4 ">
       <button class="btn float-end rounded-pill d-flex justify-content-center bg-black text-white">{{urgency}}</button>
     </div>
@@ -30,70 +30,68 @@
         </h5>
 
         <p class="card-header mb-3" id="description-text" style="max-height: 10em; overflow-y: auto;">
-          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure nesciunt. Corrupti?
+          {{description}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut sed harum ad quisquam cum
+          impedit cupiditate eligendi dicta, voluptate in animi distinctio optio vero, asperiores vitae iste, iure
+          nesciunt. Corrupti?
         </p>
 
         <div class='form-field'>
-          <select id='urgencyFilter' 'edit-urgency' class='form-control text-center bg-black text-white'>
-            <option>SELECT URGENCY</option>
-            <option>LOW</option>
-            <option>MEDIUM</option>
-            <option>HIGH</option>
-            {{#each urgency}}
-            <option value="{{this}}">{{this.urgency.type}}</option>
-            {{/each}}
-          </select>
+          <form id="edit-urgency">
+            <select id='urgencyFilter' class='form-control text-center bg-black text-white'>
+              <option>SELECT URGENCY</option>
+              <option>LOW</option>
+              <option>MEDIUM</option>
+              <option>HIGH</option>
+              {{!-- {{#each urgency}}
+              <option value="{{this}}">{{this.urgency.type}}</option>
+              {{/each}} --}}
+            </select>
+          </form>
         </div>
 
         <div class='form-field mt-3'>
-
           <form id='edit-status'>
-            <select id='urgencyFilter' 'edit-status' class='form-control text-center bg-black text-white'>
+            <select class='form-control text-center bg-black text-white'>
               <option>SELECT STATUS</option>
-              <option>OPEN</option>
-              <option>PENDING</option>
-              <option>RESOLVED</option>
-              <option>CLAIMED</option>
-              {{#each status}}
-              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
-              {{/each}}
+              <option dropdown-value="Open">OPEN</option>
+              <option dropdown-value="Pending">PENDING</option>
+              <option dropdown-value="Resolved">RESOLVED</option>
+              <option dropdown-value="Claimed">CLAIMED</option>
+              {{!-- {{#each status}}
+              <option value="{{this}}">{{this.status.type}}</option>
+              {{/each}} --}}
             </select>
-
         </div>
-
 
         <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
           Save Changes
         </button>
         </form>
+
       </div>
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
+  <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button> 
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{else}}
 
@@ -128,30 +126,26 @@
   </aside>
 
   {{!-- TIMELINE --}}
-<aside class="p-2 col-6">
+  <aside class="p-2 col-6">
     <div class="card mb-3">
-        <div class="card-body text-black m-3 w-80">
-            <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
-            <ul>
-                <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
-                {{>timeline}}
-                </div>
-            </ul>
-</div>
-</aside>
+      <div class="card-body text-black m-3 w-80">
+        <h4 class="card-header fs-6 w-100 text-center">Ticket Log</h4>
+        <ul>
+          <div class="timeline-contents" style="max-height: 30em; overflow-y: auto;">
+            {{>timeline}}
+          </div>
+        </ul>
+      </div>
+  </aside>
 
 </main>
 
-    <button 
-      class="btn btn-primary black white-text btn black btn-style"
-      id="back-button">
-      Back
-    </button>
-    <button
-      class="btn btn-primary black white-text btn black btn-style"
-      id="show-chat">
-      Show Chat Logs
-    </button>
+<button class="btn btn-primary black white-text btn black btn-style" id="back-button">
+  Back
+</button>
+<button class="btn btn-primary black white-text btn black btn-style" id="show-chat">
+  Show Chat Logs
+</button>
 
 {{/if}}
 
