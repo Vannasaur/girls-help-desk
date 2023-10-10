@@ -121,7 +121,6 @@ module.exports = {
                         model: Log,
                         // where: {
                         //     isHidden === "true" && role ? {
-
                         //     }
                         // },
                             include: [{ model: User, attributes: ['firstName'] }] }]
