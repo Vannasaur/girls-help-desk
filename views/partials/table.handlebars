@@ -17,6 +17,7 @@
 {{#each tickets as |ticket|}}
 <tr>
     <a href="/api/ticket/{{ticket.id}}">
+        <td class="claim-row"></td>
         <td class="status-row">{{ticket.status}}</td>
         <td class="urgency-row">{{ticket.urgency}}</td>
         <td class="client-row">{{ticket.client.firstName}}</td>

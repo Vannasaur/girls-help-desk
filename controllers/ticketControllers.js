@@ -45,11 +45,11 @@ module.exports = {
             }
 
             // If a techId was added, change status to Claimed
-            if (req.session.role === 'tech') {
-                // line 48 is needed for Claim-btn techId
-                //ticket.techId = req.session.user_id; // this is not needed, tech should be able to reassign a ticket to another tech
-                ticket.status = 'Claimed';
-            }
+            // if (req.session.role === 'tech') {
+            //     // line 48 is needed for Claim-btn techId
+            //     //ticket.techId = req.session.user_id; // this is not needed, tech should be able to reassign a ticket to another tech
+            //     ticket.status = 'Claimed';
+            // }
 
             console.log('this is current ticket' + ticket.dataValues);
             console.log('this is original data:' + originalData);

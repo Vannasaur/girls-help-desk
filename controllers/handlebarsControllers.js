@@ -11,11 +11,14 @@ module.exports = {
             if (status) {
                 where.status = status;
             };
+            if (status !== "Resolved") {
+                where.isArchived = false;
+            }
             if (req.session.role === 'client') {
                 where.clientId = req.session.user_id
             } else {
                 //where.techId = req.session.user_id;
-                if (status !== '') {
+                if (status !== '' && status !== "Open") {
                     where.techId = req.session.user_id;
                 } else {
                     where[Op.or] = [
@@ -26,7 +29,7 @@ module.exports = {
             }
 
             console.log(where);
-            const ticketData = await Ticket.findAll({
+            const Data = await Ticket.findAll({
                 where: where,
                 include: [
                     {
@@ -41,14 +44,12 @@ module.exports = {
                     },
                 ]
             })
-            console.log(ticketData);
-            let tickets = ticketData.map((tickets) => tickets.get({ plain: true }));
-            console.log(tickets)
-            const isTech = (req.session.role !== 'client') ? true : false;
-            console.log(isTech);
+            console.log(Data);
+            let tickets = Data.map((tickets) => tickets.get({ plain: true }));
+            console.log(tickets);
 
             //notClaimed needed for handlebars to know that if the techId on the ticket is null, then the claim button should appear
-            const testTicket = (tickets) => {
+            const notClaimed = (tickets) => {
                 for (const ticket of tickets) {
                     if (ticket.techId !== null) {
                         ticket.notClaimed = false
@@ -59,9 +60,19 @@ module.exports = {
                 return tickets
             }
 
-            tickets = await testTicket(tickets);
+            tickets = await notClaimed(tickets);
             console.log(tickets);
 
+            const determineTech = () => {
+                if (req.session.role !== 'client') {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            const isTech = determineTech();
+
+            console.log(isTech);
 
             res.render('home',
                 {
@@ -99,7 +110,7 @@ module.exports = {
     renderTicket: async function (req, res) {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
-                include: [{ model: User, as: "client" }, { model: User, as: "tech" }, { model: Log, include: [{ model: User, attributes: ['firstName'] }]}]
+                include: [{ model: User, as: "client" }, { model: User, as: "tech" }, { model: Log, include: [{ model: User, attributes: ['firstName'] }] }]
             });
 
             if (!ticketData) {

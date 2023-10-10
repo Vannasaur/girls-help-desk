@@ -110,7 +110,7 @@ const hideMessageHandler = async (event) => {
     event.preventDefault();
 
     const toggleHideBtn = document.querySelector('.toggle-hide').value;
-    const logId = document.querySelector('.log-id').value;
+    // const logId = document.querySelector('.log-id').value;
 
     if (toggleHideBtn === true) {
         (toggleHideBtn === false)
@@ -119,7 +119,7 @@ const hideMessageHandler = async (event) => {
     if (toggleHideBtn === false) {
         (toggleHideBtn === true)
     }
-    const response = await fetch(`/api/log/${id}/${logId}`, {
+    const response = await fetch(`/api/log/${logId}`, {
         method: 'PUT',
         body: JSON.stringify({
             isHidden: toggleHideBtn
@@ -134,7 +134,8 @@ const hideMessageHandler = async (event) => {
     }
 };
 
-//document.querySelector('.hide-message').addEventListener('click', hideMessageHandler);
+// commented out cause its currently not working
+document.querySelector('.hide-message').addEventListener('click', hideMessageHandler);
 
 const shadow = () => {
     const bigCard = document.querySelector('.tester');
