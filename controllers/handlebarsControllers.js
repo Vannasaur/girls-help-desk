@@ -119,16 +119,6 @@ module.exports = {
             console.log(req.session.role);
             //  This view will be rendered with the ticket view, the main layout, the title of 'Ticket Details', and whichever user type the user authenticated with.
 
-            // const ticketWithoutClient = {}
-            // for (const property in ticket) {
-            //     if (property === 'client') {
-            //         continue;
-            //     }
-            //     ticketWithoutClient[property] = ticket[property];
-            // }
-            // console.log(ticketWithoutClient);
-            // const tixNoClient = (ticketWithoutClient) => ticketWithoutClient.client !== null;
-
             const isTechLoggedIn = (req.session.loggedIn && req.session.role === "tech") ? true : false;
             console.log(isTechLoggedIn);
 
@@ -151,23 +141,3 @@ module.exports = {
         }
     }
 };
-            // Code for client works below but code for tech does not work, only allows you to view tickets they have claimed
-            // if (ticket.client.id === req.session.user_id) {
-                //     res.render('ticket', {
-                //         ...ticket,
-                //         loggedIn: req.session.loggedIn,
-                //         title: ticket.subject,
-                //         layout: "main",
-                //         userType: "client"
-                //     })
-                // }
-                // ///////////////////////////////////////
-                // if (ticket.tech.id === req.session.user_id) {
-                //     res.render('ticket', {
-                //         ...ticket,
-                //         loggedIn: req.session.loggedIn,
-                //         title: ticket.subject,
-                //         layout: "main",
-                //         userType: "tech"
-                //     })
-                // }

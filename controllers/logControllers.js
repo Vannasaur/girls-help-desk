@@ -36,6 +36,7 @@ module.exports = {
 
             // Save changes to the database
             await updatedLog.save();
+            console.log(updatedLog);
 
             // Redirect back to the referrer location
             res.redirect(`/log/${updatedLog.id}`)

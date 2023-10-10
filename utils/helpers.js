@@ -9,7 +9,6 @@ const format_timestamp = (date) => {
     };
 
     const withAuth = (req, res, next) => {
-        console.log("HERE")
         if (!req.session.loggedIn) {
             res.redirect('/login');
         } else {
@@ -51,6 +50,7 @@ const format_timestamp = (date) => {
         if (log.type === "Modified") {
             return "center-align";
         }
+
 
         if (currentUser.id === log.userId) {
             return "right-align";
