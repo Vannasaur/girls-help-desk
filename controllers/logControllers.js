@@ -36,6 +36,7 @@ module.exports = {
 
             // Save changes to the database
             await updatedLog.save();
+            console.log('Hit the editLog Controller Function!');
             console.log(updatedLog);
 
             // Redirect back to the referrer location

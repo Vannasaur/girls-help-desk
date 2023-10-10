@@ -111,21 +111,18 @@ module.exports = {
         try {
             const ticketData = await Ticket.findByPk(req.params.id, {
                 include: [
-                    { 
-                        model: User, as: "client" 
-                    }, 
-                    { 
-                        model: User, as: "tech" 
-                    }, 
-                    { 
+                    {
+                        model: User, as: "client"
+                    },
+                    {
+                        model: User, as: "tech"
+                    },
+                    {
                         model: Log,
-                        // where: {
-                        //     isHidden === "true" && role ? {
-                        //     }
-                        // },
-                            include: [{ model: User, attributes: ['firstName'] }] }]
+                        include: [{ model: User, attributes: ['firstName'] }]
+                    }]
             });
-// add a where here!!
+            // add a where here!!
             if (!ticketData) {
                 return res.status(404).json({
                     message: 'No ticket found by that id'

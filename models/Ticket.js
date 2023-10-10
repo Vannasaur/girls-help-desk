@@ -25,7 +25,7 @@ class Ticket extends Model {
         }
         await log.create({
             type: "Modified",
-            message: `${differences.length} changes were made on ${helper.format_date(new Date())}. ${differences.join(", ")}`, //combine previous updates + new updates separated by commas
+            message: `${differences.length} changes were made on ${helper.format_date(currentDate)}. ${differences.join(", ")}`, //combine previous updates + new updates separated by commas
 
             userId,
             ticketId: this.id,

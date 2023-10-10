@@ -60,13 +60,13 @@ const determineAlignment = (log, user) => {
     }
 };
 
-const findDiff = (newValue, oldValue, activeUser) => {
+const findDiff = (newData, oldData, activeUser) => {
     const diff = [];
-    for (const key in newValue) {
-        if (!oldValue.hasOwnProperty(key)) {
+    for (const key in newData) {
+        if (!oldData.hasOwnProperty(key)) {
             diff.push(`${key} was added by ${activeUser}`);
-        } else if (newValue[key] !== oldValue[key]) {
-            diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by User with ID ${activeUser}`);
+        } else if (newData[key] !== oldData[key]) {
+            diff.push(`${key} was changed from ${oldData[key]} to ${newData[key]} by User with ID ${activeUser}`);
         }
     }
     return diff;
@@ -85,16 +85,4 @@ const showLinkButton = (id) => {
     return `<a class="btn btn-primary black white-text btn-claimed-link" type="click" href="/ticket/${id}">View Ticket</a>`
 };
 
-const ifCond = function (v1, operator, v2, options) {
-    switch (operator) {
-        case '===':
-            return (v1 === v2) ? options.fn(this) : options.inverse(this);
-        case '!==':
-            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
-        // ... add other operators as needed
-        default:
-            return options.inverse(this);
-    }
-};
-
-module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton, showLinkButton, ifCond};
+module.exports = { withAuth, format_date, format_timestamp, determineShowHide, determineAlignment, findDiff, showClaimButton, showLinkButton };

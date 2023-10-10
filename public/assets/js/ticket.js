@@ -112,7 +112,6 @@ const hideMessageHandler = async (event) => {
     const toggleHideBtn = document.querySelector('.toggle-hide').value;
     // const logId = document.querySelector('.log-id').value;
     
-
     if (toggleHideBtn === true) {
         (toggleHideBtn === false)
     }
@@ -136,7 +135,7 @@ const hideMessageHandler = async (event) => {
 };
 
 // commented out cause its currently not working
-document.querySelector('.hide-message').addEventListener('click', hideMessageHandler);
+// document.querySelector('.hide-message').addEventListener('click', hideMessageHandler);
 
 const shadow = () => {
     const bigCard = document.querySelector('.tester');
