@@ -66,7 +66,7 @@ const findDiff = (newValue, oldValue, activeUser) => {
         if (!oldValue.hasOwnProperty(key)) {
             diff.push(`${key} was added by ${activeUser}`);
         } else if (newValue[key] !== oldValue[key]) {
-            diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by ${activeUser}`);
+            diff.push(`${key} was changed from ${oldValue[key]} to ${newValue[key]} by User with ID ${activeUser}`);
         }
     }
     return diff;

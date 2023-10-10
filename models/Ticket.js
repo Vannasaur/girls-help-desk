@@ -10,7 +10,7 @@ const { User } = require('./index');
 class Ticket extends Model {
 
     async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
-        const differences = helper.findDiff(this.dataValues, oldData); //find difference between current ticket value and previous ticket values
+        const differences = helper.findDiff(this.dataValues, oldData, userId); //find difference between current ticket value and previous ticket values
 
         const now = new Date();
         const month = now.getMonth() + 1;

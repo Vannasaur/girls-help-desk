@@ -111,6 +111,7 @@ const hideMessageHandler = async (event) => {
 
     const toggleHideBtn = document.querySelector('.toggle-hide').value;
     // const logId = document.querySelector('.log-id').value;
+    
 
     if (toggleHideBtn === true) {
         (toggleHideBtn === false)
