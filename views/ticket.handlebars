@@ -39,32 +39,33 @@
             <option>LOW</option>
             <option>MEDIUM</option>
             <option>HIGH</option>
-            {{#each urgency}}
+            {{!-- {{#each urgency}}
             <option value="{{this}}">{{this.urgency.type}}</option>
-            {{/each}}
+            {{/each}} --}}
           </select>
         </div>
 
         <div class='form-field mt-3'>
 
-          <form id='status-form'>
+          {{!-- <form id='status-form'> --}}
             <select id='urgencyFilter' class='form-control text-center bg-black text-white edit-status'>
               <option>SELECT STATUS</option>
               <option>OPEN</option>
               <option>PENDING</option>
               {{!-- <option>RESOLVED</option> --}}
               <option>CLAIMED</option>
-              {{#each status}}
-              <option value="{{this}}" class="edit-status">{{this.status.type}}</option>
-              {{/each}}
+              {{!-- {{#each status}}
+              <option value="{{this}}">{{this.status.type}}"</option>
+              {{/each}} --}}
             </select>
 
         </div>
 
-        <button class="btn btn-primary black white-text w-100 mt-3 btn-style-2" type="submit">
+        <button class="btn bg-black border-black w-100 text-white mt-3 edit-ticket-btn" type="submit">
+        
           Save Changes
         </button>
-        </form>
+        {{!-- </form> --}}
       </div>
   </aside>
 

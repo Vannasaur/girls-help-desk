@@ -26,8 +26,7 @@ closeChatModalBtn.addEventListener('click', () => {
 
 // save edit button handler
 const saveEditBtnHandler = async (event) => {
-    event.preventDefault();
-
+    event.preventDefault()
     const status = document.querySelector('.edit-status').value;
     const urgency = document.querySelector('.edit-urgency').value;
 console.log(status, urgency);
@@ -50,6 +49,7 @@ console.log(status, urgency);
         console.log(response.statusText)
     }
 };
+
 
 // update ticket btn listener
 document

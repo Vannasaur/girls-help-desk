@@ -11,12 +11,22 @@ class Ticket extends Model {
 
     async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
         const differences = helper.findDiff(this.dataValues, oldData); //find difference between current ticket value and previous ticket values
+
+        const now = new Date();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        const year = now.getFullYear();
+        const timeZone = now.toLocaleString('default', { timeZoneName: 'short' });
+
+        const currentDate = `${timeZone}`;
+
         if (differences.length === 0) {
             return;
         }
         await log.create({
             type: "Modified",
-            message: `${differences.length} changes were made on ${helper.format_date(new Date())}. ${differences.join(" ")}`, //combine previous updates + new updates separated by commas
+            message: `${differences.length} changes were made on ${helper.format_date(new Date())}. ${differences.join(", ")}`, //combine previous updates + new updates separated by commas
+
             userId,
             ticketId: this.id,
         });

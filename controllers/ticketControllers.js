@@ -44,6 +44,7 @@ module.exports = {
                 ticket[key] = req.body[key];
             }
 
+            //COMMENT THIS OUT SO THAT THE STATUS CAN BE UPDATED
             // If a techId was added, change status to Claimed
             // if (req.session.role === 'tech') {
             //     // line 48 is needed for Claim-btn techId
@@ -66,6 +67,7 @@ module.exports = {
             res.status(500).send("Server Error");
         }
     },
+
 
     // Archive Ticket
     archiveTicket: async function (req, res) {

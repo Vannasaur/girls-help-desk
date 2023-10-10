@@ -63,17 +63,6 @@ module.exports = {
             tickets = await notClaimed(tickets);
             console.log(tickets);
 
-            const determineTech = () => {
-                if (req.session.role !== 'client') {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            const isTech = determineTech();
-
-            console.log(isTech);
-
             res.render('home',
                 {
                     tickets: [...tickets.map(ticket => ({ ...ticket, isTech }))],
@@ -133,6 +122,7 @@ module.exports = {
             const isTechLoggedIn = (req.session.loggedIn && req.session.role === "tech") ? true : false;
             console.log(isTechLoggedIn);
 
+
             res.render('ticket', {
                 ...ticket,
                 loggedIn: req.session.loggedIn,
@@ -142,7 +132,7 @@ module.exports = {
                 firstName: req.session.firstName,
                 user: req.session.user_id,
                 isTech,
-                isTechLoggedIn
+                isTechLoggedIn,
             })
 
             console.log(ticket);
