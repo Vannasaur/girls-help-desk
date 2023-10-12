@@ -269,6 +269,11 @@ body {
   display: flex;
 }
 
+.no-tickets {
+  font-size: large;
+  margin-top: 20px;
+}
+
 /* Set a background color */
 .timeline {
   background-color: #ffffff;

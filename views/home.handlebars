@@ -23,6 +23,7 @@ Claimed - takes the user to '/Claimed'
 When any of these paths are applied to the URL, the user will always see the Dashboard page, but their ticket table will
 be filtered to only match the tickets by that status. --}}
 
+{{#if tickets}}
 <table class="table-card">
     <thead>
         <tr>
@@ -41,6 +42,10 @@ be filtered to only match the tickets by that status. --}}
     {{>table}}
 
 </table>
+{{else}}
+
+<p class="no-tickets">No pending tickets. Check back soon.</p>
+{{/if}}
 {{!-- The table columns will include Status, Urgency, Client, Technician, Date Created.
 Each row on this table will be clickable, and will function as a link to take the user to the individual ticket page.
 --}}
