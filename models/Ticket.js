@@ -9,9 +9,8 @@ const { User } = require('./index');
 // define the class for our model
 class Ticket extends Model {
 
-    async logChange(userId, oldData) { //logChange instance method, parameters include userId and oldData
-        const differences = helper.findDiff(this.dataValues, oldData, userId); //find difference between current ticket value and previous ticket values
-
+    async logChange(firstName, oldData) { //logChange instance method, parameters include userId and oldData
+        const differences = helper.findDiff(this.dataValues, oldData, firstName); //find difference between current ticket value and previous ticket values
         const now = new Date();
         const month = now.getMonth() + 1;
         const date = now.getDate();
@@ -27,7 +26,7 @@ class Ticket extends Model {
             type: "Modified",
             message: `${differences.length} changes were made on ${helper.format_date(currentDate)}. ${differences.join(", ")}`, //combine previous updates + new updates separated by commas
 
-            userId,
+            firstName,
             ticketId: this.id,
         });
         //await log.save();

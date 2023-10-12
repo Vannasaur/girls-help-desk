@@ -48,7 +48,7 @@ module.exports = {
             console.log('this is original data:' + originalData);
 
             if (req.session && req.session.user_id) {
-                await ticket.logChange(req.session.user_id, originalData);
+                await ticket.logChange(req.session.firstName, originalData);
                 await ticket.save();
             }
 
