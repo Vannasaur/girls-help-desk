@@ -19,7 +19,7 @@
     },
     {
         "clientId": "3",
-        "techId": "4",
+        "techId": "3",
         "subject": "Computer Issues",
         "description": "My computer isn't working",
         "status": "Resolved",
