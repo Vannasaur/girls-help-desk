@@ -63,9 +63,9 @@ const addMessageHandler = async (event) => {
     event.preventDefault();
 
     const messageTxt = document.querySelector('#message-txt').value.trim();
-    const isHidden = document.querySelector('.toggle-hide').value;
+    const checkbox = document.querySelector('.is-hidden-checkbox');
 
-    console.log(messageTxt, id, isHidden);
+    console.log(messageTxt, id, checkbox);
 
     const response = await fetch(`/api/log/${id}?drawer=true`, {
         method: 'POST',
@@ -73,7 +73,7 @@ const addMessageHandler = async (event) => {
             ticketId: id,
             message: messageTxt,
             type: 'Message',
-            isHidden,
+            isHidden: checkbox.value,
         }),
         headers: {
             'Content-Type': 'application/json'
